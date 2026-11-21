@@ -1,0 +1,34 @@
+digraph C4_contenedores {
+  rankdir=TB;
+  graph [fontname="Liberation Sans", bgcolor=white, pad=0.4, nodesep=0.7, ranksep=1.0, splines=true, compound=true];
+  node [fontname="Liberation Sans", fontsize=11, shape=box, style="rounded,filled", margin="0.18,0.12", color="#111111", fontcolor="#111111", fillcolor=white, penwidth=1.4];
+  edge [fontname="Liberation Sans", fontsize=10, color="#111111", fontcolor="#111111", arrowsize=0.8];
+  labelloc=t; labeljust=l; fontsize=15; fontname="Liberation Sans Bold";
+  label="C4 nivel 2 · Contenedores del sistema Omshato";
+  comprador [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13" color="white">Visitante o comprador</font></b></td></tr><tr><td><font point-size="9" color="white">[Persona]</font></td></tr><tr><td><font point-size="10" color="white">Explora relojes y pide uno<br/>sin crear cuenta</font></td></tr></table>>, fillcolor="#111111", fontcolor=white, shape=box];
+  admin [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13" color="white">Administrador</font></b></td></tr><tr><td><font point-size="9" color="white">[Persona]</font></td></tr><tr><td><font point-size="10" color="white">Gestiona el catálogo<br/>y los pedidos</font></td></tr></table>>, fillcolor="#111111", fontcolor=white, shape=box];
+  subgraph cluster_omshato {
+    label=<<b>Omshato</b> [Sistema de software]>; labeljust=l; fontsize=13; style="rounded"; color="#111111"; penwidth=2.2; margin=24;
+    app [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Aplicación web</font></b></td></tr><tr><td><font point-size="9">[Contenedor: tecnología por definir, TBD-11]</font></td></tr><tr><td><font point-size="10">Sirve el sitio público y el panel de administración.<br/>Aplica las reglas de negocio, valida datos,<br/>autentica al administrador y envía avisos</font></td></tr></table>>];
+    db [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Base de datos</font></b></td></tr><tr><td><font point-size="9">[Contenedor: relacional, recomendada]</font></td></tr><tr><td><font point-size="10">Relojes, marcas, pedidos, historial<br/>y cuentas de administrador</font></td></tr></table>>];
+    img [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Almacenamiento de imágenes</font></b></td></tr><tr><td><font point-size="9">[Contenedor: disco del servidor o servicio de objetos]</font></td></tr><tr><td><font point-size="10">Fotos de los relojes y sus<br/>versiones redimensionadas</font></td></tr></table>>];
+  }
+  correo [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Servicio de correo</font></b></td></tr><tr><td><font point-size="9">[Sistema externo: SMTP o API, TBD-9]</font></td></tr><tr><td><font point-size="10">Entrega el aviso de pedido nuevo</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  wa [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">WhatsApp</font></b></td></tr><tr><td><font point-size="9">[Sistema externo]</font></td></tr><tr><td><font point-size="10">Chat directo con el negocio</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  ig [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Instagram</font></b></td></tr><tr><td><font point-size="9">[Sistema externo]</font></td></tr><tr><td><font point-size="10">Perfil de la marca</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  tt [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">TikTok</font></b></td></tr><tr><td><font point-size="9">[Sistema externo]</font></td></tr><tr><td><font point-size="10">Perfil de la marca</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  nota [shape=note, style=filled, fillcolor="#F2F2F2", fontsize=9.5, margin="0.15,0.1", label="La tecnología se define en TBD-11. El sitio público\ny el panel pueden desplegarse como una sola aplicación\no como dos. Aquí se muestran juntos."];
+  leyenda [shape=plaintext, style="", label=<<table border="0" cellborder="0" cellspacing="4"><tr><td colspan="2" align="left"><b><font point-size="10">Leyenda</font></b></td></tr><tr><td width="26" height="16" bgcolor="#111111" border="1" color="#111111"> </td><td align="left"><font point-size="10">Persona</font></td></tr><tr><td width="26" height="16" bgcolor="white" border="1" color="#111111"> </td><td align="left"><font point-size="10">Sistema o contenedor propio</font></td></tr><tr><td width="26" height="16" bgcolor="#E6E6E6" border="1" color="#555555"> </td><td align="left"><font point-size="10">Sistema externo</font></td></tr></table>>];
+  {rank=same; comprador; admin;}
+  {rank=same; correo; wa; ig; tt;}
+  comprador -> app [label="Consulta el catálogo y\nhace pedidos [HTTPS]"];
+  admin -> app [label="Gestiona catálogo y pedidos\n[HTTPS, con sesión]"];
+  app -> db [label="Lee y escribe datos\n[SQL]"];
+  app -> img [label="Guarda y entrega fotos\n[JPG, PNG, WebP]"];
+  app -> correo [label="Envía aviso de pedido nuevo\n[cifrado, asíncrono]"];
+  app -> wa [label="Enlaza [URL]"];
+  app -> ig [label="Enlaza [URL]"];
+  app -> tt [label="Enlaza [URL]"];
+  img -> nota [style=invis];
+  correo -> leyenda [style=invis];
+}

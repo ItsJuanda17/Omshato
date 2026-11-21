@@ -1,0 +1,25 @@
+stateDiagram-v2
+    direction LR
+    state "Recibido" as Recibido
+    state "Por conseguir con proveedor" as Proveedor
+    state "Confirmado" as Confirmado
+    state "Enviado" as Enviado
+    state "Entregado" as Entregado
+    state "Cancelado" as Cancelado
+
+    [*] --> Recibido: Pedido de un reloj Disponible
+    [*] --> Proveedor: Pedido de un reloj Bajo pedido
+    Recibido --> Confirmado
+    Proveedor --> Confirmado: Se consigue el reloj
+    Confirmado --> Enviado
+    Enviado --> Entregado
+    Recibido --> Cancelado
+    Proveedor --> Cancelado
+    Confirmado --> Cancelado
+    Entregado --> [*]
+    Cancelado --> [*]
+
+    note right of Cancelado
+        Cancelar exige motivo y confirmación.
+        Desde Enviado ya no se puede cancelar.
+    end note

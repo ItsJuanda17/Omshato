@@ -1,0 +1,36 @@
+sequenceDiagram
+
+    participant C as Comprador
+    participant N as Navegador
+    participant A as Aplicación web
+    participant B as Base de datos
+    participant M as Canal de notificación
+
+    C->>N: Pulsa "Pedir este reloj" en la ficha
+    N->>A: Solicita el formulario del reloj
+    A->>B: Consulta el reloj (debe estar visible)
+    B-->>A: Datos del reloj
+    A-->>N: Formulario con el resumen del reloj
+    C->>N: Diligencia datos, acepta la política y envía
+    N->>A: Envía el pedido (POST con protección CSRF)
+    A->>A: Valida los datos en el servidor (REQ-PED-3 a 7)
+    alt Datos inválidos
+        A-->>N: Errores junto a cada campo, sin borrar lo escrito
+    else Datos válidos
+        A->>B: Inicia transacción y verifica que el reloj siga visible
+        alt Reloj ocultado o retirado (REQ-PED-11)
+            B-->>A: Reloj no disponible
+            A-->>N: Aviso al comprador, conserva los datos
+        else Reloj visible
+            Note over A,B: Estado inicial según el modo del reloj.<br/>Disponible: Recibido. Bajo pedido: Por conseguir con proveedor.
+            A->>B: Inserta el pedido con nombre y precio vigentes (RN-7)
+            A->>B: Inserta la primera fila del historial de estados
+            B-->>A: Confirma la transacción y devuelve el número de pedido
+            A-->>N: Confirmación con número, resumen y siguiente paso
+            A-)M: Avisa de un pedido nuevo (asíncrono)
+            opt Falla el aviso (REQ-GPE-9)
+                A->>A: Guarda el error en el registro técnico
+                Note right of A: El pedido sigue registrado y visible en el panel
+            end
+        end
+    end

@@ -1,0 +1,29 @@
+sequenceDiagram
+
+    participant D as Administrador
+    participant N as Navegador
+    participant A as Aplicación web
+    participant B as Base de datos
+
+    D->>N: Abre la dirección del panel
+    N->>A: Solicita una página del panel
+    A-->>N: Sin sesión, redirige al inicio de sesión (REQ-AUT-1)
+    D->>N: Escribe correo y contraseña y envía
+    N->>A: Envía las credenciales (POST con protección CSRF)
+    A->>B: Busca al administrador por correo
+    B-->>A: Cuenta con hash, intentos y bloqueo
+    alt Cuenta bloqueada (bloqueado_hasta mayor que la hora actual)
+        A-->>N: Mensaje de acceso bloqueado temporalmente
+    else Cuenta habilitada
+        A->>A: Compara la contraseña con el hash (bcrypt, scrypt o Argon2)
+        alt Credenciales correctas
+            A->>B: Reinicia los intentos fallidos
+            A->>A: Crea la sesión
+            A-->>N: Redirige al panel
+        else Credenciales incorrectas
+            A->>B: Suma un intento fallido
+            Note over A,B: Al llegar a 5 intentos seguidos, guarda bloqueado_hasta<br/>con 15 minutos (valores de referencia, TBD-17)
+            A-->>N: "Correo o contraseña incorrectos", sin decir cuál falló (REQ-AUT-3)
+        end
+    end
+    Note over D,A: La sesión se cierra al pulsar Cerrar sesión<br/>o por inactividad (REQ-AUT-5)

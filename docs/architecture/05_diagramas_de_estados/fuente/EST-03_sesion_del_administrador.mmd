@@ -1,0 +1,16 @@
+stateDiagram-v2
+    direction TB
+    state "Sin sesión" as Sin
+    state "Autenticado" as Auth
+    state "Bloqueado temporalmente" as Bloq
+
+    [*] --> Sin
+    Sin --> Auth: Credenciales correctas
+    Auth --> Sin: Cerrar sesión o inactividad
+    Sin --> Bloq: Quinta falla seguida
+    Bloq --> Sin: Pasan 15 minutos
+    note right of Sin
+        Una credencial incorrecta con menos de 5 fallas seguidas
+        deja al administrador en Sin sesión y suma un intento.
+        Los valores 5 y 15 son de referencia (TBD-17).
+    end note

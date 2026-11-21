@@ -1,0 +1,15 @@
+stateDiagram-v2
+    state "Reloj en el catálogo" as Reloj {
+        [*] --> Visible: Se guarda visible
+        [*] --> Oculto: Se guarda oculto
+        Visible --> Oculto: Ocultar
+        Oculto --> Visible: Mostrar
+        Visible --> Eliminado: Eliminar, sin pedidos y con confirmación
+        Oculto --> Eliminado: Eliminar, sin pedidos y con confirmación
+        Eliminado --> [*]
+        --
+        [*] --> Disponible: Hay unidades en mano
+        [*] --> BajoPedido: Se consigue con proveedor
+        Disponible --> BajoPedido: Cambiar modo
+        BajoPedido --> Disponible: Cambiar modo
+    }

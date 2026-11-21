@@ -1,0 +1,43 @@
+digraph C4_despliegue {
+  rankdir=LR;
+  graph [fontname="Liberation Sans", bgcolor=white, pad=0.4, nodesep=0.7, ranksep=1.0, splines=true, compound=true];
+  node [fontname="Liberation Sans", fontsize=11, shape=box, style="rounded,filled", margin="0.18,0.12", color="#111111", fontcolor="#111111", fillcolor=white, penwidth=1.4];
+  edge [fontname="Liberation Sans", fontsize=10, color="#111111", fontcolor="#111111", arrowsize=0.8];
+  labelloc=t; labeljust=l; fontsize=15; fontname="Liberation Sans Bold";
+  label="C4 · Diagrama de despliegue de Omshato (tecnología por definir, TBD-11)";
+  subgraph cluster_dev {
+    label=<<b>Dispositivo del usuario</b><br/><font point-size="9">[computador, tableta o celular, Android o iOS]</font>>; labeljust=l; style="rounded,filled"; fillcolor="#F7F7F7"; color="#111111"; margin=18;
+    nav [label=<<b><font point-size="12">Navegador web</font></b><br/><font point-size="9">[Chrome, Edge, Firefox o Safari, últimas 2 versiones]</font><br/><font point-size="10">Sitio público y panel,<br/>desde 360 px de ancho</font>>];
+  }
+  subgraph cluster_host {
+    label=<<b>Alojamiento web</b><br/><font point-size="9">[proveedor y sistema operativo por definir, HTTPS permanente]</font>>; labeljust=l; style="rounded,filled"; fillcolor="#F7F7F7"; color="#111111"; penwidth=2; margin=22;
+    subgraph cluster_srv {
+      label=<<b>Servidor de aplicación</b>>; style="rounded,filled"; fillcolor=white; color="#555555"; margin=14;
+      app [label=<<b><font point-size="12">Aplicación web Omshato</font></b><br/><font point-size="9">[contenedor]</font><br/><font point-size="10">Sitio público, panel y reglas de negocio</font>>];
+    }
+    subgraph cluster_dbn {
+      label=<<b>Servidor de base de datos</b>>; style="rounded,filled"; fillcolor=white; color="#555555"; margin=14;
+      db [label=<<b><font point-size="12">Base de datos Omshato</font></b><br/><font point-size="9">[relacional]</font><br/><font point-size="10">Relojes, pedidos, historial y cuentas</font>>];
+    }
+    subgraph cluster_fs {
+      label=<<b>Almacenamiento de archivos</b>>; style="rounded,filled"; fillcolor=white; color="#555555"; margin=14;
+      img [label=<<b><font point-size="12">Imágenes de relojes</font></b><br/><font point-size="9">[disco o servicio de objetos]</font><br/><font point-size="10">JPG, PNG, WebP y versiones<br/>redimensionadas</font>>];
+    }
+    bk [label=<<b><font point-size="12">Copias de seguridad automáticas</font></b><br/><font point-size="9">[tarea programada]</font><br/><font point-size="10">Al menos una diaria (SEF-1).<br/>Se prueba la restauración<br/>antes del lanzamiento</font>>];
+  }
+  subgraph cluster_mail {
+    label=<<b>Servicio de correo</b><br/><font point-size="9">[externo, TBD-9]</font>>; labeljust=l; style="rounded,filled"; fillcolor="#E6E6E6"; color="#555555"; margin=14;
+    mail [label=<<b><font point-size="12">Servidor de correo</font></b><br/><font point-size="9">[SMTP o API]</font><br/><font point-size="10">Entrega el aviso de pedido nuevo</font>>];
+  }
+  subgraph cluster_git {
+    label=<<b>Repositorio Git</b>>; labeljust=l; style="rounded,filled"; fillcolor="#E6E6E6"; color="#555555"; margin=14;
+    git [label=<<b><font point-size="12">Código fuente</font></b><br/><font point-size="9">[repositorio]</font><br/><font point-size="10">Con README de instalación<br/>y despliegue (CAL-6)</font>>];
+  }
+  nav -> app [label="HTTPS\nTLS 1.2 o superior"];
+  app -> db [label="SQL"];
+  app -> img [label="Archivos"];
+  db -> bk [style=dashed, label="respaldo"];
+  img -> bk [style=dashed, label="respaldo"];
+  app -> mail [label="Aviso de pedido\n[cifrado]"];
+  git -> app [style=dashed, label="Despliegue"];
+}

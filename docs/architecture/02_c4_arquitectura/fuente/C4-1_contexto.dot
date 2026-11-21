@@ -1,0 +1,27 @@
+digraph C4_contexto {
+  rankdir=TB;
+  graph [fontname="Liberation Sans", bgcolor=white, pad=0.4, nodesep=0.7, ranksep=1.0, splines=true, compound=true];
+  node [fontname="Liberation Sans", fontsize=11, shape=box, style="rounded,filled", margin="0.18,0.12", color="#111111", fontcolor="#111111", fillcolor=white, penwidth=1.4];
+  edge [fontname="Liberation Sans", fontsize=10, color="#111111", fontcolor="#111111", arrowsize=0.8];
+  labelloc=t; labeljust=l; fontsize=15; fontname="Liberation Sans Bold";
+  label="C4 nivel 1 · Contexto del sistema Omshato";
+  comprador [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13" color="white">Visitante o comprador</font></b></td></tr><tr><td><font point-size="9" color="white">[Persona]</font></td></tr><tr><td><font point-size="10" color="white">Explora relojes y pide uno<br/>sin crear cuenta</font></td></tr></table>>, fillcolor="#111111", fontcolor=white, shape=box];
+  admin [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13" color="white">Administrador</font></b></td></tr><tr><td><font point-size="9" color="white">[Persona]</font></td></tr><tr><td><font point-size="10" color="white">Gestiona el catálogo y los pedidos.<br/>En la versión 1.0 es el cliente</font></td></tr></table>>, fillcolor="#111111", fontcolor=white, shape=box];
+  proveedor [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Proveedor de relojes</font></b></td></tr><tr><td><font point-size="9">[Persona externa]</font></td></tr><tr><td><font point-size="10">Consigue los relojes Bajo pedido.<br/>No usa el sistema</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  omshato [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Omshato</font></b></td></tr><tr><td><font point-size="9">[Sistema de software]</font></td></tr><tr><td><font point-size="10">Tienda web de relojes: catálogo público,<br/>pedidos sin registro y panel de administración</font></td></tr></table>>, penwidth=2.6];
+  correo [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Servicio de correo</font></b></td></tr><tr><td><font point-size="9">[Sistema externo]</font></td></tr><tr><td><font point-size="10">Entrega el aviso de pedido nuevo<br/>(canal por definir, TBD-9)</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  wa [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">WhatsApp</font></b></td></tr><tr><td><font point-size="9">[Sistema externo]</font></td></tr><tr><td><font point-size="10">Chat directo con el negocio</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  ig [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">Instagram</font></b></td></tr><tr><td><font point-size="9">[Sistema externo]</font></td></tr><tr><td><font point-size="10">Perfil de la marca</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  tt [label=<<table border="0" cellborder="0" cellspacing="3"><tr><td><b><font point-size="13">TikTok</font></b></td></tr><tr><td><font point-size="9">[Sistema externo]</font></td></tr><tr><td><font point-size="10">Perfil de la marca</font></td></tr></table>>, fillcolor="#E6E6E6", color="#555555"];
+  leyenda [shape=plaintext, style="", label=<<table border="0" cellborder="0" cellspacing="4"><tr><td colspan="2" align="left"><b><font point-size="10">Leyenda</font></b></td></tr><tr><td width="26" height="16" bgcolor="#111111" border="1" color="#111111"> </td><td align="left"><font point-size="10">Persona</font></td></tr><tr><td width="26" height="16" bgcolor="white" border="1" color="#111111"> </td><td align="left"><font point-size="10">Sistema o contenedor propio</font></td></tr><tr><td width="26" height="16" bgcolor="#E6E6E6" border="1" color="#555555"> </td><td align="left"><font point-size="10">Sistema externo</font></td></tr></table>>];
+  {rank=same; comprador; admin; proveedor;}
+  {rank=same; correo; wa; ig; tt;}
+  comprador -> omshato [label="Explora el catálogo y\nhace pedidos [HTTPS]"];
+  admin -> omshato [label="Gestiona catálogo y pedidos\n[HTTPS, con sesión]"];
+  admin -> proveedor [style=dashed, label="Consigue los relojes por\nfuera del sistema"];
+  omshato -> correo [label="Envía aviso de\npedido nuevo"];
+  omshato -> wa [label="Enlaza a un chat\n[URL, sin API]"];
+  omshato -> ig [label="Enlaza al perfil\n[URL]"];
+  omshato -> tt [label="Enlaza al perfil\n[URL]"];
+  correo -> leyenda [style=invis];
+}

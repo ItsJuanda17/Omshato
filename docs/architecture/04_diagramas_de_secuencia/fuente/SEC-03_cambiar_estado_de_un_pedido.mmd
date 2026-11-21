@@ -1,0 +1,31 @@
+sequenceDiagram
+
+    participant D as Administrador
+    participant N as Navegador
+    participant A as Aplicación web
+    participant B as Base de datos
+
+    D->>N: Abre un pedido de la lista
+    N->>A: Solicita el detalle del pedido
+    A->>A: Verifica la sesión (REQ-AUT-1)
+    A->>B: Consulta el pedido y su historial
+    B-->>A: Pedido, reloj, modo, estado e historial
+    A-->>N: Detalle con las acciones permitidas
+    Note over D,N: Si el reloj es Bajo pedido, el administrador lo consigue con el proveedor por fuera del sistema antes de confirmar (RN-2, SEF-4)
+    D->>N: Elige el nuevo estado y envía
+    N->>A: Envía el cambio (POST con protección CSRF)
+    A->>A: Valida la transición con la Tabla 2 (REQ-GPE-5)
+    alt Transición no permitida
+        A-->>N: Mensaje de que ese cambio no está permitido
+    else Transición permitida
+        opt El nuevo estado es Cancelado (REQ-GPE-6)
+            A-->>N: Pide un motivo breve y confirmación
+            D->>N: Escribe el motivo y confirma
+            N->>A: Reenvía con el motivo
+        end
+        A->>B: Inicia transacción
+        A->>B: Actualiza el estado del pedido (y el motivo si cancela)
+        A->>B: Inserta en el historial estado, fecha, hora y administrador
+        B-->>A: Confirma la transacción
+        A-->>N: Detalle actualizado con el nuevo historial
+    end
