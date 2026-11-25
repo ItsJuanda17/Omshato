@@ -71,7 +71,7 @@ function datosPedido(reloj: Reloj, cambios: Partial<Pedido> = {}): Partial<Pedid
 }
 
 describe("migración y seeds", () => {
-  it("crea las 12 tablas del modelo", async () => {
+  it("crea las 12 tablas del modelo y la de sesiones", async () => {
     const filas: { tablename: string }[] = await ds.query(
       "SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND tablename <> 'migrations'",
     );
@@ -90,6 +90,7 @@ describe("migración y seeds", () => {
         "nota_pedido",
         "pedido",
         "reloj",
+        "sesion",
       ].sort(),
     );
   });
@@ -366,6 +367,9 @@ describe("entidades", () => {
 describe("reversión de la migración", () => {
   // Va al final: borra el esquema y lo deja listo otra vez.
   it("se puede revertir y volver a aplicar", async () => {
+    // Una migración por vez: primero las sesiones, después el esquema inicial.
+    await ds.undoLastMigration();
+    expect(await ds.query("SELECT to_regclass('sesion') AS tabla")).toEqual([{ tabla: null }]);
     await ds.undoLastMigration();
     const [{ restantes }] = await ds.query(
       "SELECT count(*)::int AS restantes FROM pg_tables WHERE schemaname = 'public' AND tablename <> 'migrations'",

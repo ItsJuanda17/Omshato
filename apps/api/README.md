@@ -42,6 +42,7 @@ pnpm db:up                                      # PostgreSQL en Docker (requiere
 cp apps/api/.env.example apps/api/.env          # y ajusta lo que haga falta
 pnpm db:migrate                                 # crea las tablas
 pnpm db:seed                                    # carga estados, departamentos y ciudades
+ADMIN_CORREO=tu@correo.com ADMIN_CONTRASENA=una-clave-larga pnpm admin:crear   # primer administrador
 pnpm dev:api                                    # http://localhost:3001/api/salud
 ```
 
@@ -52,9 +53,10 @@ pnpm dev:api                                    # http://localhost:3001/api/salu
 | `pnpm dev`               | API con recarga                                     |
 | `pnpm build`             | Compila a `dist/`                                   |
 | `pnpm test`              | Pruebas unitarias                                   |
-| `pnpm test:e2e`          | Pruebas e2e (no necesitan base de datos por ahora)  |
-| `pnpm test:integracion`  | Esquema, seeds y entidades contra PostgreSQL real   |
+| `pnpm test:e2e`          | Pruebas e2e de la app completa, sin base de datos   |
+| `pnpm test:integracion`  | Esquema, seeds y autenticación contra PostgreSQL    |
 | `pnpm seed`              | Carga los datos base. Se puede repetir sin problema |
+| `pnpm admin:crear`       | Crea el administrador, o le restablece la clave     |
 | `pnpm lint`, `typecheck` | oxlint con tipos y TypeScript                       |
 | `pnpm migration:run`     | Aplica las migraciones pendientes                   |
 | `pnpm migration:revert`  | Deshace la última migración                         |
@@ -66,4 +68,6 @@ pnpm dev:api                                    # http://localhost:3001/api/salu
 - **Esquema de la base de datos:** solo con migraciones, escritas a mano en SQL. `synchronize` está apagado y no se usa `migration:generate`.
 - **Pruebas de integración:** corren en la base `omshato_test` (la crea `docker-compose` la primera vez) y la reinician en cada corrida. Se niegan a correr en una base cuyo nombre no termine en `_test`.
 - **Entidades:** viven en `modules/<módulo>/entities/*.entity.ts`. Cada columna declara su tipo, las relaciones usan `Relation<T>` (evita errores de importación circular en ESM) y los `bigint` de precio pasan por `transformadorBigint`.
+- **Autenticación:** `@nestjs/authentication` con sesión en el servidor (tabla `sesion`) y cookie `__Host-sid` HttpOnly. Su guard es global: toda ruta exige sesión salvo las marcadas con `@Public()`. `@CurrentUser()` entrega el `AdministradorActual`. Bloqueo tras `AUTH_MAX_INTENTOS` fallos por `AUTH_BLOQUEO_MINUTOS`; inactividad y duración en `SESION_*` (valores de referencia, TBD-17). No hay registro ni recuperación por correo: el administrador se crea y se restablece con `pnpm admin:crear`, que lee la clave del entorno y no de argumentos.
+- **Pruebas e2e:** usan `BaseDeDatosFalsaModule`: los repositorios existen pero cualquier consulta falla. Lo que toque la base va en `test/integracion`.
 - **Datos personales:** nada de nombre, teléfono o dirección en URLs ni en registros (SEI-4).

@@ -30,6 +30,40 @@ const codigosPorEstado: Record<number, string> = {
   429: "DEMASIADAS_SOLICITUDES",
 };
 
+/** Códigos que emiten los paquetes de Nest y su equivalente estable del API. */
+const alias: Record<string, string> = {
+  missing_credentials: "NO_AUTENTICADO",
+};
+
+/** Texto en español para los mensajes genéricos en inglés que Nest y sus paquetes ponen por defecto. */
+const mensajesPorEstado: Record<number, string> = {
+  400: "La solicitud no es válida.",
+  401: "Inicia sesión para continuar.",
+  403: "No tienes permiso para hacer esto.",
+  404: "No encontramos lo que buscas.",
+  405: "Este método no está permitido.",
+  409: "La solicitud entra en conflicto con el estado actual.",
+  422: "No pudimos procesar la solicitud.",
+  429: "Demasiadas solicitudes. Inténtalo más tarde.",
+};
+
+const GENERICOS_EN = new Set([
+  "Bad Request",
+  "Unauthorized",
+  "Forbidden",
+  "Not Found",
+  "Method Not Allowed",
+  "Conflict",
+  "Unprocessable Entity",
+  "Too Many Requests",
+]);
+
+function esGenerico(mensaje: string) {
+  return (
+    GENERICOS_EN.has(mensaje) || /^Cannot (GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS) /.test(mensaje)
+  );
+}
+
 const MENSAJE_VALIDACION = "Los datos enviados no son válidos.";
 const MENSAJE_INESPERADO = "Ocurrió un error inesperado. Inténtalo de nuevo.";
 
@@ -88,7 +122,7 @@ export class FiltroExcepciones implements ExceptionFilter {
     // Un `errorCode` explícito de la excepción tiene prioridad sobre el del estado HTTP.
     const codigo =
       typeof objeto.errorCode === "string"
-        ? objeto.errorCode
+        ? (alias[objeto.errorCode] ?? objeto.errorCode)
         : (codigosPorEstado[estado] ?? (estado >= 500 ? "ERROR_INTERNO" : "ERROR"));
 
     if (estado >= 500) {
@@ -106,12 +140,13 @@ export class FiltroExcepciones implements ExceptionFilter {
       };
     }
 
-    const mensaje =
+    const original =
       typeof respuesta === "string"
         ? respuesta
         : typeof objeto.message === "string"
           ? objeto.message
           : excepcion.message;
+    const mensaje = esGenerico(original) ? (mensajesPorEstado[estado] ?? original) : original;
     return { estado, codigo, mensaje, ...base };
   }
 }

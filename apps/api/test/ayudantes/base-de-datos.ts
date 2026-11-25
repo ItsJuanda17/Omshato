@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { opcionesBase } from "../../src/database/opciones.js";
 import { ejecutarSeeds } from "../../src/database/seeds/ejecutar-seeds.js";
 import { Administrador } from "../../src/modules/auth/entities/administrador.entity.js";
+import { Sesion } from "../../src/modules/auth/entities/sesion.entity.js";
 import { HistorialPrecio } from "../../src/modules/catalogo/entities/historial-precio.entity.js";
 import { ImagenReloj } from "../../src/modules/catalogo/entities/imagen-reloj.entity.js";
 import { Marca } from "../../src/modules/catalogo/entities/marca.entity.js";
@@ -17,6 +18,7 @@ import { Departamento } from "../../src/modules/ubicaciones/entities/departament
 
 export const ENTIDADES = [
   Administrador,
+  Sesion,
   Marca,
   Reloj,
   ImagenReloj,

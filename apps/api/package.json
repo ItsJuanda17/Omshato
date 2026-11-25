@@ -17,9 +17,11 @@
     "migration:revert": "tsx --env-file-if-exists=.env ./node_modules/typeorm/cli.js migration:revert -d src/database/data-source.ts",
     "migration:create": "tsx ./node_modules/typeorm/cli.js migration:create",
     "seed": "tsx --env-file-if-exists=.env src/database/seeds/cli.ts",
+    "admin:crear": "tsx --env-file-if-exists=.env src/database/seeds/crear-administrador.ts",
     "test:integracion": "vitest run --config ./vitest.config.integracion.ts"
   },
   "dependencies": {
+    "@nestjs/authentication": "^0.1.7",
     "@nestjs/common": "^12.6.0",
     "@nestjs/config": "^12.1.1",
     "@nestjs/core": "^12.6.0",

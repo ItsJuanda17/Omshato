@@ -4,6 +4,7 @@ import {
   ConflictException,
   Logger,
   NotFoundException,
+  UnauthorizedException,
 } from "@nestjs/common";
 import { HttpAdapterHost } from "@nestjs/core";
 import type { MockInstance } from "vitest";
@@ -96,5 +97,34 @@ describe("FiltroExcepciones", () => {
     expect(cuerpo.codigo).toBe("ERROR_INTERNO");
     expect(JSON.stringify(cuerpo)).not.toContain("10.0.0.5");
     expect(registrarError).toHaveBeenCalled();
+  });
+  it("traduce el código y el mensaje en inglés que pone el paquete de autenticación", () => {
+    const { capturar } = crearFiltro();
+
+    const { cuerpo } = capturar(
+      new UnauthorizedException("Unauthorized", { errorCode: "missing_credentials" }),
+    );
+
+    expect(cuerpo).toMatchObject({
+      estado: 401,
+      codigo: "NO_AUTENTICADO",
+      mensaje: "Inicia sesión para continuar.",
+    });
+  });
+
+  it("pone en español el mensaje genérico de una ruta que no existe", () => {
+    const { capturar } = crearFiltro();
+
+    const { cuerpo } = capturar(new NotFoundException("Cannot GET /api/no-existe"));
+
+    expect(cuerpo.mensaje).toBe("No encontramos lo que buscas.");
+  });
+
+  it("respeta un mensaje propio aunque el estado tenga uno genérico", () => {
+    const { capturar } = crearFiltro();
+
+    const { cuerpo } = capturar(new UnauthorizedException("Correo o contraseña incorrectos."));
+
+    expect(cuerpo.mensaje).toBe("Correo o contraseña incorrectos.");
   });
 });

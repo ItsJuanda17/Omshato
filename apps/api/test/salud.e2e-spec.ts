@@ -1,28 +1,14 @@
-import { INestApplication, Module } from "@nestjs/common";
-import { Test } from "@nestjs/testing";
+import type { INestApplication } from "@nestjs/common";
 import request from "supertest";
 import type { App } from "supertest/types.js";
 
-import { AppModule } from "../src/app.module.js";
-import { configurarApp } from "../src/configurar-app.js";
-import { DatabaseModule } from "../src/database/database.module.js";
-
-/** Reemplaza la conexión a PostgreSQL: estas pruebas no necesitan base de datos. */
-@Module({})
-class DatabaseFalsoModule {}
+import { crearAppSinBaseDeDatos } from "./ayudantes/crear-app.js";
 
 describe("API (e2e)", () => {
   let app: INestApplication<App>;
 
   beforeAll(async () => {
-    const modulo = await Test.createTestingModule({ imports: [AppModule] })
-      .overrideModule(DatabaseModule)
-      .useModule(DatabaseFalsoModule)
-      .compile();
-
-    app = modulo.createNestApplication();
-    configurarApp(app);
-    await app.init();
+    app = await crearAppSinBaseDeDatos();
   });
 
   afterAll(async () => {
