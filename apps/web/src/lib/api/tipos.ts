@@ -78,12 +78,7 @@ export interface Ciudad {
 
 /** Estados de la Tabla 2 del SRS. */
 export type EstadoPedido =
-  | "RECIBIDO"
-  | "POR_CONSEGUIR_CON_PROVEEDOR"
-  | "CONFIRMADO"
-  | "ENVIADO"
-  | "ENTREGADO"
-  | "CANCELADO";
+  "RECIBIDO" | "POR_CONSEGUIR_CON_PROVEEDOR" | "CONFIRMADO" | "ENVIADO" | "ENTREGADO" | "CANCELADO";
 
 /** Una fila por cada estado por el que pasa el pedido, incluida la inicial. */
 export interface HistorialEstado {
@@ -165,6 +160,4 @@ export interface Sesion {
 }
 
 /** Resultado de una operación del panel. Los rechazos de negocio viajan como dato. */
-export type Resultado<T> =
-  | { ok: true; dato: T }
-  | { ok: false; codigo: string; mensaje: string };
+export type Resultado<T> = { ok: true; dato: T } | { ok: false; codigo: string; mensaje: string };

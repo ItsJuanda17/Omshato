@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CircleAlertIcon } from "lucide-react";
 
-import { SelectorFotos } from "@/components/admin/selector-fotos";
+import { SelectorFotos } from "@/components/admin/relojes/selector-fotos";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Campo } from "@/components/ui/campo";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -184,7 +184,11 @@ export function FormularioReloj({ marcas, reloj }: Props) {
         </div>
 
         {marcaElegida === MARCA_NUEVA && (
-          <Campo id="marcaNueva" etiqueta="Nombre de la marca nueva" error={errors.marcaNueva?.message}>
+          <Campo
+            id="marcaNueva"
+            etiqueta="Nombre de la marca nueva"
+            error={errors.marcaNueva?.message}
+          >
             {(a) => <Input {...a} {...register("marcaNueva")} placeholder="Ej. Rado" />}
           </Campo>
         )}
@@ -196,15 +200,11 @@ export function FormularioReloj({ marcas, reloj }: Props) {
             error={errors.precio?.message}
             ayuda="Número entero, sin puntos ni comas. Ej. 3450000"
           >
-            {(a) => (
-              <Input {...a} {...register("precio")} inputMode="numeric" className="dato" />
-            )}
+            {(a) => <Input {...a} {...register("precio")} inputMode="numeric" className="dato" />}
           </Campo>
 
           <Campo id="garantia" etiqueta="Garantía" error={errors.garantia?.message}>
-            {(a) => (
-              <Input {...a} {...register("garantia")} placeholder="12 meses de garantía" />
-            )}
+            {(a) => <Input {...a} {...register("garantia")} placeholder="12 meses de garantía" />}
           </Campo>
         </div>
       </fieldset>
@@ -222,7 +222,12 @@ export function FormularioReloj({ marcas, reloj }: Props) {
               Disponible
             </label>
             <label className="flex cursor-pointer items-center gap-3 text-body-md">
-              <input type="radio" value="BAJO_PEDIDO" {...register("modo")} className={claseRadio} />
+              <input
+                type="radio"
+                value="BAJO_PEDIDO"
+                {...register("modo")}
+                className={claseRadio}
+              />
               Bajo pedido
             </label>
           </div>
@@ -288,7 +293,9 @@ export function FormularioReloj({ marcas, reloj }: Props) {
               {...register("detalleMecanica")}
               rows={7}
               className="dato"
-              placeholder={"Calibre: Powermatic 80.111\nReserva de marcha: 80 horas\nDiámetro de caja: 40 mm"}
+              placeholder={
+                "Calibre: Powermatic 80.111\nReserva de marcha: 80 horas\nDiámetro de caja: 40 mm"
+              }
             />
           )}
         </Campo>
@@ -299,7 +306,9 @@ export function FormularioReloj({ marcas, reloj }: Props) {
       </fieldset>
 
       <fieldset className="space-y-6">
-        <legend className="etiqueta mb-6 w-full border-b border-linea pb-3 text-tinta">Fotos</legend>
+        <legend className="etiqueta mb-6 w-full border-b border-linea pb-3 text-tinta">
+          Fotos
+        </legend>
         <Controller
           control={control}
           name="fotos"

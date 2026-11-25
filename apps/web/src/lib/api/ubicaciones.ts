@@ -1,6 +1,6 @@
 "use server";
 
-import { obtenerAlmacen, simularLatencia } from "@/lib/api/almacen";
+import { obtenerAlmacen, simularLatencia } from "@/lib/api/mock/almacen";
 import type { Ciudad, Departamento } from "@/lib/api/tipos";
 
 /** Lista de Colombia para el formulario de pedido (REQ-PED-5). */

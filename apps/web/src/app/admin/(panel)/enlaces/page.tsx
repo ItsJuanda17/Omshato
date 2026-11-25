@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { FormularioEnlaces } from "@/components/admin/formulario-enlaces";
+import { FormularioEnlaces } from "@/components/admin/enlaces/formulario-enlaces";
 
 export const metadata: Metadata = { title: "Enlaces de contacto" };
 

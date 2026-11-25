@@ -3,8 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
-import { FormularioPedido } from "@/components/pedido/formulario-pedido";
-import { ResumenReloj } from "@/components/pedido/resumen-reloj";
+import { FormularioPedido } from "@/components/pedidos/formulario-pedido";
+import { ResumenReloj } from "@/components/pedidos/resumen-reloj";
 import { obtenerReloj } from "@/lib/api/relojes";
 import { listarCiudades, listarDepartamentos } from "@/lib/api/ubicaciones";
 
@@ -44,7 +44,10 @@ export default async function PaginaPedido({ params }: Props) {
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <Link href={`/relojes/${reloj.urlAmigable}`} className="transition-colors hover:text-tinta">
+            <Link
+              href={`/relojes/${reloj.urlAmigable}`}
+              className="transition-colors hover:text-tinta"
+            >
               {reloj.nombre}
             </Link>
           </li>

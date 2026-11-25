@@ -5,7 +5,7 @@
  * los relojes, visibles y ocultos. Todo exige sesión (REQ-AUT-1).
  */
 
-import { obtenerAlmacen, simularLatencia } from "@/lib/api/almacen";
+import { obtenerAlmacen, simularLatencia } from "@/lib/api/mock/almacen";
 import type { Marca, ModoReloj, RelojAdmin, Reloj, Resultado } from "@/lib/api/tipos";
 import { requerirSesion } from "@/lib/auth/sesion";
 import { slugificar } from "@/lib/formato";
@@ -163,7 +163,10 @@ export async function actualizarReloj(
 }
 
 /** Cambia el modo sin abrir el formulario (CU-15, REQ-ADM-6). */
-export async function cambiarModoReloj(idReloj: number, modo: ModoReloj): Promise<Resultado<RelojAdmin>> {
+export async function cambiarModoReloj(
+  idReloj: number,
+  modo: ModoReloj,
+): Promise<Resultado<RelojAdmin>> {
   await requerirSesion();
   await simularLatencia(200);
 

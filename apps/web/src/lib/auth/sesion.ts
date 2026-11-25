@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { obtenerAlmacen } from "@/lib/api/almacen";
+import { obtenerAlmacen } from "@/lib/api/mock/almacen";
 import type { Sesion } from "@/lib/api/tipos";
 
 /*

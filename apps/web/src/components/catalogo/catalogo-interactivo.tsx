@@ -84,7 +84,11 @@ export function CatalogoInteractivo({ relojes, marcas, enlaceChat }: Props) {
       actualizarUrl(
         errorPrecio
           ? { busqueda: busqueda.trim() }
-          : { busqueda: busqueda.trim(), precioMin: leerPrecio(minimo), precioMax: leerPrecio(maximo) },
+          : {
+              busqueda: busqueda.trim(),
+              precioMin: leerPrecio(minimo),
+              precioMax: leerPrecio(maximo),
+            },
       );
     }, ESPERA_ESCRITURA_MS);
     return () => clearTimeout(pausa);

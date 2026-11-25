@@ -1,6 +1,6 @@
 "use server";
 
-import { obtenerAlmacen, simularLatencia } from "@/lib/api/almacen";
+import { obtenerAlmacen, simularLatencia } from "@/lib/api/mock/almacen";
 import type { EstadoPedido, Pedido, Resultado, ResultadoCrearPedido } from "@/lib/api/tipos";
 import { requerirSesion } from "@/lib/auth/sesion";
 import { etiquetasEstado, puedeCambiar } from "@/lib/pedidos/estados";

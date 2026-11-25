@@ -2,13 +2,49 @@
 
 Tienda web de relojes con un solo vendedor (Colombia). Monorepo con pnpm workspaces.
 
-| Carpeta    | Contenido                                                         |
-| ---------- | ----------------------------------------------------------------- |
-| `apps/web` | Frontend en Next.js. Hoy usa datos simulados en memoria.          |
-| `docs`     | SRS y diagramas de arquitectura. No se modifican desde el código. |
-| `web`      | Mockups de Stitch, solo como referencia visual.                   |
+```
+omshato/
+├── apps/
+│   └── web/                  Frontend en Next.js (apps/api llegará después)
+├── docs/
+│   ├── srs/                  Especificación de requisitos
+│   ├── architecture/         Diagramas: casos de uso, C4, base de datos, secuencia y estados
+│   └── diseno/               Referencias visuales (Stitch y prototipo HTML), solo lectura
+├── package.json              Scripts del monorepo
+└── pnpm-workspace.yaml
+```
 
-`apps/api` (NestJS y PostgreSQL) se sumará más adelante.
+`docs/` no se modifica desde el código. `apps/api` (NestJS y PostgreSQL) se sumará más adelante.
+
+### Estructura de `apps/web/src`
+
+```
+src/
+├── app/                      Rutas (App Router)
+│   ├── (public)/             Sitio público: inicio, ficha, pedido, confirmación, ayuda, política
+│   └── admin/                Panel: login y (panel)/ con pedidos, relojes y enlaces
+├── components/
+│   ├── ui/                   Primitivas de interfaz (botón, campo, chip…)
+│   ├── brand/                Logo, engranajes y motivos mecánicos
+│   ├── feedback/             Estados de carga y vacíos
+│   ├── layout/               Cabecera, pie y páginas de texto del sitio público
+│   ├── catalogo/             Portada y catálogo con filtros
+│   ├── relojes/              Tarjeta, galería, especificaciones, precio
+│   ├── pedidos/              Formulario, resumen y confirmación del pedido
+│   └── admin/                Panel, una carpeta por sección:
+│       ├── layout/  comun/  sesion/  pedidos/  relojes/  enlaces/
+├── lib/
+│   ├── api/                  Servicios y tipos de dominio. Es lo que se reemplaza por la API real
+│   │   └── mock/             Almacén y datos de ejemplo en memoria. Se borra al conectar el backend
+│   ├── auth/                 Sesión del administrador (punto de integración)
+│   ├── validaciones/         Esquemas Zod compartidos entre formularios y servicios
+│   ├── catalogo/  contacto/  pedidos/  relojes/   Reglas y utilidades por dominio
+│   ├── svg/                  Geometría de los engranajes
+│   └── formato.ts  utils.ts  Utilidades comunes
+└── config/                   Valores iniciales de contacto
+```
+
+**Convenciones:** los componentes se agrupan por dominio y no por tipo; la lógica sin interfaz va en `lib/<dominio>`; nada fuera de `lib/api` y `lib/auth` sabe de dónde vienen los datos.
 
 ## Comandos
 

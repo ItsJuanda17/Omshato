@@ -1,6 +1,6 @@
 import { contactoInicial } from "@/config/contacto";
-import { ciudadesEjemplo, departamentosEjemplo } from "@/lib/api/datos-colombia";
-import { relojesEjemplo } from "@/lib/api/datos-ejemplo";
+import { ciudadesEjemplo, departamentosEjemplo } from "@/lib/api/mock/datos-colombia";
+import { relojesEjemplo } from "@/lib/api/mock/datos-ejemplo";
 import type { EnlaceContacto, EstadoPedido, Pedido } from "@/lib/api/tipos";
 
 /** Administrador de ejemplo. Es el autor de los cambios de estado y de las notas. */
@@ -26,7 +26,8 @@ function pedido(d: DatosPedido): Pedido {
   const reloj = relojesEjemplo.find((r) => r.id === d.idReloj);
   const ciudad = ciudadesEjemplo.find((c) => c.id === d.idCiudad);
   const departamento = departamentosEjemplo.find((x) => x.id === ciudad?.idDepartamento);
-  if (!reloj || !ciudad || !departamento) throw new Error(`Pedido de ejemplo inválido: ${d.numero}`);
+  if (!reloj || !ciudad || !departamento)
+    throw new Error(`Pedido de ejemplo inválido: ${d.numero}`);
 
   const historial = d.pasos.map(([estado, dia, hora], i) => ({
     id: i + 1,

@@ -23,7 +23,10 @@ export default function PaginaInicio() {
         <div className="contenedor py-12 md:py-16">
           <div className="mb-8 space-y-2">
             <p className="etiqueta">Catálogo</p>
-            <h2 id="titulo-catalogo" className="font-display text-headline-md uppercase md:text-headline-lg">
+            <h2
+              id="titulo-catalogo"
+              className="font-display text-headline-md uppercase md:text-headline-lg"
+            >
               Piezas en exhibición
             </h2>
           </div>

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { InsigniaModo } from "@/components/relojes/insignia-modo";
 import { Precio } from "@/components/relojes/precio";
 import type { Reloj } from "@/lib/api/tipos";
-import { parsearEspecificaciones } from "@/lib/especificaciones";
+import { parsearEspecificaciones } from "@/lib/relojes/especificaciones";
 
 /** Resumen del reloj que se está pidiendo, junto al formulario. */
 export function ResumenReloj({ reloj }: { reloj: Reloj }) {

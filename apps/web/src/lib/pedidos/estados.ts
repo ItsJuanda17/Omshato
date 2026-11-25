@@ -35,5 +35,3 @@ export const transiciones: Record<EstadoPedido, EstadoPedido[]> = {
 export function puedeCambiar(desde: EstadoPedido, hacia: EstadoPedido) {
   return transiciones[desde].includes(hacia);
 }
-
-export const esEstadoFinal = (estado: EstadoPedido) => transiciones[estado].length === 0;

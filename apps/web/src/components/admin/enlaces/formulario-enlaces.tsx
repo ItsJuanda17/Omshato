@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CircleAlertIcon, CircleCheckIcon } from "lucide-react";
 
-import { CargandoPanel, ErrorPanel } from "@/components/admin/cargando-panel";
+import { CargandoPanel, ErrorPanel } from "@/components/admin/comun/cargando-panel";
 import { Button } from "@/components/ui/button";
 import { Campo } from "@/components/ui/campo";
 import { Checkbox } from "@/components/ui/checkbox";

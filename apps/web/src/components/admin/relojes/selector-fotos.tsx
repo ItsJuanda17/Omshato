@@ -5,7 +5,7 @@ import { ArrowDownIcon, ArrowUpIcon, XIcon } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { descripcionFoto, fotosDeEjemplo } from "@/lib/fotos-ejemplo";
+import { descripcionFoto, fotosDeEjemplo } from "@/lib/relojes/fotos-ejemplo";
 
 interface Props {
   /** Rutas de las fotos elegidas, en orden. La primera es la principal (REQ-ADM-10). */

@@ -1,5 +1,5 @@
-import { MarcoPanel } from "@/components/admin/marco-panel";
-import { ProveedorConsultas } from "@/components/admin/proveedor-consultas";
+import { MarcoPanel } from "@/components/admin/layout/marco-panel";
+import { ProveedorConsultas } from "@/components/admin/comun/proveedor-consultas";
 import { requerirSesion } from "@/lib/auth/sesion";
 
 // Todo el panel, salvo el inicio de sesión, exige sesión (REQ-AUT-1).

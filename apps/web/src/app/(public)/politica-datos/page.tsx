@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import { Documento, SeccionDocumento } from "@/components/layout/documento";
-import { enlaceWhatsApp } from "@/lib/contacto";
-import { contactoPublico } from "@/lib/contacto-servidor";
+import { enlaceWhatsApp } from "@/lib/contacto/enlaces";
+import { contactoPublico } from "@/lib/contacto/servidor";
 
 export const metadata: Metadata = {
   title: "Política de tratamiento de datos personales",
@@ -31,7 +31,11 @@ export default async function PaginaPoliticaDatos() {
             <>
               {" "}
               Puedes escribirnos por{" "}
-              <a href={enlaceWhatsApp(whatsapp) ?? undefined} target="_blank" rel="noopener noreferrer">
+              <a
+                href={enlaceWhatsApp(whatsapp) ?? undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 WhatsApp
               </a>{" "}
               al <span className="dato">{whatsapp.visible}</span>.
@@ -62,8 +66,8 @@ export default async function PaginaPoliticaDatos() {
       <SeccionDocumento titulo="Tu autorización">
         <p>
           Al marcar la casilla del formulario de pedido nos das tu autorización previa, expresa e
-          informada para tratar tus datos con estas finalidades. Guardamos la fecha y la hora en
-          que la diste.
+          informada para tratar tus datos con estas finalidades. Guardamos la fecha y la hora en que
+          la diste.
         </p>
       </SeccionDocumento>
 
@@ -97,8 +101,8 @@ export default async function PaginaPoliticaDatos() {
 
       <SeccionDocumento titulo="Cookies">
         <p>
-          El sitio solo usa las cookies necesarias para la sesión de quien administra la tienda.
-          No usamos cookies de publicidad ni de analítica.
+          El sitio solo usa las cookies necesarias para la sesión de quien administra la tienda. No
+          usamos cookies de publicidad ni de analítica.
         </p>
       </SeccionDocumento>
     </Documento>

@@ -5,8 +5,8 @@ import { ChevronDownIcon } from "lucide-react";
 
 import { Documento } from "@/components/layout/documento";
 import { buttonVariants } from "@/components/ui/button";
-import { enlaceWhatsApp } from "@/lib/contacto";
-import { contactoPublico } from "@/lib/contacto-servidor";
+import { enlaceWhatsApp } from "@/lib/contacto/enlaces";
+import { contactoPublico } from "@/lib/contacto/servidor";
 
 export const metadata: Metadata = {
   title: "Ayuda",
@@ -20,9 +20,9 @@ const preguntas: { pregunta: string; respuesta: ReactNode }[] = [
     pregunta: "¿Cómo hago un pedido?",
     respuesta: (
       <p>
-        Entra a la ficha del reloj que te gusta y pulsa «Pedir este reloj». Llena tu nombre,
-        celular y dirección de entrega, acepta la política de datos y envía. No necesitas crear una
-        cuenta. Al terminar verás tu número de pedido.
+        Entra a la ficha del reloj que te gusta y pulsa «Pedir este reloj». Llena tu nombre, celular
+        y dirección de entrega, acepta la política de datos y envía. No necesitas crear una cuenta.
+        Al terminar verás tu número de pedido.
       </p>
     ),
   },
@@ -47,8 +47,8 @@ const preguntas: { pregunta: string; respuesta: ReactNode }[] = [
     pregunta: "¿Cómo pago?",
     respuesta: (
       <p>
-        El sitio no cobra en línea ni guarda datos de tarjetas. Después de tu pedido nos
-        comunicamos contigo por WhatsApp para coordinar el pago.
+        El sitio no cobra en línea ni guarda datos de tarjetas. Después de tu pedido nos comunicamos
+        contigo por WhatsApp para coordinar el pago.
       </p>
     ),
   },
@@ -56,8 +56,8 @@ const preguntas: { pregunta: string; respuesta: ReactNode }[] = [
     pregunta: "¿Cuánto tarda un reloj bajo pedido?",
     respuesta: (
       <p>
-        Depende del reloj. Cuando tenemos un estimado, aparece en su ficha como «Plazo estimado».
-        El plazo definitivo te lo confirmamos al contactarte.
+        Depende del reloj. Cuando tenemos un estimado, aparece en su ficha como «Plazo estimado». El
+        plazo definitivo te lo confirmamos al contactarte.
       </p>
     ),
   },

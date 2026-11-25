@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import { Engranaje } from "@/components/brand/engranajes";
 import { Logo } from "@/components/brand/logo";
-import { FormularioLogin } from "@/components/admin/formulario-login";
+import { FormularioLogin } from "@/components/admin/sesion/formulario-login";
 import { obtenerSesion } from "@/lib/auth/sesion";
 
 export const metadata: Metadata = { title: "Iniciar sesión" };

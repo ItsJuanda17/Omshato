@@ -6,7 +6,13 @@ import { Precio } from "@/components/relojes/precio";
 import type { RelojResumen } from "@/lib/api/tipos";
 
 /** Tarjeta del catálogo (REQ-CAT-2). Toda la tarjeta es un enlace a la ficha. */
-export function TarjetaReloj({ reloj, prioridad = false }: { reloj: RelojResumen; prioridad?: boolean }) {
+export function TarjetaReloj({
+  reloj,
+  prioridad = false,
+}: {
+  reloj: RelojResumen;
+  prioridad?: boolean;
+}) {
   return (
     <Link
       href={`/relojes/${reloj.urlAmigable}`}
@@ -29,7 +35,10 @@ export function TarjetaReloj({ reloj, prioridad = false }: { reloj: RelojResumen
           <p className="etiqueta">{reloj.marca.nombre}</p>
           <h3 className="text-body-md font-medium text-tinta md:text-title-lg">{reloj.nombre}</h3>
         </div>
-        <Precio valor={reloj.precioCop} className="mt-auto pt-2 text-body-md text-tinta md:text-title-lg" />
+        <Precio
+          valor={reloj.precioCop}
+          className="mt-auto pt-2 text-body-md text-tinta md:text-title-lg"
+        />
       </div>
     </Link>
   );

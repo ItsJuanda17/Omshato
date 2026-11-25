@@ -1,7 +1,7 @@
 import { CatalogoInteractivo } from "@/components/catalogo/catalogo-interactivo";
 import { listarMarcas, listarRelojes } from "@/lib/api/relojes";
-import { enlaceWhatsApp } from "@/lib/contacto";
-import { contactoPublico } from "@/lib/contacto-servidor";
+import { enlaceWhatsApp } from "@/lib/contacto/enlaces";
+import { contactoPublico } from "@/lib/contacto/servidor";
 
 /** Trae el catálogo visible y sus marcas, y las entrega a la parte interactiva. */
 export async function SeccionCatalogo() {

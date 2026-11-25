@@ -6,8 +6,8 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CircleAlertIcon, PlusIcon, SearchIcon } from "lucide-react";
 
-import { CargandoPanel, ErrorPanel } from "@/components/admin/cargando-panel";
-import { Dialogo } from "@/components/admin/dialogo";
+import { CargandoPanel, ErrorPanel } from "@/components/admin/comun/cargando-panel";
+import { Dialogo } from "@/components/admin/comun/dialogo";
 import { EstadoVacio } from "@/components/feedback/estados";
 import { InsigniaModo, etiquetasModo } from "@/components/relojes/insignia-modo";
 import { Precio } from "@/components/relojes/precio";
@@ -197,7 +197,11 @@ export function ListaRelojes() {
                   ["ocultos", "Ocultos"],
                 ] as const
               ).map(([valor, etiqueta]) => (
-                <Chip key={valor} activo={visibilidad === valor} onClick={() => setVisibilidad(valor)}>
+                <Chip
+                  key={valor}
+                  activo={visibilidad === valor}
+                  onClick={() => setVisibilidad(valor)}
+                >
                   {etiqueta}
                 </Chip>
               ))}
@@ -257,8 +261,7 @@ export function ListaRelojes() {
                     </Badge>
                     {reloj.cantidadPedidos > 0 && (
                       <span className="text-body-sm text-tinta-3">
-                        {reloj.cantidadPedidos}{" "}
-                        {reloj.cantidadPedidos === 1 ? "pedido" : "pedidos"}
+                        {reloj.cantidadPedidos} {reloj.cantidadPedidos === 1 ? "pedido" : "pedidos"}
                       </span>
                     )}
                   </div>

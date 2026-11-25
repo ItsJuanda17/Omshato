@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { ConfirmacionPedido } from "@/components/pedido/confirmacion-pedido";
-import { contactoPublico } from "@/lib/contacto-servidor";
+import { ConfirmacionPedido } from "@/components/pedidos/confirmacion-pedido";
+import { contactoPublico } from "@/lib/contacto/servidor";
 
 export const metadata: Metadata = {
   title: "Pedido recibido",

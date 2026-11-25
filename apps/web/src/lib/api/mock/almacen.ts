@@ -1,14 +1,7 @@
-import { ciudadesEjemplo, departamentosEjemplo } from "@/lib/api/datos-colombia";
-import { marcasEjemplo, relojesEjemplo } from "@/lib/api/datos-ejemplo";
-import { enlacesEjemplo, pedidosEjemplo } from "@/lib/api/datos-pedidos";
-import type {
-  Ciudad,
-  Departamento,
-  EnlaceContacto,
-  Marca,
-  Pedido,
-  Reloj,
-} from "@/lib/api/tipos";
+import { ciudadesEjemplo, departamentosEjemplo } from "@/lib/api/mock/datos-colombia";
+import { marcasEjemplo, relojesEjemplo } from "@/lib/api/mock/datos-ejemplo";
+import { enlacesEjemplo, pedidosEjemplo } from "@/lib/api/mock/datos-pedidos";
+import type { Ciudad, Departamento, EnlaceContacto, Marca, Pedido, Reloj } from "@/lib/api/tipos";
 
 /**
  * Almacén en memoria que hace de base de datos mientras no exista la API.

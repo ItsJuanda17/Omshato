@@ -5,9 +5,9 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeftIcon, CircleAlertIcon, MessageCircleIcon, LockIcon } from "lucide-react";
 
-import { CargandoPanel, ErrorPanel } from "@/components/admin/cargando-panel";
-import { Dialogo } from "@/components/admin/dialogo";
-import { InsigniaEstado } from "@/components/admin/insignia-estado";
+import { CargandoPanel, ErrorPanel } from "@/components/admin/comun/cargando-panel";
+import { Dialogo } from "@/components/admin/comun/dialogo";
+import { InsigniaEstado } from "@/components/admin/pedidos/insignia-estado";
 import { EstadoVacio } from "@/components/feedback/estados";
 import { InsigniaModo } from "@/components/relojes/insignia-modo";
 import { Precio } from "@/components/relojes/precio";
@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { agregarNotaPedido, cambiarEstadoPedido, obtenerPedido } from "@/lib/api/pedidos";
 import type { EstadoPedido, Pedido } from "@/lib/api/tipos";
-import { enlaceWhatsAppComprador } from "@/lib/contacto";
+import { enlaceWhatsAppComprador } from "@/lib/contacto/enlaces";
 import { formatoFechaHora } from "@/lib/formato";
 import { etiquetasEstado, transiciones } from "@/lib/pedidos/estados";
 import { esquemaMotivoCancelacion, esquemaNota } from "@/lib/validaciones/pedido";
@@ -83,7 +83,11 @@ function ContenidoCambioEstado({
         return;
       }
     }
-    cambio.mutate({ idPedido: pedido.id, estado: destino, motivo: cancelando ? motivo : undefined });
+    cambio.mutate({
+      idPedido: pedido.id,
+      estado: destino,
+      motivo: cancelando ? motivo : undefined,
+    });
   }
 
   return (
@@ -334,7 +338,10 @@ export function DetallePedido({ idPedido }: { idPedido: number }) {
           </section>
         </div>
 
-        <aside aria-label="Acciones del pedido" className="space-y-6 lg:sticky lg:top-6 lg:self-start">
+        <aside
+          aria-label="Acciones del pedido"
+          className="space-y-6 lg:sticky lg:top-6 lg:self-start"
+        >
           <div className="space-y-3 border border-linea bg-superficie p-5">
             <h2 className="etiqueta">Cambiar estado</h2>
             {siguientes.length > 0 ? (

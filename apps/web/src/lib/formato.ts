@@ -34,19 +34,7 @@ const formatoFechaHoraBogota = new Intl.DateTimeFormat("es-CO", {
   timeZone: "America/Bogota",
 });
 
-const formatoFechaBogota = new Intl.DateTimeFormat("es-CO", {
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-  timeZone: "America/Bogota",
-});
-
 /** "23 nov 2026, 14:32", en hora de Colombia. */
 export function formatoFechaHora(iso: string) {
   return formatoFechaHoraBogota.format(new Date(iso)).replace(/ de /g, " ").replace(".", "");
-}
-
-/** "23 nov 2026", en hora de Colombia. */
-export function formatoFecha(iso: string) {
-  return formatoFechaBogota.format(new Date(iso)).replace(/ de /g, " ").replace(".", "");
 }

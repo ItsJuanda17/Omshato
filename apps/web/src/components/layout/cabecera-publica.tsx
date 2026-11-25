@@ -9,7 +9,11 @@ export function CabeceraPublica() {
     <header className="relative border-b border-linea bg-carbon">
       <div className="contenedor grid h-16 grid-cols-[1fr_auto_1fr] items-center md:h-20">
         <MenuMovil />
-        <Link href="/" aria-label="Omshato, ir al inicio" className="col-start-2 justify-self-center">
+        <Link
+          href="/"
+          aria-label="Omshato, ir al inicio"
+          className="col-start-2 justify-self-center"
+        >
           <Logo variante="horizontal" />
         </Link>
       </div>

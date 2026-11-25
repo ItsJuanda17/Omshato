@@ -15,7 +15,7 @@ import { SelectNativo } from "@/components/ui/select-nativo";
 import { Textarea } from "@/components/ui/textarea";
 import { crearPedido } from "@/lib/api/pedidos";
 import type { Ciudad, Departamento } from "@/lib/api/tipos";
-import { guardarPedidoReciente } from "@/lib/pedido-reciente";
+import { guardarPedidoReciente } from "@/lib/pedidos/pedido-reciente";
 import { esquemaFormularioPedido, type DatosFormularioPedido } from "@/lib/validaciones/pedido";
 
 interface Props {

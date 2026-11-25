@@ -9,7 +9,7 @@
  * el cuerpo de cada función pasa a ser una llamada HTTP, sin cambiar firmas.
  */
 
-import { obtenerAlmacen, simularLatencia } from "@/lib/api/almacen";
+import { obtenerAlmacen, simularLatencia } from "@/lib/api/mock/almacen";
 import type { Marca, Reloj, RelojResumen } from "@/lib/api/tipos";
 
 /**

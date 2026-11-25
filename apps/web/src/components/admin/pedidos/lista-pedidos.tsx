@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SearchIcon } from "lucide-react";
 
-import { CargandoPanel, ErrorPanel } from "@/components/admin/cargando-panel";
-import { InsigniaEstado } from "@/components/admin/insignia-estado";
+import { CargandoPanel, ErrorPanel } from "@/components/admin/comun/cargando-panel";
+import { InsigniaEstado } from "@/components/admin/pedidos/insignia-estado";
 import { EstadoVacio } from "@/components/feedback/estados";
 import { Precio } from "@/components/relojes/precio";
 import { Chip } from "@/components/ui/chip";

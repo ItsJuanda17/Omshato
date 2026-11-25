@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 
-import { obtenerAlmacen, simularLatencia } from "@/lib/api/almacen";
+import { obtenerAlmacen, simularLatencia } from "@/lib/api/mock/almacen";
 import {
   ADMINISTRADOR_SIMULADO,
   CONTRASENA_SIMULADA,

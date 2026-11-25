@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { normalizarWhatsapp } from "@/lib/contacto";
+import { normalizarWhatsapp } from "@/lib/contacto/enlaces";
 
 /**
  * Enlaces de contacto (REQ-CON-5). Un enlace puede quedar vacío; si está activo,
@@ -8,13 +8,15 @@ import { normalizarWhatsapp } from "@/lib/contacto";
  */
 
 const url = (dominio: RegExp, ejemplo: string) =>
-  z.string().trim().refine(
-    (valor) => valor === "" || (/^https:\/\//i.test(valor) && dominio.test(valor)),
-    `Escribe la dirección completa del perfil, por ejemplo ${ejemplo}.`,
-  );
+  z
+    .string()
+    .trim()
+    .refine(
+      (valor) => valor === "" || (/^https:\/\//i.test(valor) && dominio.test(valor)),
+      `Escribe la dirección completa del perfil, por ejemplo ${ejemplo}.`,
+    );
 
-const enlace = <T extends z.ZodType<string>>(valor: T) =>
-  z.object({ valor, activo: z.boolean() });
+const enlace = <T extends z.ZodType<string>>(valor: T) => z.object({ valor, activo: z.boolean() });
 
 export const esquemaEnlaces = z
   .object({

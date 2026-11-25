@@ -61,7 +61,10 @@ export function Hero() {
       </div>
 
       {/* Pantallas angostas: franja inferior con engranajes recortados. */}
-      <div aria-hidden="true" className="pointer-events-none relative h-24 overflow-hidden lg:hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none relative h-24 overflow-hidden lg:hidden"
+      >
         <Engranaje
           dientes={24}
           giro="horaria"

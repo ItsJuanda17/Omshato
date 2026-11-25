@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeftIcon } from "lucide-react";
 
-import { CargandoPanel, ErrorPanel } from "@/components/admin/cargando-panel";
-import { FormularioReloj } from "@/components/admin/formulario-reloj";
+import { CargandoPanel, ErrorPanel } from "@/components/admin/comun/cargando-panel";
+import { FormularioReloj } from "@/components/admin/relojes/formulario-reloj";
 import { EstadoVacio } from "@/components/feedback/estados";
 import { listarMarcasAdmin, obtenerRelojAdmin } from "@/lib/api/relojes-admin";
 
@@ -36,7 +36,9 @@ export function EdicionReloj({ idReloj }: { idReloj?: number }) {
     return <CargandoPanel mensaje="Cargando" />;
   }
   if (marcas.isError || reloj.isError) {
-    return <ErrorPanel alReintentar={() => (marcas.isError ? marcas.refetch() : reloj.refetch())} />;
+    return (
+      <ErrorPanel alReintentar={() => (marcas.isError ? marcas.refetch() : reloj.refetch())} />
+    );
   }
   if (editando && !reloj.data) {
     return (

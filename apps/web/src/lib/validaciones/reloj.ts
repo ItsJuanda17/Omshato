@@ -31,7 +31,10 @@ const garantia = z
   .max(150, "La garantía es demasiado larga. Usa máximo 150 caracteres.");
 
 const genero = z.string().trim().min(1, "Elige un género.").max(20);
-const textoLargo = z.string().trim().max(2000, "El texto es demasiado largo. Usa máximo 2000 caracteres.");
+const textoLargo = z
+  .string()
+  .trim()
+  .max(2000, "El texto es demasiado largo. Usa máximo 2000 caracteres.");
 const plazo = z.string().trim().max(60, "El plazo es demasiado largo. Usa máximo 60 caracteres.");
 const rutaFoto = z.string().regex(/^\/relojes\/[\w-]+\.(png|jpe?g|webp)$/);
 

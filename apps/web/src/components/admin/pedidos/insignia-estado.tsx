@@ -22,7 +22,13 @@ const iconos = {
 } satisfies Record<EstadoPedido, unknown>;
 
 /** Estado del pedido. Se distingue por icono y por luminosidad, sin color. */
-export function InsigniaEstado({ estado, className }: { estado: EstadoPedido; className?: string }) {
+export function InsigniaEstado({
+  estado,
+  className,
+}: {
+  estado: EstadoPedido;
+  className?: string;
+}) {
   const Icono = iconos[estado];
   return (
     <Badge

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { EdicionReloj } from "@/components/admin/edicion-reloj";
+import { EdicionReloj } from "@/components/admin/relojes/edicion-reloj";
 
 export const metadata: Metadata = { title: "Agregar reloj" };
 

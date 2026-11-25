@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { DetallePedido } from "@/components/admin/detalle-pedido";
+import { DetallePedido } from "@/components/admin/pedidos/detalle-pedido";
 
 export const metadata: Metadata = { title: "Detalle del pedido" };
 

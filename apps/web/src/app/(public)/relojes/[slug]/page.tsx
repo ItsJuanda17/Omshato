@@ -13,9 +13,9 @@ import { PlanoTecnico } from "@/components/relojes/plano-tecnico";
 import { Precio } from "@/components/relojes/precio";
 import { buttonVariants } from "@/components/ui/button";
 import { obtenerReloj } from "@/lib/api/relojes";
-import { enlaceWhatsApp, mensajeConsultaReloj } from "@/lib/contacto";
-import { contactoPublico } from "@/lib/contacto-servidor";
-import { parsearEspecificaciones } from "@/lib/especificaciones";
+import { enlaceWhatsApp, mensajeConsultaReloj } from "@/lib/contacto/enlaces";
+import { contactoPublico } from "@/lib/contacto/servidor";
+import { parsearEspecificaciones } from "@/lib/relojes/especificaciones";
 import { slugificar } from "@/lib/formato";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -56,7 +56,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const PASOS_BAJO_PEDIDO = [
   {
     titulo: "Haces tu pedido",
-    texto: "Llenas el formulario con tus datos de contacto y entrega. No necesitas crear una cuenta.",
+    texto:
+      "Llenas el formulario con tus datos de contacto y entrega. No necesitas crear una cuenta.",
   },
   {
     titulo: "Lo conseguimos",
@@ -75,7 +76,10 @@ export default async function PaginaFicha({ params }: Props) {
   if (!reloj) notFound();
 
   const titulo = `${reloj.marca.nombre} ${reloj.nombre}`;
-  const enlaceChat = enlaceWhatsApp((await contactoPublico()).whatsapp, mensajeConsultaReloj(titulo));
+  const enlaceChat = enlaceWhatsApp(
+    (await contactoPublico()).whatsapp,
+    mensajeConsultaReloj(titulo),
+  );
   const especificaciones = parsearEspecificaciones(reloj.detalleMecanica);
   const diametro = especificaciones.find((e) => /di[aá]metro/i.test(e.clave))?.valor;
 
@@ -137,7 +141,10 @@ export default async function PaginaFicha({ params }: Props) {
             )}
 
             <div className="flex flex-col gap-3">
-              <Link href={`/pedido/${reloj.urlAmigable}`} className={buttonVariants({ size: "default" })}>
+              <Link
+                href={`/pedido/${reloj.urlAmigable}`}
+                className={buttonVariants({ size: "default" })}
+              >
                 Pedir este reloj
               </Link>
               {enlaceChat && (

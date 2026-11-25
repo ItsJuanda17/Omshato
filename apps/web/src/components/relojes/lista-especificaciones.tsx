@@ -1,10 +1,14 @@
-import type { Especificacion } from "@/lib/especificaciones";
+import type { Especificacion } from "@/lib/relojes/especificaciones";
 
 /**
  * Especificaciones con callouts numerados al estilo de un plano técnico:
  * número, concepto, línea guía punteada y valor.
  */
-export function ListaEspecificaciones({ especificaciones }: { especificaciones: Especificacion[] }) {
+export function ListaEspecificaciones({
+  especificaciones,
+}: {
+  especificaciones: Especificacion[];
+}) {
   return (
     <dl className="border-t border-linea">
       {especificaciones.map((especificacion, i) => (

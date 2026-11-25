@@ -1,9 +1,9 @@
 "use server";
 
-import { obtenerAlmacen, simularLatencia } from "@/lib/api/almacen";
+import { obtenerAlmacen, simularLatencia } from "@/lib/api/mock/almacen";
 import type { ContactoPublico, EnlaceContacto, Resultado } from "@/lib/api/tipos";
 import { requerirSesion } from "@/lib/auth/sesion";
-import { resolverContacto } from "@/lib/contacto";
+import { resolverContacto } from "@/lib/contacto/enlaces";
 import { esquemaEnlaces, type DatosEnlaces } from "@/lib/validaciones/enlaces";
 
 /** Lo que muestra el sitio público: solo los enlaces configurados y activos (REQ-CON-4). */

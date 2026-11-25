@@ -3,8 +3,8 @@ import { MessageCircleIcon } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { SeparadorBisel } from "@/components/brand/separador-bisel";
-import { enlaceWhatsApp } from "@/lib/contacto";
-import { contactoPublico } from "@/lib/contacto-servidor";
+import { enlaceWhatsApp } from "@/lib/contacto/enlaces";
+import { contactoPublico } from "@/lib/contacto/servidor";
 
 const enlaceClase =
   "etiqueta inline-flex min-h-9 items-center gap-2 text-tinta-2 transition-colors hover:text-tinta";
@@ -36,7 +36,12 @@ export async function PiePublico() {
         <ul className="flex flex-col items-center md:items-center">
           {whatsapp && (
             <li>
-              <a href={enlaceWhatsApp(whatsapp) ?? undefined} target="_blank" rel="noopener noreferrer" className={enlaceClase}>
+              <a
+                href={enlaceWhatsApp(whatsapp) ?? undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={enlaceClase}
+              >
                 <MessageCircleIcon className="size-4" aria-hidden="true" />
                 <span className="dato">{whatsapp.visible}</span>
                 <span className="sr-only">(WhatsApp, se abre en una pestaña nueva)</span>
@@ -45,16 +50,27 @@ export async function PiePublico() {
           )}
           {instagram && (
             <li>
-              <a href={instagram.url} target="_blank" rel="noopener noreferrer" className={enlaceClase}>
-                Instagram <span className="dato normal-case tracking-normal">@{instagram.usuario}</span>
+              <a
+                href={instagram.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={enlaceClase}
+              >
+                Instagram{" "}
+                <span className="dato tracking-normal normal-case">@{instagram.usuario}</span>
                 <span className="sr-only">(se abre en una pestaña nueva)</span>
               </a>
             </li>
           )}
           {tiktok && (
             <li>
-              <a href={tiktok.url} target="_blank" rel="noopener noreferrer" className={enlaceClase}>
-                TikTok <span className="dato normal-case tracking-normal">@{tiktok.usuario}</span>
+              <a
+                href={tiktok.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={enlaceClase}
+              >
+                TikTok <span className="dato tracking-normal normal-case">@{tiktok.usuario}</span>
                 <span className="sr-only">(se abre en una pestaña nueva)</span>
               </a>
             </li>
