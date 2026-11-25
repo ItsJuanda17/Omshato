@@ -167,10 +167,11 @@ export function RuedaEscape({
     >
       <g className={claseGiro(giro)} style={estilo} {...TRAZO}>
         <path d={trazoRuedaEscape(15, exterior, raiz)} />
+        <circle r={raiz * 0.78} />
         <circle r={raiz * 0.2} />
         <circle r={raiz * 0.05} />
         {Array.from({ length: 5 }, (_, i) => (
-          <path key={i} d="M7.6 0 Q20 -22 30 -18 Q23 -4 8 4" transform={`rotate(${i * 72})`} />
+          <path key={i} d="M7.6 0 Q20 -3 29.6 -11" transform={`rotate(${i * 72})`} />
         ))}
       </g>
     </svg>
