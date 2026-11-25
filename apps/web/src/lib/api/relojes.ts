@@ -10,7 +10,7 @@
  */
 
 import { obtenerAlmacen, simularLatencia } from "@/lib/api/almacen";
-import type { Marca, RelojResumen } from "@/lib/api/tipos";
+import type { Marca, Reloj, RelojResumen } from "@/lib/api/tipos";
 
 /**
  * Catálogo público: solo relojes visibles, del más reciente al más antiguo
@@ -40,4 +40,14 @@ export async function listarMarcas(): Promise<Marca[]> {
   return obtenerAlmacen()
     .marcas.filter((marca) => conRelojes.has(marca.id))
     .toSorted((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+}
+
+/**
+ * Ficha pública. Devuelve nulo si el reloj no existe o está oculto: la página
+ * no debe revelar nada de un reloj retirado (REQ-DET-6).
+ */
+export async function obtenerReloj(urlAmigable: string): Promise<Reloj | null> {
+  await simularLatencia();
+  const reloj = obtenerAlmacen().relojes.find((r) => r.urlAmigable === urlAmigable && r.visible);
+  return reloj ? structuredClone(reloj) : null;
 }

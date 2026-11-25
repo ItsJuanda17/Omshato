@@ -27,7 +27,7 @@ function marca(id: number) {
 function fotos(idReloj: number, esfera: 1 | 2 | 3 | 4): ImagenReloj[] {
   return [`frontal-${esfera}`, "reverso", "detalle"].map((nombre, i) => ({
     id: idReloj * 10 + i + 1,
-    archivo: `/relojes/${nombre}.svg`,
+    archivo: `/relojes/${nombre}.png`,
     orden: i + 1,
     esPrincipal: i === 0,
   }));

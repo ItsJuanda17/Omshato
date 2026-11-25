@@ -62,3 +62,66 @@ export interface RelojResumen {
   urlAmigable: string;
   imagenPrincipal: ImagenReloj;
 }
+
+export interface Departamento {
+  id: number;
+  codigoDane: string;
+  nombre: string;
+}
+
+export interface Ciudad {
+  id: number;
+  idDepartamento: number;
+  codigoDane: string;
+  nombre: string;
+}
+
+/** Estados de la Tabla 2 del SRS. */
+export type EstadoPedido =
+  | "RECIBIDO"
+  | "POR_CONSEGUIR_CON_PROVEEDOR"
+  | "CONFIRMADO"
+  | "ENVIADO"
+  | "ENTREGADO"
+  | "CANCELADO";
+
+/** Una fila por cada estado por el que pasa el pedido, incluida la inicial. */
+export interface HistorialEstado {
+  id: number;
+  /** El estado nuevo. El anterior es la fila previa. */
+  estado: EstadoPedido;
+  /** Nulo en la fila inicial, que registra el sistema. */
+  idAdministrador: number | null;
+  fechaHora: string;
+}
+
+export interface Pedido {
+  id: number;
+  /** Número visible para el comprador, por ejemplo "OMS-0843" (REQ-PED-8). */
+  numeroPedido: string;
+  idReloj: number;
+  estado: EstadoPedido;
+  departamento: Departamento;
+  ciudad: Ciudad;
+  /** Copia del reloj al momento de la compra: no cambia si luego se edita (RN-7). */
+  nombreReloj: string;
+  precioReloj: number;
+  modoReloj: ModoReloj;
+  nombreComprador: string;
+  /** Exactamente 10 dígitos (TBD-21). */
+  telefonoComprador: string;
+  direccion: string;
+  /** Evidencia de la autorización de datos personales, Ley 1581 de 2012. */
+  fechaAutorizacionDatos: string;
+  motivoCancelacion: string | null;
+  fechaCreacion: string;
+  historial: HistorialEstado[];
+}
+
+/**
+ * Resultado de registrar un pedido. Los rechazos de negocio se devuelven como
+ * dato y no como excepción, para que el formulario conserve lo que escribió la persona.
+ */
+export type ResultadoCrearPedido =
+  | { ok: true; pedido: Pedido }
+  | { ok: false; codigo: "RELOJ_NO_DISPONIBLE" | "DATOS_INVALIDOS"; mensaje: string };

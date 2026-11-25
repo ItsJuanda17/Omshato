@@ -1,5 +1,6 @@
+import { ciudadesEjemplo, departamentosEjemplo } from "@/lib/api/datos-colombia";
 import { marcasEjemplo, relojesEjemplo } from "@/lib/api/datos-ejemplo";
-import type { Marca, Reloj } from "@/lib/api/tipos";
+import type { Ciudad, Departamento, Marca, Pedido, Reloj } from "@/lib/api/tipos";
 
 /**
  * Almacén en memoria que hace de base de datos mientras no exista la API.
@@ -12,6 +13,11 @@ import type { Marca, Reloj } from "@/lib/api/tipos";
 interface Almacen {
   marcas: Marca[];
   relojes: Reloj[];
+  departamentos: Departamento[];
+  ciudades: Ciudad[];
+  pedidos: Pedido[];
+  /** Clave de idempotencia → número del pedido que la usó primero. */
+  clavesIdempotencia: Map<string, string>;
 }
 
 const global = globalThis as unknown as { __omshatoAlmacen?: Almacen };
@@ -20,6 +26,10 @@ export function obtenerAlmacen(): Almacen {
   global.__omshatoAlmacen ??= {
     marcas: structuredClone(marcasEjemplo),
     relojes: structuredClone(relojesEjemplo),
+    departamentos: structuredClone(departamentosEjemplo),
+    ciudades: structuredClone(ciudadesEjemplo),
+    pedidos: [],
+    clavesIdempotencia: new Map(),
   };
   return global.__omshatoAlmacen;
 }
