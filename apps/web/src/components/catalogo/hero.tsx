@@ -42,7 +42,7 @@ export function Hero() {
         <h1 className="font-display text-display-lg-mobile uppercase md:text-display-lg">
           Omshato
         </h1>
-        <p className="font-display text-headline-sm text-tinta uppercase">Tu tiempo, tu esencia</p>
+        <p className="font-display text-headline-md text-tinta italic">Tu tiempo, tu esencia</p>
         <p className="max-w-xl text-body-lg text-tinta-2">
           Relojes seleccionados con su mecánica a la vista. Elige una pieza disponible o pide la que
           buscas y la conseguimos para ti.

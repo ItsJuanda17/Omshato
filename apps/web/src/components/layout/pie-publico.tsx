@@ -62,7 +62,7 @@ export async function PiePublico() {
         </ul>
 
         <figure className="text-center md:text-right">
-          <blockquote className="text-body-sm text-tinta-3 italic">
+          <blockquote className="font-display text-title-lg font-normal tracking-normal text-tinta-2 italic">
             «En el día del bien goza del bien; y en el día de la adversidad considera.»
           </blockquote>
           <figcaption className="etiqueta mt-2">Eclesiastés 7:14</figcaption>

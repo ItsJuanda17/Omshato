@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Plus_Jakarta_Sans, Syne } from "next/font/google";
+import { JetBrains_Mono, Newsreader, Plus_Jakarta_Sans } from "next/font/google";
 
 import "./globals.css";
 
-const fuenteDisplay = Syne({
+const fuenteDisplay = Newsreader({
   variable: "--fuente-display",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
 });
 

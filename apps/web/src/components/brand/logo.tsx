@@ -51,7 +51,9 @@ export function Logo({ variante = "horizontal", eslogan = false, className }: Lo
     >
       {simbolo}
       <span className={cn("flex flex-col", variante === "vertical" ? "items-center" : "items-start")}>
-        <span className="font-display text-headline-md leading-none text-tinta">OMSHATO</span>
+        <span className="font-display text-headline-md leading-none tracking-[0.18em] text-tinta">
+          OMSHATO
+        </span>
         {eslogan && (
           <span className="etiqueta mt-2 text-tinta-2">Tu tiempo, tu esencia</span>
         )}
