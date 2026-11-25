@@ -15,7 +15,9 @@
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
     "migration:run": "tsx --env-file-if-exists=.env ./node_modules/typeorm/cli.js migration:run -d src/database/data-source.ts",
     "migration:revert": "tsx --env-file-if-exists=.env ./node_modules/typeorm/cli.js migration:revert -d src/database/data-source.ts",
-    "migration:create": "tsx ./node_modules/typeorm/cli.js migration:create"
+    "migration:create": "tsx ./node_modules/typeorm/cli.js migration:create",
+    "seed": "tsx --env-file-if-exists=.env src/database/seeds/cli.ts",
+    "test:integracion": "vitest run --config ./vitest.config.integracion.ts"
   },
   "dependencies": {
     "@nestjs/common": "^12.6.0",
