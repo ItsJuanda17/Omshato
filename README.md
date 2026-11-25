@@ -5,16 +5,18 @@ Tienda web de relojes con un solo vendedor (Colombia). Monorepo con pnpm workspa
 ```
 omshato/
 ├── apps/
-│   └── web/                  Frontend en Next.js (apps/api llegará después)
+│   ├── web/                  Frontend en Next.js. Hoy usa datos simulados en memoria
+│   └── api/                  Backend en NestJS + TypeORM + PostgreSQL (ver apps/api/README.md)
 ├── docs/
 │   ├── srs/                  Especificación de requisitos
 │   ├── architecture/         Diagramas: casos de uso, C4, base de datos, secuencia y estados
 │   └── diseno/               Referencias visuales (Stitch y prototipo HTML), solo lectura
+├── docker-compose.yml        PostgreSQL para desarrollo
 ├── package.json              Scripts del monorepo
 └── pnpm-workspace.yaml
 ```
 
-`docs/` no se modifica desde el código. `apps/api` (NestJS y PostgreSQL) se sumará más adelante.
+`docs/` no se modifica desde el código.
 
 ### Estructura de `apps/web/src`
 
@@ -52,7 +54,11 @@ Requieren Node 20 o superior y pnpm 10. Se ejecutan desde la raíz.
 
 ```bash
 pnpm install
-pnpm dev          # servidor de desarrollo en http://localhost:3000
+pnpm dev          # front en http://localhost:3000
+pnpm dev:api      # API en http://localhost:3001/api/salud (antes: pnpm db:up)
+pnpm db:up        # PostgreSQL en Docker
+pnpm db:down      # apaga la base de datos
+pnpm test         # pruebas de todos los paquetes
 pnpm build        # compilación de producción
 pnpm lint         # ESLint
 pnpm typecheck    # TypeScript estricto

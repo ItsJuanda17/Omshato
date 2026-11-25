@@ -1,0 +1,22 @@
+# Servicios de desarrollo. Hoy solo la base de datos del API.
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: omshato-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: omshato
+      POSTGRES_PASSWORD: omshato
+      POSTGRES_DB: omshato
+    ports:
+      - "5432:5432"
+    volumes:
+      - omshato-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U omshato -d omshato"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  omshato-db:

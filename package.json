@@ -7,7 +7,13 @@
   },
   "scripts": {
     "dev": "pnpm --filter @omshato/web dev",
+    "dev:api": "pnpm --filter @omshato/api dev",
     "build": "pnpm --filter @omshato/web build",
+    "build:api": "pnpm --filter @omshato/api build",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm -r --if-present test:e2e",
+    "db:up": "docker compose up -d --wait db",
+    "db:down": "docker compose down",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
     "format": "prettier --write .",
