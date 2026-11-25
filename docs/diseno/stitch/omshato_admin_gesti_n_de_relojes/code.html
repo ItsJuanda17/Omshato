@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#1a1c1c","on-primary-fixed-variant":"#454747","surface-dim":"#131313","on-error-container":"#ffdad6","outline":"#8e9192","inverse-on-surface":"#313030","on-primary":"#2f3131","primary-container":"#e2e2e2","on-error":"#690005","on-secondary-fixed":"#1a1c1c","on-surface-variant":"#c4c7c8","error":"#ffb4ab","on-background":"#e5e2e1","surface-container-lowest":"#0e0e0e","error-container":"#93000a","on-tertiary-fixed":"#1a1c1c","outline-variant":"#444748","surface-container":"#201f1f","surface-bright":"#3a3939","inverse-primary":"#5d5f5f","inverse-surface":"#e5e2e1","on-secondary-container":"#b8b8b8","primary-fixed-dim":"#c6c6c7","surface-tint":"#c6c6c7","on-tertiary-container":"#636465","tertiary-container":"#e2e2e2","surface-container-high":"#2a2a2a","primary":"#ffffff","on-tertiary":"#2f3131","on-secondary":"#2f3131","surface-container-low":"#1c1b1b","secondary-fixed":"#e3e2e2","tertiary-fixed":"#e2e2e2","secondary":"#c7c6c6","on-tertiary-fixed-variant":"#454747","on-surface":"#e5e2e1","tertiary":"#ffffff","on-secondary-fixed-variant":"#464747","background":"#131313","on-primary-container":"#636565","secondary-container":"#484949","tertiary-fixed-dim":"#c6c6c6","primary-fixed":"#e2e2e2","secondary-fixed-dim":"#c7c6c6","surface-container-highest":"#353534","surface-variant":"#353534","surface":"#131313"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin-tablet":"3rem",gutter:"1.5rem",margin:"1.5rem","space-sm":"0.5rem","space-lg":"2rem","gutter-desktop":"2.5rem","space-md":"1rem","space-xl":"3.5rem","space-xs":"0.25rem","margin-desktop":"5rem"},fontFamily:{"body-md":["Plus Jakarta Sans"],"display-md-mobile":["Syne"],"label-lg":["Plus Jakarta Sans"],"display-md":["Syne"],"headline-md":["Syne"],"display-lg-mobile":["Syne"],"body-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"title-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-sm":["Syne"],"headline-lg":["Syne"],"display-lg":["Syne"],"label-sm":["Plus Jakarta Sans"]},fontSize:{"body-md":["14px",{lineHeight:"24px",letterSpacing:"0.01em",fontWeight:"400"}],"display-md-mobile":["28px",{lineHeight:"36px",letterSpacing:"0.12em",fontWeight:"500"}],"label-lg":["13px",{lineHeight:"18px",letterSpacing:"0.18em",fontWeight:"600"}],"display-md":["40px",{lineHeight:"48px",letterSpacing:"0.16em",fontWeight:"500"}],"headline-md":["22px",{lineHeight:"30px",letterSpacing:"0.12em",fontWeight:"500"}],"display-lg-mobile":["36px",{lineHeight:"44px",letterSpacing:"0.14em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"28px",letterSpacing:"0.015em",fontWeight:"300"}],"label-md":["11px",{lineHeight:"16px",letterSpacing:"0.22em",fontWeight:"500"}],"title-lg":["18px",{lineHeight:"26px",letterSpacing:"0.04em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"20px",letterSpacing:"0.02em",fontWeight:"400"}],"headline-sm":["16px",{lineHeight:"24px",letterSpacing:"0.20em",fontWeight:"600"}],"headline-lg":["30px",{lineHeight:"38px",letterSpacing:"0.15em",fontWeight:"500"}],"display-lg":["56px",{lineHeight:"64px",letterSpacing:"0.18em",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.25em",fontWeight:"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><input class="peer hidden" id="admin-drawer-toggle" type="checkbox"/><aside class="fixed inset-y-0 left-0 z-50 w-72 bg-surface-container-lowest flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0"><div class="flex flex-col"><div class="h-20 px-8 flex items-center justify-between"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-[0.28em] text-primary uppercase">OMSHATO</span><span class="font-label-sm text-label-sm tracking-[0.3em] text-outline uppercase">Haute Horlogerie</span></div><label class="lg:hidden text-on-surface-variant cursor-pointer p-1" for="admin-drawer-toggle"><span class="material-symbols-outlined text-[20px]">close</span></label></div><div class="px-8 py-4"><div class="font-label-sm text-label-sm uppercase text-outline tracking-[0.25em]">Navegación Vault</div></div><nav class="flex flex-col px-4 gap-1" data-active-classes="bg-surface-container text-primary font-medium"><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors duration-150" data-path="pedidos" href="#"><span class="material-symbols-outlined text-[18px]">inbox</span><span class="font-label-lg text-label-lg tracking-[0.12em] uppercase">Pedidos</span></a><a aria-current="page" class="flex items-center gap-3 px-4 py-3 transition-colors duration-150 bg-surface-container text-primary font-medium" data-path="relojes" href="#"><span class="material-symbols-outlined text-[18px]">watch</span><span class="font-label-lg text-label-lg tracking-[0.12em] uppercase">Relojes</span></a><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors duration-150" data-path="enlaces-de-contacto" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-label-lg text-label-lg tracking-[0.12em] uppercase">Enlaces de contacto</span></a></nav></div><div class="p-6 flex flex-col gap-4"><div class="px-4 py-3 bg-surface-container-low flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline tracking-[0.2em] uppercase">Certificación</span><span class="font-body-sm text-body-sm text-on-surface font-mono">BOG-882-9014</span></div><span class="material-symbols-outlined text-outline text-[18px]">verified</span></div><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors duration-150" data-path="cerrar-sesion" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span class="font-label-lg text-label-lg tracking-[0.14em] uppercase">Cerrar sesión</span></a></div></aside><label class="fixed inset-0 z-40 bg-surface-container-lowest/80 backdrop-blur-sm transition-opacity peer-checked:block hidden lg:peer-checked:hidden" for="admin-drawer-toggle"></label><div class="lg:pl-72 flex flex-col min-h-screen"><header class="fixed top-0 right-0 left-0 lg:left-72 h-20 bg-surface/85 backdrop-blur-xl z-30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-4"><label class="lg:hidden flex items-center p-2 text-on-surface hover:text-primary cursor-pointer" for="admin-drawer-toggle"><span class="material-symbols-outlined text-[22px]">menu</span></label><div class="flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div><span class="font-label-md text-label-md tracking-[0.24em] text-on-surface uppercase">Panel de Administración</span></div></div><div class="flex items-center gap-4 lg:gap-8"><div class="hidden md:flex flex-col items-end"><span class="font-label-sm text-label-sm tracking-[0.2em] text-outline uppercase">BOGOTÁ HQ (GMT-5)</span><span class="font-body-sm text-body-sm text-on-surface font-mono">04 MAY 2025 · 14:38:12</span></div><div class="hidden sm:flex items-center px-3 py-1 bg-surface-container"><span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-secondary">SESIÓN SEGURA</span></div><div class="flex items-center gap-3 pl-2"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrDnX6S_W1D1LInZqBHmyXQV6OdQ60CuuF9iflvpCXQg4YdF4bX6m9r-97TCSW9MMVebHd5nsXLaznJHeC-cu8AFBgFStWjmOreIzTrDR1ldgUraQXXvC15jY99TyMx2VivaWWAoi_Sy3wB8TCinG0NwtPVzWfuaaz-0HdJsnws9xuDQDzR0x0K4QHjA2vNG92Gi8Wz0PeQxKM-eX9xIWO1tmK7dBsvzA2bq6a3fCTK-FDlEQq6e9In79Jo"/><div class="hidden xl:flex flex-col text-left"><span class="font-label-sm text-label-sm tracking-[0.14em] text-on-surface uppercase">Curador Master</span><span class="font-label-sm text-label-sm tracking-[0.1em] text-outline">Bogotá Vault</span></div></div></div></div></header><main class="relative pt-20 bg-surface flex-1 w-full px-6 lg:px-12"><div class="flex flex-col w-full pb-16">
+<!-- Top Ambient Glow Line -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+<!-- Header Section -->
+<header class="py-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm tracking-[0.28em] text-outline uppercase">Bóveda Curation Module</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm tracking-[0.2em] text-secondary font-mono">BOG-INV-2025</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg tracking-[0.14em] text-primary uppercase">
+        Catálogo de Relojes y Piezas en Exhibición
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-3">
+<span class="text-primary font-medium">12 referencias registradas</span>
+<span class="text-outline">/</span>
+<span class="text-secondary font-mono">8 visibles en escaparate digital</span>
+</p>
+</div>
+<!-- Primary Action Button -->
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center justify-center gap-3 bg-primary text-on-primary font-label-lg text-label-lg tracking-[0.2em] uppercase px-8 py-3.5 hover:bg-secondary-fixed transition-colors duration-150 cursor-pointer shadow-md group" onclick="openDrawer('new')">
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:rotate-90">add</span>
+<span>Agregar Nuevo Reloj</span>
+</button>
+</div>
+</header>
+<!-- Controls & Filtering Plinth -->
+<section class="bg-surface-container-low p-6 mb-8 flex flex-col gap-5 shadow-sm">
+<!-- Search Bar & Primary Filter Toggles -->
+<div class="flex flex-col xl:flex-row gap-4 items-stretch xl:items-center justify-between">
+<!-- Search Input -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full bg-surface-container-lowest pl-12 pr-4 py-3.5 text-on-surface font-body-md text-body-md placeholder-outline outline-none focus:bg-surface-container transition-colors duration-150" id="search-input" placeholder="Buscar por referencia, calibre o denominación técnica..." type="text"/>
+</div>
+<!-- Quick Toggles: Availability & Visibility -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- Modality Selector -->
+<div class="flex items-center bg-surface-container-lowest p-1">
+<button class="px-4 py-2 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-bright text-primary cursor-pointer transition-colors duration-150">Todas</button>
+<button class="px-4 py-2 font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline hover:text-on-surface cursor-pointer transition-colors duration-150">Disponible</button>
+<button class="px-4 py-2 font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline hover:text-on-surface cursor-pointer transition-colors duration-150">Bajo Pedido</button>
+</div>
+<!-- Visibility Selector -->
+<div class="flex items-center bg-surface-container-lowest p-1">
+<button class="px-3.5 py-2 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-bright text-primary flex items-center gap-2 cursor-pointer transition-colors duration-150">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>Visibles (8)</span>
+</button>
+<button class="px-3.5 py-2 font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline hover:text-on-surface flex items-center gap-2 cursor-pointer transition-colors duration-150">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span>Ocultos (4)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Brand Pills -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 text-nowrap">
+<span class="font-label-sm text-label-sm uppercase text-outline tracking-[0.22em] mr-2">Manufacturas:</span>
+<button class="px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface text-primary cursor-pointer hover:bg-surface-container-high transition-colors">Todas</button>
+<button class="px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-container text-outline-variant hover:text-on-surface cursor-pointer transition-colors">Tissot (3)</button>
+<button class="px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-container text-outline-variant hover:text-on-surface cursor-pointer transition-colors">Seiko (4)</button>
+<button class="px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-container text-outline-variant hover:text-on-surface cursor-pointer transition-colors">Hamilton (2)</button>
+<button class="px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-container text-outline-variant hover:text-on-surface cursor-pointer transition-colors">Citizen (1)</button>
+<button class="px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-container text-outline-variant hover:text-on-surface cursor-pointer transition-colors">Orient Star (1)</button>
+<button class="px-3 py-1.5 font-label-sm text-label-sm uppercase tracking-[0.2em] bg-surface-container text-outline-variant hover:text-on-surface cursor-pointer transition-colors">Casio Premium (1)</button>
+</div>
+</section>
+<!-- Inventory Master Table / Gallery Stream -->
+<section class="flex flex-col gap-3">
+<!-- Desktop Table Header Meta -->
+<div class="hidden lg:grid grid-cols-12 gap-4 px-6 py-3 font-label-sm text-label-sm uppercase text-outline tracking-[0.22em] bg-surface-container-lowest">
+<div class="col-span-4">Pieza / Denominación Manufactura</div>
+<div class="col-span-3">Calibre &amp; Especificación Técnica</div>
+<div class="col-span-2">Precio COP</div>
+<div class="col-span-1">Modalidad</div>
+<div class="col-span-1 text-center">Visibilidad</div>
+<div class="col-span-1 text-right">Acciones</div>
+</div>
+<!-- Piece Row 01 -->
+<article class="bg-surface-container-low hover:bg-surface-container transition-colors duration-150 p-5 lg:px-6 lg:py-4 flex flex-col lg:grid lg:grid-cols-12 gap-4 items-stretch lg:items-center">
+<!-- Image & Title -->
+<div class="lg:col-span-4 flex items-center gap-4">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-surface-container-lowest flex-shrink-0 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Editorial macro high contrast product shot of a luxury Tissot PRX Powermatic 80 with deep black waffle dial and brushed steel integrated bracelet, resting under directional museum lighting against pure obsidian background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClQDLm8PfXh7sgJDCO-XcquCZexAcnOD3_GgV4u68XnrbpGky2-JWZpwgJD4YTsYRR6WNe899XYfnuCII-5hoLLaOfDgxUmsEpcdOwKJAKoWaHhj1y40AVf4OI1ZuSPVX6CaLP3M8DJlb6pImuh9gTR9eL5Dr7GhUmnqT-clKPaKk_IAiQvgQiTASngFLwA7nEl1uc6QlObj_gNOfS_0YPN1zWfDFbHXpWR3PLOAA"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[8px] bg-surface-container-lowest/80 text-outline px-1 font-mono">01</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline truncate">Tissot Swiss 1853</span>
+<span class="font-title-lg text-title-lg text-primary tracking-[0.05em] truncate">PRX Powermatic 80</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono uppercase">REF: T137.407.11.051.00</span>
+</div>
+</div>
+<!-- Movement & Specs -->
+<div class="lg:col-span-3 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.16em] text-secondary">Calibre:</span>
+<span class="font-body-sm text-body-sm text-primary font-mono">Powermatic 80.111</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">80H Reserva</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">Zafiro</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">10 Bar (100m)</span>
+</div>
+</div>
+<!-- Price -->
+<div class="lg:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline lg:hidden">Precio:</span>
+<span class="font-title-lg text-title-lg text-primary font-mono font-medium">$ 3.450.000</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-secondary">COP · Factura Vault</span>
+</div>
+<!-- Modality Badge -->
+<div class="lg:col-span-1 flex items-center">
+<button class="px-2.5 py-1 bg-surface-container-highest hover:bg-surface-bright text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-colors cursor-pointer inline-flex items-center gap-1.5" onclick="toggleModality(this)">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span>Disponible</span>
+</button>
+</div>
+<!-- Visibility Toggle -->
+<div class="lg:col-span-1 flex lg:justify-center items-center">
+<button class="group flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-colors" data-visible="true" onclick="toggleVisibility(this)">
+<span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary">Visible</span>
+</button>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-1 flex items-center justify-end gap-1 pt-2 lg:pt-0">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDrawer('edit', 'Tissot Swiss 1853 • PRX Powermatic 80', 'T137.407.11.051.00', 'Powermatic 80.111', '3450000', '40mm', '10.9mm', '100m')" title="Editar Especificación">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<a class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#" title="Ver en escaparate público">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDeleteModal('Tissot PRX Powermatic 80', 'REF: T137.407.11.051.00')" title="Retirar pieza">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Piece Row 02 -->
+<article class="bg-surface-container-low hover:bg-surface-container transition-colors duration-150 p-5 lg:px-6 lg:py-4 flex flex-col lg:grid lg:grid-cols-12 gap-4 items-stretch lg:items-center">
+<!-- Image & Title -->
+<div class="lg:col-span-4 flex items-center gap-4">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-surface-container-lowest flex-shrink-0 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Monochrome studio portrait of a Seiko Prospex Diver 200M SPB143 timepiece with matte sunburst anthracite dial, luminous geometric indices, and brushed stainless steel bezel under stark zenith light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBypMdt7LNIaeKlkIlVBhs5yI23LZnloGZ31_XVY5mYKVYqg9JybkHqbPI1-79dkauAkOzNHreijkkxs2l42eH_vljL7XAXT0GbHWh2-tMIB6F5eMPex98oMQcp-bTqDFyviKPFSmBN96UezTH_yk9vIf_90PcZwYoBKxSO_qwTDgk7ttQ4li5DV9JQGuuSPD6EckjgIF9OANkUUTZpDhDl__5-WOLe7M3VWFT45Ps"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[8px] bg-surface-container-lowest/80 text-outline px-1 font-mono">02</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline truncate">Seiko Japón</span>
+<span class="font-title-lg text-title-lg text-primary tracking-[0.05em] truncate">Prospex Diver 62MAS Heritage</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono uppercase">REF: SPB143J1</span>
+</div>
+</div>
+<!-- Movement & Specs -->
+<div class="lg:col-span-3 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.16em] text-secondary">Calibre:</span>
+<span class="font-body-sm text-body-sm text-primary font-mono">6R35 Automático</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">70H Reserva</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">Zafiro Curvo</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">Diver's 200m</span>
+</div>
+</div>
+<!-- Price -->
+<div class="lg:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline lg:hidden">Precio:</span>
+<span class="font-title-lg text-title-lg text-primary font-mono font-medium">$ 5.890.000</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-secondary">COP · Entrega Blindada</span>
+</div>
+<!-- Modality Badge -->
+<div class="lg:col-span-1 flex items-center">
+<button class="px-2.5 py-1 bg-surface-container-highest hover:bg-surface-bright text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-colors cursor-pointer inline-flex items-center gap-1.5" onclick="toggleModality(this)">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span>Disponible</span>
+</button>
+</div>
+<!-- Visibility Toggle -->
+<div class="lg:col-span-1 flex lg:justify-center items-center">
+<button class="group flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-colors" data-visible="true" onclick="toggleVisibility(this)">
+<span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary">Visible</span>
+</button>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-1 flex items-center justify-end gap-1 pt-2 lg:pt-0">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDrawer('edit', 'Seiko Japón • Prospex Diver 62MAS', 'SPB143J1', '6R35 Automático', '5890000', '40.5mm', '13.2mm', '200m')" title="Editar Especificación">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<a class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#" title="Ver en escaparate público">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDeleteModal('Seiko Prospex Diver 62MAS', 'REF: SPB143J1')" title="Retirar pieza">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Piece Row 03 (Bajo Pedido) -->
+<article class="bg-surface-container-low hover:bg-surface-container transition-colors duration-150 p-5 lg:px-6 lg:py-4 flex flex-col lg:grid lg:grid-cols-12 gap-4 items-stretch lg:items-center">
+<!-- Image & Title -->
+<div class="lg:col-span-4 flex items-center gap-4">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-surface-container-lowest flex-shrink-0 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Editorial product photograph of a Hamilton Khaki Field Titanium Automatic watch on dark olive textile strap, matte blasted case finish against black granite slab with subtle rim illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWUsgyK3Q4i7ZIFE03Fa4VC8xNvdnYY8sGeuHyGuATJI4a7uHhgu38dMnALN1WSrR0j26L1hwaWMYxgGBWJdR48cYMhNB8wI6Ro9R5ipGZfJnBagEICH_PifjQOsTCfb4_At_Z8MfEDJr-VGV1dj4R3DNUzU1xN1YqCr5w7VK-3dgjts4NHQgi5ZQJITf6h0mUnYB24x_rWunFIRhy6LH1vmtx-Hgy22OwUsUSNJc"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[8px] bg-surface-container-lowest/80 text-outline px-1 font-mono">03</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline truncate">Hamilton USA / Swiss</span>
+<span class="font-title-lg text-title-lg text-primary tracking-[0.05em] truncate">Khaki Field Titanium Auto</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono uppercase">REF: H70545550</span>
+</div>
+</div>
+<!-- Movement & Specs -->
+<div class="lg:col-span-3 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.16em] text-secondary">Calibre:</span>
+<span class="font-body-sm text-body-sm text-primary font-mono">H-10 Suizo</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">Titanio Grado 2</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">80H Reserva</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">100m</span>
+</div>
+</div>
+<!-- Price -->
+<div class="lg:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline lg:hidden">Precio:</span>
+<span class="font-title-lg text-title-lg text-primary font-mono font-medium">$ 4.980.000</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-secondary">COP · Importación</span>
+</div>
+<!-- Modality Badge -->
+<div class="lg:col-span-1 flex items-center">
+<button class="px-2.5 py-1 bg-surface-container hover:bg-surface-bright text-outline-variant hover:text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-colors cursor-pointer inline-flex items-center gap-1.5" onclick="toggleModality(this)">
+<span class="w-1.5 h-1.5 bg-outline"></span>
+<span>Bajo Pedido</span>
+</button>
+</div>
+<!-- Visibility Toggle -->
+<div class="lg:col-span-1 flex lg:justify-center items-center">
+<button class="group flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-colors" data-visible="true" onclick="toggleVisibility(this)">
+<span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary">Visible</span>
+</button>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-1 flex items-center justify-end gap-1 pt-2 lg:pt-0">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDrawer('edit', 'Hamilton • Khaki Field Titanium', 'H70545550', 'H-10 Suizo', '4980000', '38mm', '11.45mm', '100m')" title="Editar Especificación">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<a class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#" title="Ver en escaparate público">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDeleteModal('Hamilton Khaki Field Titanium', 'REF: H70545550')" title="Retirar pieza">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Piece Row 04 (Oculto) -->
+<article class="bg-surface-container-low/60 hover:bg-surface-container transition-colors duration-150 p-5 lg:px-6 lg:py-4 flex flex-col lg:grid lg:grid-cols-12 gap-4 items-stretch lg:items-center opacity-75 hover:opacity-100">
+<!-- Image & Title -->
+<div class="lg:col-span-4 flex items-center gap-4">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-surface-container-lowest flex-shrink-0 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" data-alt="High precision horology photography of an Orient Star Skeleton Avant-Garde watch featuring exposed mechanical gear trains, blued screws, and complex industrial multi-layered dial against shadowy dark slate backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2OJ8E0cDHbNQ5zM0CBgtoEmAeREhaoOpDsVbjJGUlcj0ZYP3ezoo0pJiy6uOtxrmaOzIvUU5vAWiDgikB20CAWVeW1YbbipxySAY6Qnq2uzBPS7pRXKRwAGlwXizcxH_eKy6e_f8Cnw5KZ26yeszl0wsDfcAUvMl3CoZX5hz2w2H3di_2YlPypNfze1aFZPhQtbrbepiXg9FePxAETs6fgBRaZ2CtDpo850IICBk"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[8px] bg-surface-container-lowest/80 text-outline px-1 font-mono">04</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline truncate">Orient Star Japón</span>
+<span class="px-1.5 py-0.2 bg-surface-container-highest text-[9px] uppercase tracking-wider text-outline font-mono">En Reserva</span>
+</div>
+<span class="font-title-lg text-title-lg text-primary tracking-[0.05em] truncate">Avant-Garde Skeleton</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono uppercase">REF: RE-AV0A01B</span>
+</div>
+</div>
+<!-- Movement & Specs -->
+<div class="lg:col-span-3 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.16em] text-secondary">Calibre:</span>
+<span class="font-body-sm text-body-sm text-primary font-mono">F6F44 Manufactura</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">50H Reserva</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">Esqueleto</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">100m</span>
+</div>
+</div>
+<!-- Price -->
+<div class="lg:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline lg:hidden">Precio:</span>
+<span class="font-title-lg text-title-lg text-primary font-mono font-medium">$ 6.200.000</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-secondary">COP · Bogotá Vault</span>
+</div>
+<!-- Modality Badge -->
+<div class="lg:col-span-1 flex items-center">
+<button class="px-2.5 py-1 bg-surface-container-highest hover:bg-surface-bright text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-colors cursor-pointer inline-flex items-center gap-1.5" onclick="toggleModality(this)">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span>Disponible</span>
+</button>
+</div>
+<!-- Visibility Toggle -->
+<div class="lg:col-span-1 flex lg:justify-center items-center">
+<button class="group flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-colors" data-visible="false" onclick="toggleVisibility(this)">
+<span class="w-2 h-2 rounded-full bg-outline-variant group-hover:scale-125 transition-transform"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Oculto</span>
+</button>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-1 flex items-center justify-end gap-1 pt-2 lg:pt-0">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDrawer('edit', 'Orient Star • Avant-Garde Skeleton', 'RE-AV0A01B', 'F6F44 Manufactura', '6200000', '42.6mm', '13mm', '100m')" title="Editar Especificación">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<a class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#" title="Ver en escaparate público">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDeleteModal('Orient Star Avant-Garde Skeleton', 'REF: RE-AV0A01B')" title="Retirar pieza">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Piece Row 05 -->
+<article class="bg-surface-container-low hover:bg-surface-container transition-colors duration-150 p-5 lg:px-6 lg:py-4 flex flex-col lg:grid lg:grid-cols-12 gap-4 items-stretch lg:items-center">
+<!-- Image & Title -->
+<div class="lg:col-span-4 flex items-center gap-4">
+<div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-surface-container-lowest flex-shrink-0 overflow-hidden flex items-center justify-center">
+<img class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" data-alt="Editorial close-up of a Citizen Promaster Mechanical Diver Automatic watch in Super Titanium with textured oceanic dial and knurled bezel against pure dark shadow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDymr3gAhDG7nrLtTfeYIT9vUyabbVTxsJ6Pv1OdjOylX5M77W07Vqe-eME0wXYVYaqmHU5rQK8Wplyzc3DRMbZlPA1OAGwUCvZzhYfbzj-Dr2RMBsu3wdbslknnwapqBzOxMSwYy-5EbIYefCDCEm5msJvCjPo4nchrZoTdpRjHcg3HpauMjQZZ9QuQhO2Ba0yoIi4ZsObQyFjp6ANv9czJG4lOQbMWlDsDrSD6Yk"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[8px] bg-surface-container-lowest/80 text-outline px-1 font-mono">05</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline truncate">Citizen Promaster</span>
+<span class="font-title-lg text-title-lg text-primary tracking-[0.05em] truncate">Fujitsubo Super Titanium</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono uppercase">REF: NB6021-17E</span>
+</div>
+</div>
+<!-- Movement & Specs -->
+<div class="lg:col-span-3 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.16em] text-secondary">Calibre:</span>
+<span class="font-body-sm text-body-sm text-primary font-mono">Cal. 9051 Antimagnético</span>
+</div>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">Duratect TIC</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">16.000 A/m</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm uppercase font-mono tracking-wider">200m ISO</span>
+</div>
+</div>
+<!-- Price -->
+<div class="lg:col-span-2 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline lg:hidden">Precio:</span>
+<span class="font-title-lg text-title-lg text-primary font-mono font-medium">$ 3.990.000</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-secondary">COP · Garantía 3 Años</span>
+</div>
+<!-- Modality Badge -->
+<div class="lg:col-span-1 flex items-center">
+<button class="px-2.5 py-1 bg-surface-container-highest hover:bg-surface-bright text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-colors cursor-pointer inline-flex items-center gap-1.5" onclick="toggleModality(this)">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span>Disponible</span>
+</button>
+</div>
+<!-- Visibility Toggle -->
+<div class="lg:col-span-1 flex lg:justify-center items-center">
+<button class="group flex items-center gap-2 px-2.5 py-1 bg-surface-container-lowest hover:bg-surface-container cursor-pointer transition-colors" data-visible="true" onclick="toggleVisibility(this)">
+<span class="w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary">Visible</span>
+</button>
+</div>
+<!-- Actions -->
+<div class="lg:col-span-1 flex items-center justify-end gap-1 pt-2 lg:pt-0">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDrawer('edit', 'Citizen Promaster • Fujitsubo Titanium', 'NB6021-17E', 'Cal. 9051', '3990000', '41mm', '12.3mm', '200m')" title="Editar Especificación">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<a class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="#" title="Ver en escaparate público">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-surface-container-high transition-colors cursor-pointer" onclick="openDeleteModal('Citizen Promaster Fujitsubo Titanium', 'REF: NB6021-17E')" title="Retirar pieza">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</article>
+</section>
+<!-- Bottom Inventory Status & Audit Bar -->
+<footer class="mt-8 pt-6 border-t-0 bg-surface-container-low p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 bg-primary animate-pulse"></div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Bóveda Sincronizada con Escaparate Principal OMSHATO</span>
+</div>
+<div class="flex items-center gap-6">
+<span class="font-body-sm text-body-sm text-secondary font-mono">Total Valuación: $ 58.420.000 COP</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Actualizado Hace 8 Minutos</span>
+</div>
+</footer>
+<!-- ========================================================================= -->
+<!-- MODAL: Confirmación de Eliminación (Delete Confirmation Modal) -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-surface-container-lowest/85 backdrop-blur-sm hidden items-center justify-center p-4" id="delete-modal-backdrop">
+<div class="bg-surface-container w-full max-w-lg p-8 flex flex-col gap-6 shadow-2xl relative">
+<!-- Status Chip -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em]">Acción de Seguridad Crítica</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">OMSHATO-DEL-SEC</span>
+</div>
+<!-- Headline -->
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-md text-headline-md tracking-[0.1em] text-primary uppercase">
+          ¿Retirar Pieza del Catálogo?
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Está a punto de desincorporar esta referencia del inventario activo y revocar su acceso desde el escaparate público.
+        </p>
+</div>
+<!-- Item Snapshot Box -->
+<div class="bg-surface-container-lowest p-4 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Referencia Seleccionada:</span>
+<span class="font-title-lg text-title-lg text-primary font-medium tracking-[0.05em]" id="delete-piece-name">Tissot PRX Powermatic 80</span>
+<span class="font-body-sm text-body-sm text-secondary font-mono" id="delete-piece-ref">REF: T137.407.11.051.00</span>
+</div>
+<!-- Consequence Warning -->
+<p class="font-body-sm text-body-sm text-outline leading-relaxed">
+        Nota: La ficha técnica y el registro serial quedarán archivados en el log histórico criptográfico bajo estándar OMSHATO BOG-882 para auditoría interna, pero la pieza dejará de estar disponible para pedidos o consultas de clientes.
+      </p>
+<!-- Action Buttons -->
+<div class="flex items-center justify-end gap-3 pt-2">
+<button class="px-6 py-3 bg-surface-container-highest text-on-surface hover:text-primary font-label-sm text-label-sm uppercase tracking-[0.2em] cursor-pointer transition-colors" onclick="closeDeleteModal()">
+          Cancelar
+        </button>
+<button class="px-6 py-3 bg-error text-on-error font-label-sm text-label-sm uppercase tracking-[0.2em] hover:bg-error-container hover:text-on-error-container transition-colors cursor-pointer flex items-center gap-2" onclick="confirmDeletion()">
+<span class="material-symbols-outlined text-[16px]">delete_forever</span>
+<span>Confirmar Eliminación</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- DRAWER: Agregar / Editar Reloj (Flyout Drawer Component) -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-surface-container-lowest/80 backdrop-blur-sm hidden" id="drawer-backdrop" onclick="closeDrawer()"></div>
+<aside class="fixed inset-y-0 right-0 z-50 w-full max-w-xl bg-surface-container-lowest flex flex-col justify-between transition-transform duration-300 ease-in-out translate-x-full shadow-2xl overflow-y-auto" id="piece-drawer">
+<!-- Drawer Header -->
+<div class="p-6 md:p-8 bg-surface-container-low flex items-center justify-between sticky top-0 z-10">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline" id="drawer-overline">Expediente de Relojería</span>
+<h2 class="font-headline-sm text-headline-sm uppercase tracking-[0.16em] text-primary" id="drawer-title">Agregar Nuevo Reloj</h2>
+</div>
+<button class="p-2 text-outline hover:text-primary cursor-pointer transition-colors" onclick="closeDrawer()">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<!-- Drawer Form Body -->
+<form class="p-6 md:p-8 flex flex-col gap-6 flex-1" id="piece-form" onsubmit="savePiece(event)">
+<!-- Media Upload Zone -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Documentación Fotográfica Dial &amp; Caja</label>
+<div class="bg-surface-container-low p-6 flex flex-col items-center justify-center gap-3 text-center cursor-pointer hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-outline text-[32px]">add_photo_alternate</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary">Cargar Capturas de Alta Resolución</span>
+<span class="font-body-sm text-body-sm text-outline">Formato JPG, PNG o WebP sobre fondo carbón neutral</span>
+</div>
+<span class="px-3 py-1 bg-surface-container-highest text-secondary font-mono text-[10px] tracking-widest uppercase">Mínimo 2000x2000px</span>
+</div>
+</div>
+<!-- Basic Identity Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Manufacture / Brand -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Manufactura / Marca</label>
+<input class="bg-surface-container-low px-4 py-3 text-primary font-body-md text-body-md outline-none focus:bg-surface-container transition-colors" id="input-brand" placeholder="Ej. Tissot Swiss 1853" required="" type="text"/>
+</div>
+<!-- Model Name -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Modelo / Línea</label>
+<input class="bg-surface-container-low px-4 py-3 text-primary font-body-md text-body-md outline-none focus:bg-surface-container transition-colors" id="input-model" placeholder="Ej. PRX Powermatic 80" required="" type="text"/>
+</div>
+</div>
+<!-- Technical Code & Caliber -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Technical Ref -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Referencia Técnica</label>
+<input class="bg-surface-container-low px-4 py-3 text-primary font-mono text-body-sm outline-none focus:bg-surface-container transition-colors" id="input-ref" placeholder="Ej. T137.407.11.051.00" required="" type="text"/>
+</div>
+<!-- Caliber -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Calibre &amp; Movimiento</label>
+<input class="bg-surface-container-low px-4 py-3 text-primary font-mono text-body-sm outline-none focus:bg-surface-container transition-colors" id="input-caliber" placeholder="Ej. Cal. Powermatic 80.111" required="" type="text"/>
+</div>
+</div>
+<!-- Pricing & Modality -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Price in COP -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Precio Asignado (COP)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-mono text-outline text-body-sm">$</span>
+<input class="w-full bg-surface-container-low pl-8 pr-4 py-3 text-primary font-mono text-body-md outline-none focus:bg-surface-container transition-colors" id="input-price" placeholder="3450000" required="" type="number"/>
+</div>
+</div>
+<!-- Modality -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Modalidad de Adquisición</label>
+<select class="bg-surface-container-low px-4 py-3 text-primary font-body-md text-body-md outline-none focus:bg-surface-container transition-colors" id="input-modality">
+<option value="Disponible">Inmediata / Disponible en Bóveda</option>
+<option value="Bajo Pedido">Bajo Pedido Especial (Concierge)</option>
+</select>
+</div>
+</div>
+<!-- Dimensions & Hydro Resistance Specs -->
+<div class="flex flex-col gap-2 pt-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Ficha Dimensional y Constructiva</span>
+<div class="grid grid-cols-3 gap-3">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-[10px] uppercase text-outline">Diámetro Caja</span>
+<input class="bg-surface-container-low px-3 py-2 text-primary font-mono text-body-sm outline-none focus:bg-surface-container" id="input-diameter" placeholder="40 mm" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-[10px] uppercase text-outline">Grosor / Altura</span>
+<input class="bg-surface-container-low px-3 py-2 text-primary font-mono text-body-sm outline-none focus:bg-surface-container" id="input-thickness" placeholder="10.9 mm" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-[10px] uppercase text-outline">Hermeticidad</span>
+<input class="bg-surface-container-low px-3 py-2 text-primary font-mono text-body-sm outline-none focus:bg-surface-container" id="input-water" placeholder="10 Bar / 100m" type="text"/>
+</div>
+</div>
+</div>
+<!-- Visibility Toggle Switch Inside Drawer -->
+<div class="p-4 bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary">Publicación en Escaparate</span>
+<span class="font-body-sm text-body-sm text-outline">Hacer visible inmediatamente para coleccionistas</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="input-visible" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Action Footer -->
+<div class="pt-4 flex items-center justify-end gap-3 sticky bottom-0 bg-surface-container-lowest py-4">
+<button class="px-6 py-3 bg-surface-container-high text-on-surface hover:text-primary font-label-sm text-label-sm uppercase tracking-[0.2em] cursor-pointer transition-colors" onclick="closeDrawer()" type="button">
+          Descartar
+        </button>
+<button class="px-8 py-3 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-[0.2em] hover:bg-secondary-fixed cursor-pointer transition-colors flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Registrar en Bóveda</span>
+</button>
+</div>
+</form>
+</aside>
+<!-- Notification Toast -->
+<div class="fixed bottom-8 right-8 z-50 bg-surface-container-high text-primary px-6 py-4 flex items-center gap-3 shadow-2xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none" id="toast">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em]" id="toast-message">Registro actualizado con éxito</span>
+</div>
+</div>
+<script>
+  // Simple state & interaction management
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    const msg = document.getElementById('toast-message');
+    msg.textContent = message;
+    toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+    }, 3200);
+  }
+
+  // Drawer Controls
+  function openDrawer(mode, brandModel, ref, caliber, price, dia, thick, water) {
+    const drawer = document.getElementById('piece-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    const title = document.getElementById('drawer-title');
+    const overline = document.getElementById('drawer-overline');
+
+    if (mode === 'edit') {
+      overline.textContent = 'Actualización de Expediente';
+      title.textContent = 'Editar Especificaciones Técnicas';
+      document.getElementById('input-brand').value = brandModel.split('•')[0] ? brandModel.split('•')[0].trim() : '';
+      document.getElementById('input-model').value = brandModel.split('•')[1] ? brandModel.split('•')[1].trim() : '';
+      document.getElementById('input-ref').value = ref || '';
+      document.getElementById('input-caliber').value = caliber || '';
+      document.getElementById('input-price').value = price || '';
+      document.getElementById('input-diameter').value = dia || '';
+      document.getElementById('input-thickness').value = thick || '';
+      document.getElementById('input-water').value = water || '';
+    } else {
+      overline.textContent = 'Nueva Pieza en Inventario';
+      title.textContent = 'Agregar Nuevo Reloj';
+      document.getElementById('piece-form').reset();
+    }
+
+    backdrop.classList.remove('hidden');
+    drawer.classList.remove('translate-x-full');
+  }
+
+  function closeDrawer() {
+    const drawer = document.getElementById('piece-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    drawer.classList.add('translate-x-full');
+    backdrop.classList.add('hidden');
+  }
+
+  function savePiece(e) {
+    e.preventDefault();
+    closeDrawer();
+    showToast('Ficha técnica registrada y sincronizada');
+  }
+
+  // Delete Modal Controls
+  let itemPendingDelete = null;
+  function openDeleteModal(name, ref) {
+    itemPendingDelete = { name, ref };
+    document.getElementById('delete-piece-name').textContent = name;
+    document.getElementById('delete-piece-ref').textContent = ref;
+    const modalBackdrop = document.getElementById('delete-modal-backdrop');
+    modalBackdrop.classList.remove('hidden');
+    modalBackdrop.classList.add('flex');
+  }
+
+  function closeDeleteModal() {
+    const modalBackdrop = document.getElementById('delete-modal-backdrop');
+    modalBackdrop.classList.remove('flex');
+    modalBackdrop.classList.add('hidden');
+    itemPendingDelete = null;
+  }
+
+  function confirmDeletion() {
+    closeDeleteModal();
+    showToast('Referencia archivada y removida del escaparate público');
+  }
+
+  // Quick In-Row Toggles
+  function toggleVisibility(btn) {
+    const isVisible = btn.getAttribute('data-visible') === 'true';
+    const dot = btn.querySelector('span:first-child');
+    const label = btn.querySelector('span:last-child');
+
+    if (isVisible) {
+      btn.setAttribute('data-visible', 'false');
+      dot.className = 'w-2 h-2 rounded-full bg-outline-variant group-hover:scale-125 transition-transform';
+      label.className = 'font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline';
+      label.textContent = 'Oculto';
+      showToast('Pieza oculta del escaparate público');
+    } else {
+      btn.setAttribute('data-visible', 'true');
+      dot.className = 'w-2 h-2 rounded-full bg-primary group-hover:scale-125 transition-transform';
+      label.className = 'font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary';
+      label.textContent = 'Visible';
+      showToast('Pieza visible en catálogo');
+    }
+  }
+
+  function toggleModality(btn) {
+    const currentText = btn.querySelector('span:last-child').textContent.trim();
+    const dot = btn.querySelector('span:first-child');
+    const label = btn.querySelector('span:last-child');
+
+    if (currentText === 'Disponible') {
+      label.textContent = 'Bajo Pedido';
+      dot.className = 'w-1.5 h-1.5 bg-outline';
+      btn.className = 'px-2.5 py-1 bg-surface-container hover:bg-surface-bright text-outline-variant hover:text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-colors cursor-pointer inline-flex items-center gap-1.5';
+      showToast('Modalidad cambiada a: Bajo Pedido');
+    } else {
+      label.textContent = 'Disponible';
+      dot.className = 'w-1.5 h-1.5 bg-primary';
+      btn.className = 'px-2.5 py-1 bg-surface-container-highest hover:bg-surface-bright text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-colors cursor-pointer inline-flex items-center gap-1.5';
+      showToast('Modalidad cambiada a: Disponible');
+    }
+  }
+
+  // Search micro-filtering mockup
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', function(e) {
+      const term = e.target.value.toLowerCase();
+      const rows = document.querySelectorAll('section.flex.flex-col.gap-3 > article');
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(term) ? 'flex' : 'none';
+      });
+    });
+  }
+</script></main><footer class="w-full bg-surface-container-lowest py-6"><div class="w-full px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-4"><span class="font-label-sm text-label-sm tracking-[0.22em] text-outline uppercase">OMSHATO HAUTE HORLOGERIE © 2025 · BOGOTÁ, COLOMBIA</span><div class="flex items-center gap-6"><span class="font-label-sm text-label-sm tracking-[0.2em] text-outline uppercase">CANAL CIFRADO AES-256</span><span class="font-label-sm text-label-sm tracking-[0.2em] text-outline uppercase">AUDITORÍA V3.4</span></div></div></footer></div></body></html>

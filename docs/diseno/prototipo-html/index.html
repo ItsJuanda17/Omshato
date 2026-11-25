@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMSHATO | Alta Relojería</title>
+</head>
+<body>
+
+  <!-- 1. ENCABEZADO GLOBAL (Sin etiquetas h) -->
+  <header class="site-header">
+    <div class="header-top">
+      <button type="button">BUSCAR</button>
+      <a href="/" class="logo">
+        <span>OMSHATO</span>
+        <span>ALTA RELOJERÍA</span>
+      </a>
+      <div class="header-actions">
+        <button type="button" aria-label="Mensajes"></button>
+        <a href="/carrito" aria-label="Carrito"></a>
+        <a href="/perfil"><img src="avatar.jpg" alt="Perfil"></a>
+      </div>
+    </div>
+    <nav aria-label="Navegación principal">
+      <ul>
+        <li><a href="#catalogo">CATÁLOGO</a></li>
+        <li><a href="#marcas">MARCAS</a></li>
+        <li><a href="#bajo-pedido">BAJO PEDIDO</a></li>
+        <li><a href="#contacto">CONTACTO</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL DE LA PÁGINA -->
+  <main>
+
+    <!-- 2. HERO BANNER (Aquí va el único <h1> de la página) -->
+    <section class="hero">
+      <p class="subtitle">BOUTIQUE PRIVADA • MEDELLÍN &amp; BOGOTÁ</p>
+      <h1>OMSHATO <span class="tagline">TU TIEMPO, TU ESENCIA</span></h1>
+      <p class="description">
+        Curaduría meticulosa de piezas de relojería mecánica, automática y contemporánea certificada en Colombia...
+      </p>
+      <div class="hero-buttons">
+        <a href="#catalogo" class="btn-primary">VER RELOJES</a>
+        <a href="#bajo-pedido" class="btn-secondary">BAJO PEDIDO</a>
+      </div>
+    </section>
+
+    <!-- 3. BARRA DE FILTROS DEL CATÁLOGO -->
+    <section class="catalog-filters" aria-label="Filtros de búsqueda">
+      <div class="filter-group">
+        <span>MARCA:</span>
+        <button type="button" class="active">TODAS</button>
+        <button type="button">SEIKO</button>
+        <button type="button">TISSOT</button>
+        <button type="button">HAMILTON</button>
+        <button type="button">CITIZEN</button>
+        <button type="button">ORIENT STAR</button>
+      </div>
+      <div class="filter-selects">
+        <label>ESTADO: <select><option>TODOS</option></select></label>
+        <label>ORDENAR: <select><option>MÁS RECIENTES</option></select></label>
+      </div>
+    </section>
+
+    <!-- 4. CUADRÍCULA DE PRODUCTOS -->
+    <section id="catalogo" class="catalog-section">
+      <div class="section-header">
+        <h2>PIEZAS EN EXHIBICIÓN</h2>
+        <span>8 RELOJES DISPONIBLES</span>
+      </div>
+
+      <div class="products-grid">
+        <!-- Cada reloj es un <article> independiente con su propio <h3> -->
+        <article class="watch-card">
+          <span class="badge">INMEDIATA</span>
+          <img src="prx.jpg" alt="Tissot PRX Powermatic 80">
+          <p class="brand">TISSOT • SWISS</p>
+          <h3>PRX Powermatic 80</h3>
+          <p class="specs">Calibre automático 80h • Acero 40mm • Zafiro</p>
+          <p class="price">$3.450.000 COP</p>
+          <button type="button">CONSULTAR</button>
+        </article>
+
+        <article class="watch-card">
+          <span class="badge">INMEDIATA</span>
+          <img src="prospex.jpg" alt="Seiko Prospex Diver 200M">
+          <p class="brand">SEIKO • JAPÓN</p>
+          <h3>Prospex Diver 200M</h3>
+          <p class="specs">Calibre 4R36 Automático • 45mm • Hermético 20 bar</p>
+          <p class="price">$2.950.000 COP</p>
+          <button type="button">CONSULTAR</button>
+        </article>
+
+        <!-- Aquí se repiten los otros 6 <article class="watch-card"> ... -->
+      </div>
+    </section>
+
+    <!-- 5. SECCIÓN DE ENCARGO / CONCIERGE -->
+    <section id="bajo-pedido" class="concierge-section">
+      <div class="concierge-info">
+        <p class="eyebrow">SERVICIO PRIVADO DE CONCIERGE RELOJERO</p>
+        <h2>¿BUSCAS UNA REFERENCIA ESPECIAL?</h2>
+        <p>Si tienes en mente un modelo específico de Seiko, Tissot, Hamilton, Longines o Mido...</p>
+        <a href="#contacto" class="btn-primary">SOLICITAR RELOJ ESPECIAL</a>
+        <span>RESPUESTA EN MENOS DE 2 HORAS</span>
+      </div>
+
+      <!-- Tarjeta de contacto directo -->
+      <aside class="contact-card">
+        <h3>OMSHATO</h3>
+        <p>COLOMBIA</p>
+        <ul>
+          <li>+57 300 208 8279</li>
+          <li>@omshato_co</li>
+          <li>@omshato_co</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- 6. CITA Y PROPUESTA DE VALOR -->
+    <section class="philosophy-section">
+      <blockquote>
+        <p>«En el día del bien goza del bien; y en el día de la adversidad considera.»</p>
+        <footer>— ECLESIASTÉS 7:14</footer>
+      </blockquote>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3>100% AUTÉNTICOS</h3>
+          <p>Relojes originales nuevos en caja con documentación de fábrica.</p>
+        </div>
+        <div class="feature-item">
+          <h3>ENVÍO SEGURO</h3>
+          <p>Despacho con póliza contra todo riesgo a toda Colombia.</p>
+        </div>
+        <div class="feature-item">
+          <h3>TRATO PERSONAL</h3>
+          <p>Asesoría directa uno a uno con el fundador de OMSHATO.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 7. PIE DE PÁGINA GLOBAL (Sin etiquetas h) -->
+  <footer id="contacto" class="site-footer">
+    <div class="footer-brand">
+      <p>TU TIEMPO, TU ESENCIA</p>
+      <p>OMSHATO • MEDELLÍN &amp; BOGOTÁ</p>
+    </div>
+    <div class="footer-links">
+      <ul>
+        <li><a href="/privacidad">POLÍTICA DE DATOS PERSONALES</a></li>
+        <li><a href="/garantia">GARANTÍA Y ENTREGAS</a></li>
+        <li><a href="/ayuda">AYUDA</a></li>
+      </ul>
+      <div class="footer-social">
+        <span>+57 300 208 8279</span>
+        <a href="#">@omshato_co</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>© 2026 OMSHATO ALTA RELOJERÍA COLOMBIA</small>
+      <small>CURADURÍA PRIVADA CERTIFICADA</small>
+    </div>
+  </footer>
+
+</body>
+</html>
