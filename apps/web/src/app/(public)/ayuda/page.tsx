@@ -5,8 +5,8 @@ import { ChevronDownIcon } from "lucide-react";
 
 import { Documento } from "@/components/layout/documento";
 import { buttonVariants } from "@/components/ui/button";
-import { contacto } from "@/config/contacto";
 import { enlaceWhatsApp } from "@/lib/contacto";
+import { contactoPublico } from "@/lib/contacto-servidor";
 
 export const metadata: Metadata = {
   title: "Ayuda",
@@ -93,7 +93,9 @@ const preguntas: { pregunta: string; respuesta: ReactNode }[] = [
   },
 ];
 
-export default function PaginaAyuda() {
+export default async function PaginaAyuda() {
+  const enlaceChat = enlaceWhatsApp((await contactoPublico()).whatsapp);
+
   return (
     <Documento
       etiqueta="Ayuda"
@@ -115,12 +117,12 @@ export default function PaginaAyuda() {
         ))}
       </div>
 
-      {contacto.whatsapp.numero && (
+      {enlaceChat && (
         <section className="space-y-4 py-8">
           <h2 className="font-display text-headline-sm uppercase">¿Sigues con dudas?</h2>
           <p className="text-body-md text-tinta-2">Escríbenos y te respondemos.</p>
           <a
-            href={enlaceWhatsApp()}
+            href={enlaceChat}
             target="_blank"
             rel="noopener noreferrer"
             className={buttonVariants({ variant: "outline" })}

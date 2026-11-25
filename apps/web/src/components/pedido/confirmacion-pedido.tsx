@@ -7,12 +7,12 @@ import { Cargando, EstadoVacio } from "@/components/feedback/estados";
 import { InsigniaModo } from "@/components/relojes/insignia-modo";
 import { Precio } from "@/components/relojes/precio";
 import { buttonVariants } from "@/components/ui/button";
-import { contacto } from "@/config/contacto";
 import { enlaceWhatsApp } from "@/lib/contacto";
+import type { ContactoPublico } from "@/lib/api/tipos";
 import { usePedidoReciente } from "@/lib/pedido-reciente";
 
 /** Pantalla de confirmación (REQ-PED-8): número de pedido, resumen y siguiente paso. */
-export function ConfirmacionPedido() {
+export function ConfirmacionPedido({ whatsapp }: { whatsapp: ContactoPublico["whatsapp"] }) {
   const pedido = usePedidoReciente();
 
   if (pedido === undefined) return <Cargando mensaje="Buscando tu pedido" />;
@@ -99,11 +99,12 @@ export function ConfirmacionPedido() {
       </div>
 
       <div className="flex flex-col justify-center gap-3 sm:flex-row">
-        {contacto.whatsapp.numero && (
+        {whatsapp && (
           <a
             href={enlaceWhatsApp(
+              whatsapp,
               `Hola, hice el pedido ${pedido.numeroPedido} del reloj ${pedido.nombreReloj}`,
-            )}
+            ) ?? undefined}
             target="_blank"
             rel="noopener noreferrer"
             className={buttonVariants()}

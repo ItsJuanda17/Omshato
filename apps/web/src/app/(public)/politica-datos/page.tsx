@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import { Documento, SeccionDocumento } from "@/components/layout/documento";
-import { contacto } from "@/config/contacto";
 import { enlaceWhatsApp } from "@/lib/contacto";
+import { contactoPublico } from "@/lib/contacto-servidor";
 
 export const metadata: Metadata = {
   title: "Política de tratamiento de datos personales",
@@ -15,7 +15,9 @@ export const metadata: Metadata = {
  * Borrador de redacción. El texto legal definitivo lo valida un asesor jurídico
  * (TBD-12 del SRS), igual que el plazo de conservación de los datos (TBD-17).
  */
-export default function PaginaPoliticaDatos() {
+export default async function PaginaPoliticaDatos() {
+  const { whatsapp } = await contactoPublico();
+
   return (
     <Documento
       etiqueta="Información legal"
@@ -25,14 +27,14 @@ export default function PaginaPoliticaDatos() {
       <SeccionDocumento titulo="Quién es el responsable">
         <p>
           El responsable del tratamiento es Omshato, tienda de relojes con operación en Colombia.
-          {contacto.whatsapp.numero && (
+          {whatsapp && (
             <>
               {" "}
               Puedes escribirnos por{" "}
-              <a href={enlaceWhatsApp()} target="_blank" rel="noopener noreferrer">
+              <a href={enlaceWhatsApp(whatsapp) ?? undefined} target="_blank" rel="noopener noreferrer">
                 WhatsApp
               </a>{" "}
-              al <span className="dato">{contacto.whatsapp.visible}</span>.
+              al <span className="dato">{whatsapp.visible}</span>.
             </>
           )}
         </p>

@@ -12,9 +12,9 @@ import { ListaEspecificaciones } from "@/components/relojes/lista-especificacion
 import { PlanoTecnico } from "@/components/relojes/plano-tecnico";
 import { Precio } from "@/components/relojes/precio";
 import { buttonVariants } from "@/components/ui/button";
-import { contacto } from "@/config/contacto";
 import { obtenerReloj } from "@/lib/api/relojes";
 import { enlaceWhatsApp, mensajeConsultaReloj } from "@/lib/contacto";
+import { contactoPublico } from "@/lib/contacto-servidor";
 import { parsearEspecificaciones } from "@/lib/especificaciones";
 import { slugificar } from "@/lib/formato";
 
@@ -75,6 +75,7 @@ export default async function PaginaFicha({ params }: Props) {
   if (!reloj) notFound();
 
   const titulo = `${reloj.marca.nombre} ${reloj.nombre}`;
+  const enlaceChat = enlaceWhatsApp((await contactoPublico()).whatsapp, mensajeConsultaReloj(titulo));
   const especificaciones = parsearEspecificaciones(reloj.detalleMecanica);
   const diametro = especificaciones.find((e) => /di[aá]metro/i.test(e.clave))?.valor;
 
@@ -139,9 +140,9 @@ export default async function PaginaFicha({ params }: Props) {
               <Link href={`/pedido/${reloj.urlAmigable}`} className={buttonVariants({ size: "default" })}>
                 Pedir este reloj
               </Link>
-              {contacto.whatsapp.numero && (
+              {enlaceChat && (
                 <a
-                  href={enlaceWhatsApp(mensajeConsultaReloj(titulo))}
+                  href={enlaceChat}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={buttonVariants({ variant: "outline" })}

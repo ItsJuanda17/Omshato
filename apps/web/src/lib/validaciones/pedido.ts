@@ -42,6 +42,20 @@ export const esquemaFormularioPedido = z.object({
 
 export type DatosFormularioPedido = z.infer<typeof esquemaFormularioPedido>;
 
+/** REQ-GPE-6: cancelar exige un motivo breve. */
+export const esquemaMotivoCancelacion = z
+  .string()
+  .trim()
+  .min(1, "Escribe el motivo de la cancelación.")
+  .max(250, "El motivo es demasiado largo. Usa máximo 250 caracteres.");
+
+/** REQ-GPE-11: nota interna de un pedido. */
+export const esquemaNota = z
+  .string()
+  .trim()
+  .min(1, "Escribe la nota antes de guardarla.")
+  .max(1000, "La nota es demasiado larga. Usa máximo 1000 caracteres.");
+
 /** Lo que recibe el servicio de pedidos. */
 export const esquemaNuevoPedido = z.object({
   idReloj: z.number().int().positive(),

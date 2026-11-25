@@ -12,7 +12,6 @@ import { EstadoVacio } from "@/components/feedback/estados";
 import { etiquetasModo } from "@/components/relojes/insignia-modo";
 import { TarjetaReloj } from "@/components/relojes/tarjeta-reloj";
 import type { Marca, ModoReloj, RelojResumen } from "@/lib/api/tipos";
-import { enlaceWhatsApp } from "@/lib/contacto";
 import {
   escribirFiltros,
   filtrarRelojes,
@@ -43,13 +42,15 @@ function actualizarUrl(cambios: Partial<FiltrosCatalogo>) {
 interface Props {
   relojes: RelojResumen[];
   marcas: Marca[];
+  /** Enlace de WhatsApp para el catálogo vacío. Nulo si no está configurado. */
+  enlaceChat: string | null;
 }
 
 /**
  * Filtros y rejilla del catálogo. Filtra en el cliente sobre la lista completa
  * (REN-2: menos de 1 segundo con hasta 200 relojes) y deja el estado en la URL.
  */
-export function CatalogoInteractivo({ relojes, marcas }: Props) {
+export function CatalogoInteractivo({ relojes, marcas, enlaceChat }: Props) {
   const parametros = useSearchParams().toString();
   const filtros = useMemo(() => leerFiltros(new URLSearchParams(parametros)), [parametros]);
 
@@ -152,15 +153,17 @@ export function CatalogoInteractivo({ relojes, marcas }: Props) {
         titulo="Estamos actualizando el catálogo"
         descripcion="Pronto habrá nuevas piezas. Mientras tanto, escríbenos y te contamos qué podemos conseguirte."
         accion={
-          <a
-            href={enlaceWhatsApp()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={buttonVariants({ variant: "outline" })}
-          >
-            Escribir por WhatsApp
-            <span className="sr-only">(se abre en una pestaña nueva)</span>
-          </a>
+          enlaceChat ? (
+            <a
+              href={enlaceChat}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonVariants({ variant: "outline" })}
+            >
+              Escribir por WhatsApp
+              <span className="sr-only">(se abre en una pestaña nueva)</span>
+            </a>
+          ) : undefined
         }
       />
     );

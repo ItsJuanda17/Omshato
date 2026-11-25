@@ -1,9 +1,12 @@
 import { buttonVariants } from "@/components/ui/button";
 import { Engranaje } from "@/components/brand/engranajes";
 import { enlaceWhatsApp } from "@/lib/contacto";
+import { contactoPublico } from "@/lib/contacto-servidor";
 
 /** Invita a pedir un reloj que no está en el catálogo, que es el caso de "Bajo pedido". */
-export function SeccionReferenciaEspecial() {
+export async function SeccionReferenciaEspecial() {
+  const enlace = enlaceWhatsApp((await contactoPublico()).whatsapp);
+
   return (
     <section className="relative overflow-hidden border-t border-linea bg-carbon-2">
       <Engranaje
@@ -22,9 +25,10 @@ export function SeccionReferenciaEspecial() {
             Si el reloj que quieres no aparece en el catálogo, escríbenos. Lo consultamos con
             nuestros proveedores y te contamos precio y plazo antes de que decidas.
           </p>
+          {enlace && (
           <div className="pt-2">
             <a
-              href={enlaceWhatsApp()}
+              href={enlace}
               target="_blank"
               rel="noopener noreferrer"
               className={buttonVariants()}
@@ -33,6 +37,7 @@ export function SeccionReferenciaEspecial() {
               <span className="sr-only">(se abre en una pestaña nueva)</span>
             </a>
           </div>
+          )}
         </div>
       </div>
     </section>

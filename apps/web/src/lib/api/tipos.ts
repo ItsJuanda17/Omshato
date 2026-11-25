@@ -116,6 +116,15 @@ export interface Pedido {
   motivoCancelacion: string | null;
   fechaCreacion: string;
   historial: HistorialEstado[];
+  notas: NotaPedido[];
+}
+
+/** Nota interna del administrador sobre un pedido. El comprador no la ve. */
+export interface NotaPedido {
+  id: number;
+  idAdministrador: number;
+  texto: string;
+  fechaHora: string;
 }
 
 /**
@@ -125,3 +134,37 @@ export interface Pedido {
 export type ResultadoCrearPedido =
   | { ok: true; pedido: Pedido }
   | { ok: false; codigo: "RELOJ_NO_DISPONIBLE" | "DATOS_INVALIDOS"; mensaje: string };
+
+/** Reloj tal como lo ve el administrador, con el conteo que decide si se puede eliminar (RN-8). */
+export interface RelojAdmin extends Reloj {
+  cantidadPedidos: number;
+}
+
+export type TipoEnlace = "WHATSAPP" | "INSTAGRAM" | "TIKTOK";
+
+/** Si un tipo no tiene enlace activo, el sitio no muestra su icono (REQ-CON-4). */
+export interface EnlaceContacto {
+  id: number;
+  tipo: TipoEnlace;
+  /** Número para WhatsApp, o dirección del perfil para Instagram y TikTok. */
+  valor: string;
+  activo: boolean;
+}
+
+/** Los enlaces ya resueltos para mostrarlos en el sitio público. Nulo si no hay enlace activo. */
+export interface ContactoPublico {
+  whatsapp: { numero: string; visible: string } | null;
+  instagram: { url: string; usuario: string } | null;
+  tiktok: { url: string; usuario: string } | null;
+}
+
+export interface Sesion {
+  idAdministrador: number;
+  nombre: string;
+  correo: string;
+}
+
+/** Resultado de una operación del panel. Los rechazos de negocio viajan como dato. */
+export type Resultado<T> =
+  | { ok: true; dato: T }
+  | { ok: false; codigo: string; mensaje: string };

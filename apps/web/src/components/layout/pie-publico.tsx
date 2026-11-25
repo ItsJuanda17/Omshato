@@ -3,15 +3,15 @@ import { MessageCircleIcon } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { SeparadorBisel } from "@/components/brand/separador-bisel";
-import { contacto } from "@/config/contacto";
 import { enlaceWhatsApp } from "@/lib/contacto";
+import { contactoPublico } from "@/lib/contacto-servidor";
 
 const enlaceClase =
   "etiqueta inline-flex min-h-9 items-center gap-2 text-tinta-2 transition-colors hover:text-tinta";
 
 /** Pie de las páginas públicas. Muestra solo los contactos que estén configurados. */
-export function PiePublico() {
-  const { whatsapp, instagram, tiktok } = contacto;
+export async function PiePublico() {
+  const { whatsapp, instagram, tiktok } = await contactoPublico();
 
   return (
     <footer id="contacto" className="mt-auto border-t border-linea bg-carbon">
@@ -34,16 +34,16 @@ export function PiePublico() {
         </nav>
 
         <ul className="flex flex-col items-center md:items-center">
-          {whatsapp.numero && (
+          {whatsapp && (
             <li>
-              <a href={enlaceWhatsApp()} target="_blank" rel="noopener noreferrer" className={enlaceClase}>
+              <a href={enlaceWhatsApp(whatsapp) ?? undefined} target="_blank" rel="noopener noreferrer" className={enlaceClase}>
                 <MessageCircleIcon className="size-4" aria-hidden="true" />
                 <span className="dato">{whatsapp.visible}</span>
                 <span className="sr-only">(WhatsApp, se abre en una pestaña nueva)</span>
               </a>
             </li>
           )}
-          {instagram.url && (
+          {instagram && (
             <li>
               <a href={instagram.url} target="_blank" rel="noopener noreferrer" className={enlaceClase}>
                 Instagram <span className="dato normal-case tracking-normal">@{instagram.usuario}</span>
@@ -51,7 +51,7 @@ export function PiePublico() {
               </a>
             </li>
           )}
-          {tiktok.url && (
+          {tiktok && (
             <li>
               <a href={tiktok.url} target="_blank" rel="noopener noreferrer" className={enlaceClase}>
                 TikTok <span className="dato normal-case tracking-normal">@{tiktok.usuario}</span>

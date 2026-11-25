@@ -1,6 +1,14 @@
 import { ciudadesEjemplo, departamentosEjemplo } from "@/lib/api/datos-colombia";
 import { marcasEjemplo, relojesEjemplo } from "@/lib/api/datos-ejemplo";
-import type { Ciudad, Departamento, Marca, Pedido, Reloj } from "@/lib/api/tipos";
+import { enlacesEjemplo, pedidosEjemplo } from "@/lib/api/datos-pedidos";
+import type {
+  Ciudad,
+  Departamento,
+  EnlaceContacto,
+  Marca,
+  Pedido,
+  Reloj,
+} from "@/lib/api/tipos";
 
 /**
  * Almacén en memoria que hace de base de datos mientras no exista la API.
@@ -16,8 +24,13 @@ interface Almacen {
   departamentos: Departamento[];
   ciudades: Ciudad[];
   pedidos: Pedido[];
+  enlaces: EnlaceContacto[];
   /** Clave de idempotencia → número del pedido que la usó primero. */
   clavesIdempotencia: Map<string, string>;
+  /** Intentos fallidos de inicio de sesión por correo (REQ-AUT-4). */
+  intentosSesion: Map<string, { intentos: number; bloqueadoHasta: number | null }>;
+  /** Identificadores de las sesiones abiertas del administrador. */
+  sesiones: Set<string>;
 }
 
 const global = globalThis as unknown as { __omshatoAlmacen?: Almacen };
@@ -28,8 +41,11 @@ export function obtenerAlmacen(): Almacen {
     relojes: structuredClone(relojesEjemplo),
     departamentos: structuredClone(departamentosEjemplo),
     ciudades: structuredClone(ciudadesEjemplo),
-    pedidos: [],
+    pedidos: structuredClone(pedidosEjemplo),
+    enlaces: structuredClone(enlacesEjemplo),
     clavesIdempotencia: new Map(),
+    intentosSesion: new Map(),
+    sesiones: new Set(),
   };
   return global.__omshatoAlmacen;
 }
