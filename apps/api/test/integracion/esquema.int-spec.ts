@@ -131,7 +131,12 @@ describe("migración y seeds", () => {
   it("los seeds se pueden repetir sin duplicar ni romper nada", async () => {
     const resumen = await ejecutarSeeds(ds);
 
-    expect(resumen).toEqual({ estadosPedido: 6, departamentos: 33, ciudades: 1122 });
+    expect(resumen).toEqual({
+      estadosPedido: 6,
+      departamentos: 33,
+      ciudades: 1122,
+      enlacesContacto: 3,
+    });
     expect(await ds.getRepository(Ciudad).count()).toBe(1122);
     expect(await ds.getRepository(EstadoPedido).count()).toBe(6);
   });

@@ -1,5 +1,6 @@
 import type { DataSource, EntityManager } from "typeorm";
 
+import { TIPOS_ENLACE } from "../../modules/contacto/tipo-enlace.js";
 import { ESTADOS_PEDIDO } from "../../modules/pedidos/estados-pedido.js";
 import { DEPARTAMENTOS_DIVIPOLA, MUNICIPIOS_DIVIPOLA } from "./datos/divipola.js";
 
@@ -7,6 +8,7 @@ export interface ResumenSeeds {
   estadosPedido: number;
   departamentos: number;
   ciudades: number;
+  enlacesContacto: number;
 }
 
 /** Los 6 estados del pedido, con los ids que usa la aplicación. */
@@ -18,6 +20,20 @@ async function sembrarEstadosPedido(manager: EntityManager) {
     [ESTADOS_PEDIDO.map((e) => e.id), ESTADOS_PEDIDO.map((e) => e.nombre)],
   );
   return ESTADOS_PEDIDO.length;
+}
+
+/**
+ * Los tres enlaces de contacto, vacíos e inactivos, para que el panel siempre tenga qué editar.
+ * Lo que el administrador ya escribió no se toca: aquí nada se sobrescribe.
+ */
+async function sembrarEnlacesContacto(manager: EntityManager) {
+  await manager.query(
+    `INSERT INTO enlace_contacto (tipo, valor, activo)
+     SELECT tipo, '', FALSE FROM unnest($1::varchar[]) AS tipo
+     ON CONFLICT (tipo) DO NOTHING`,
+    [[...TIPOS_ENLACE]],
+  );
+  return TIPOS_ENLACE.length;
 }
 
 /** Departamentos y municipios de Colombia (DIVIPOLA). El id es el código DANE como número. */
@@ -60,6 +76,7 @@ export async function ejecutarSeeds(dataSource: DataSource): Promise<ResumenSeed
   return dataSource.transaction(async (manager) => {
     const estadosPedido = await sembrarEstadosPedido(manager);
     const ubicaciones = await sembrarUbicaciones(manager);
-    return { estadosPedido, ...ubicaciones };
+    const enlacesContacto = await sembrarEnlacesContacto(manager);
+    return { estadosPedido, ...ubicaciones, enlacesContacto };
   });
 }

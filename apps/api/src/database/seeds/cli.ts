@@ -7,7 +7,8 @@ try {
   const resumen = await ejecutarSeeds(dataSource);
   console.log(
     `Seeds listos: ${resumen.estadosPedido} estados de pedido, ` +
-      `${resumen.departamentos} departamentos y ${resumen.ciudades} ciudades.`,
+      `${resumen.departamentos} departamentos, ${resumen.ciudades} ciudades y ` +
+      `${resumen.enlacesContacto} enlaces de contacto.`,
   );
 } finally {
   await dataSource.destroy();

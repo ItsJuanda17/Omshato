@@ -61,6 +61,22 @@ pnpm dev:api                                    # http://localhost:3001/api/salu
 | `pnpm migration:run`     | Aplica las migraciones pendientes                   |
 | `pnpm migration:revert`  | Deshace la última migración                         |
 
+## Rutas
+
+Todas cuelgan de `/api`. Las públicas llevan `@Public()`; las de `/admin` exigen sesión.
+
+| Ruta                                                                           | Qué devuelve                                                       |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `GET /salud`                                                                   | Está vivo                                                          |
+| `GET /ubicaciones/departamentos`, `/ubicaciones/ciudades?idDepartamento=`      | Listas del formulario de pedido                                    |
+| `GET /relojes`, `/relojes/:urlAmigable`, `/marcas`                             | Catálogo público: solo relojes visibles                            |
+| `GET /contacto`                                                                | Íconos de contacto activos                                         |
+| `POST /auth/login`, `/auth/logout`, `/auth/cambiar-contrasena`; `GET /auth/yo` | Sesión del administrador                                           |
+| `GET/POST /admin/relojes`, `GET/PUT/DELETE /admin/relojes/:id`                 | Gestión del catálogo (409 `TIENE_PEDIDOS` al eliminar con pedidos) |
+| `PATCH /admin/relojes/:id/modo`, `/admin/relojes/:id/visibilidad`              | Cambios rápidos sin abrir el formulario                            |
+| `GET /admin/marcas`                                                            | Todas las marcas, también las que solo tienen relojes ocultos      |
+| `GET/PUT /admin/contacto`                                                      | Los tres enlaces de contacto                                       |
+
 ## Convenciones
 
 - **Errores:** todos salen como `{ estado, codigo, mensaje, detalles?, ruta, fecha }`. El front se apoya en `codigo`. Para un código propio, `new ConflictException(mensaje, { errorCode: 'TRANSICION_NO_PERMITIDA' })`.
@@ -70,4 +86,6 @@ pnpm dev:api                                    # http://localhost:3001/api/salu
 - **Entidades:** viven en `modules/<módulo>/entities/*.entity.ts`. Cada columna declara su tipo, las relaciones usan `Relation<T>` (evita errores de importación circular en ESM) y los `bigint` de precio pasan por `transformadorBigint`.
 - **Autenticación:** `@nestjs/authentication` con sesión en el servidor (tabla `sesion`) y cookie `__Host-sid` HttpOnly. Su guard es global: toda ruta exige sesión salvo las marcadas con `@Public()`. `@CurrentUser()` entrega el `AdministradorActual`. Bloqueo tras `AUTH_MAX_INTENTOS` fallos por `AUTH_BLOQUEO_MINUTOS`; inactividad y duración en `SESION_*` (valores de referencia, TBD-17). No hay registro ni recuperación por correo: el administrador se crea y se restablece con `pnpm admin:crear`, que lee la clave del entorno y no de argumentos.
 - **Pruebas e2e:** usan `BaseDeDatosFalsaModule`: los repositorios existen pero cualquier consulta falla. Lo que toque la base va en `test/integracion`.
+- **Orden alfabético:** se hace en el servicio con `compararNombres` (colación española) y no con `ORDER BY`: la base manda las tildes al final y "Córdoba" saldría después de "Cundinamarca".
+- **Fotos:** el reloj guarda claves de archivo (`relojes/foto.jpg`). Subirlas es del módulo de almacenamiento; el catálogo solo valida que la clave sea una imagen y no salga de su carpeta.
 - **Datos personales:** nada de nombre, teléfono o dirección en URLs ni en registros (SEI-4).
