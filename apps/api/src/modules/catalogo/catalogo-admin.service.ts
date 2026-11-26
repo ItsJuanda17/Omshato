@@ -1,3 +1,4 @@
+import type { DatosReloj } from "@omshato/contratos";
 import {
   ConflictException,
   Injectable,
@@ -10,7 +11,6 @@ import { EntityManager, Like, Repository } from "typeorm";
 import { compararNombres } from "../../common/text/orden.js";
 import { slugificar } from "../../common/text/slug.js";
 import { FotosService } from "../almacenamiento/fotos.service.js";
-import type { DatosReloj } from "./catalogo.schemas.js";
 import { HistorialPrecio } from "./entities/historial-precio.entity.js";
 import { ImagenReloj } from "./entities/imagen-reloj.entity.js";
 import { Marca } from "./entities/marca.entity.js";

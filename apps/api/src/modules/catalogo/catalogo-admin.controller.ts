@@ -1,15 +1,15 @@
 import { CurrentUser } from "@nestjs/authentication";
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Put } from "@nestjs/common";
-
-import type { AdministradorActual } from "../auth/administrador-actual.js";
-import { CatalogoAdminService } from "./catalogo-admin.service.js";
 import {
   type DatosReloj,
   esquemaCambioModo,
   esquemaCambioVisibilidad,
   esquemaDatosReloj,
-  esquemaId,
-} from "./catalogo.schemas.js";
+} from "@omshato/contratos";
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Put } from "@nestjs/common";
+
+import type { AdministradorActual } from "../auth/administrador-actual.js";
+import { CatalogoAdminService } from "./catalogo-admin.service.js";
+import { esquemaId } from "./catalogo.schemas.js";
 import type { ModoReloj } from "./modo-reloj.js";
 
 /** Gestión del catálogo. Toda ruta exige sesión (REQ-AUT-1): es el valor por defecto del guard. */

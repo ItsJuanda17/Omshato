@@ -1,3 +1,4 @@
+import { estadoInicial, type NuevoPedido } from "@omshato/contratos";
 import { ConflictException, Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -6,9 +7,8 @@ import { Reloj } from "../catalogo/entities/reloj.entity.js";
 import { Ciudad } from "../ubicaciones/entities/ciudad.entity.js";
 import { HistorialEstado } from "./entities/historial-estado.entity.js";
 import { Pedido } from "./entities/pedido.entity.js";
-import { estadoInicial, idDeEstado } from "./estados-pedido.js";
+import { idDeEstado } from "./estados-pedido.js";
 import { aPedidoDto, RELACIONES_PEDIDO } from "./pedido.dto.js";
-import type { NuevoPedido } from "./pedidos.schemas.js";
 
 const UNIQUE_VIOLATION = "23505";
 

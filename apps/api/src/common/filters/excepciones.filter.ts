@@ -7,17 +7,10 @@ import {
   Logger,
 } from "@nestjs/common";
 import { HttpAdapterHost } from "@nestjs/core";
+import type { ErrorApi } from "@omshato/contratos";
 
 /** Cuerpo de todos los errores del API. El front se apoya en `codigo`, no en el texto. */
-export interface CuerpoError {
-  estado: number;
-  codigo: string;
-  mensaje: string;
-  /** Detalle por campo cuando falla la validación. */
-  detalles?: { campo: string; mensaje: string }[];
-  ruta: string;
-  fecha: string;
-}
+export type CuerpoError = ErrorApi;
 
 const codigosPorEstado: Record<number, string> = {
   400: "DATOS_INVALIDOS",

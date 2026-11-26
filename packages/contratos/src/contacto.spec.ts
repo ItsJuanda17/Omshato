@@ -1,4 +1,4 @@
-import { normalizarWhatsapp, resolverContacto } from "./resolver-contacto.js";
+import { normalizarWhatsapp, resolverContacto } from "./contacto.js";
 
 describe("normalizarWhatsapp", () => {
   it.each([

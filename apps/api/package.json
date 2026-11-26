@@ -18,7 +18,19 @@
     "migration:create": "tsx ./node_modules/typeorm/cli.js migration:create",
     "seed": "tsx --env-file-if-exists=.env src/database/seeds/cli.ts",
     "admin:crear": "tsx --env-file-if-exists=.env src/database/seeds/crear-administrador.ts",
-    "test:integracion": "vitest run --config ./vitest.config.integracion.ts"
+    "test:integracion": "vitest run --config ./vitest.config.integracion.ts",
+    "prebuild": "pnpm --filter @omshato/contratos build",
+    "predev": "pnpm --filter @omshato/contratos build",
+    "pretypecheck": "pnpm --filter @omshato/contratos build",
+    "prelint": "pnpm --filter @omshato/contratos build",
+    "pretest": "pnpm --filter @omshato/contratos build",
+    "pretest:watch": "pnpm --filter @omshato/contratos build",
+    "pretest:e2e": "pnpm --filter @omshato/contratos build",
+    "pretest:integracion": "pnpm --filter @omshato/contratos build",
+    "premigration:run": "pnpm --filter @omshato/contratos build",
+    "premigration:revert": "pnpm --filter @omshato/contratos build",
+    "preseed": "pnpm --filter @omshato/contratos build",
+    "preadmin:crear": "pnpm --filter @omshato/contratos build"
   },
   "dependencies": {
     "@nestjs/authentication": "^0.1.7",
@@ -29,6 +41,7 @@
     "@nestjs/storage": "^0.0.5",
     "@nestjs/throttler": "^6.8.0",
     "@nestjs/typeorm": "^12.0.3",
+    "@omshato/contratos": "workspace:*",
     "helmet": "^8.3.0",
     "pg": "^8.23.1",
     "reflect-metadata": "^0.2.2",

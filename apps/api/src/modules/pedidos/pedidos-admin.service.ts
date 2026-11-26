@@ -1,3 +1,4 @@
+import { type CambioEstado, puedeCambiar } from "@omshato/contratos";
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
@@ -5,9 +6,8 @@ import { Repository } from "typeorm";
 import { HistorialEstado } from "./entities/historial-estado.entity.js";
 import { NotaPedido } from "./entities/nota-pedido.entity.js";
 import { Pedido } from "./entities/pedido.entity.js";
-import { codigoDeEstado, ESTADOS_PEDIDO, idDeEstado, puedeCambiar } from "./estados-pedido.js";
+import { codigoDeEstado, ESTADOS_PEDIDO, idDeEstado } from "./estados-pedido.js";
 import { aPedidoAdminDto, RELACIONES_PEDIDO } from "./pedido.dto.js";
-import type { CambioEstado } from "./pedidos.schemas.js";
 
 const NOMBRE_ESTADO = new Map<string, string>(ESTADOS_PEDIDO.map((e) => [e.codigo, e.nombre]));
 

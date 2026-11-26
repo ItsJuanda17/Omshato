@@ -1,0 +1,31 @@
+{
+  "name": "@omshato/contratos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lo que el front y el API comparten: tipos del dominio, esquemas de validación y reglas del negocio.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "lint": "oxlint --type-aware src/"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "oxlint": "^1.95.0",
+    "oxlint-tsgolint": "^7.0.2008",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.1"
+  }
+}

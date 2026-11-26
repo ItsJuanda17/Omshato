@@ -1,7 +1,7 @@
 import { Public } from "@nestjs/authentication";
+import { type DatosEnlaces, esquemaEnlaces } from "@omshato/contratos";
 import { Body, Controller, Get, Put } from "@nestjs/common";
 
-import { type DatosEnlaces, esquemaEnlaces } from "./contacto.schemas.js";
 import { ContactoService } from "./contacto.service.js";
 
 @Controller()

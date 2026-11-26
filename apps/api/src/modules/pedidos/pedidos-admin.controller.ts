@@ -1,15 +1,15 @@
 import { CurrentUser } from "@nestjs/authentication";
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
-
-import type { AdministradorActual } from "../auth/administrador-actual.js";
-import { esquemaId } from "../catalogo/catalogo.schemas.js";
-import { PedidosAdminService } from "./pedidos-admin.service.js";
 import {
   type CambioEstado,
   esquemaCambioEstado,
   esquemaNota,
   type NuevaNota,
-} from "./pedidos.schemas.js";
+} from "@omshato/contratos";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+
+import type { AdministradorActual } from "../auth/administrador-actual.js";
+import { esquemaId } from "../catalogo/catalogo.schemas.js";
+import { PedidosAdminService } from "./pedidos-admin.service.js";
 
 /** Gestión de pedidos. Toda ruta exige sesión (REQ-AUT-1): es el valor por defecto del guard. */
 @Controller("admin/pedidos")

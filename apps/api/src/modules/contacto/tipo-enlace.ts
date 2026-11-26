@@ -1,2 +1,1 @@
-export const TIPOS_ENLACE = ["WHATSAPP", "INSTAGRAM", "TIKTOK"] as const;
-export type TipoEnlace = (typeof TIPOS_ENLACE)[number];
+export { TIPOS_ENLACE, type TipoEnlace } from "@omshato/contratos";

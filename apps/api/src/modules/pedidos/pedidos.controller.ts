@@ -1,9 +1,10 @@
 import { Public } from "@nestjs/authentication";
+import { esquemaNuevoPedido, type NuevoPedido } from "@omshato/contratos";
 import { Body, Controller, Post, Res } from "@nestjs/common";
 import type { Response } from "express";
 
 import { LimitarSolicitudes } from "../../common/decorators/limitar-solicitudes.decorator.js";
-import { type NuevoPedido, esquemaNuevoPedido } from "./pedidos.schemas.js";
+
 import { PedidosService } from "./pedidos.service.js";
 
 /** El pedido sin registro del comprador (CU-04). */

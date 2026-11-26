@@ -1,11 +1,14 @@
+import {
+  type DatosEnlaces,
+  resolverContacto,
+  TIPOS_ENLACE,
+  type TipoEnlace,
+} from "@omshato/contratos";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
-import type { DatosEnlaces } from "./contacto.schemas.js";
 import { EnlaceContacto } from "./entities/enlace-contacto.entity.js";
-import { resolverContacto } from "./resolver-contacto.js";
-import { TIPOS_ENLACE, type TipoEnlace } from "./tipo-enlace.js";
 
 const CLAVE_POR_TIPO = {
   WHATSAPP: "whatsapp",
