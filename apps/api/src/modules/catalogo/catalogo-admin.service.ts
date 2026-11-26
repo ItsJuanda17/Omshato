@@ -9,6 +9,7 @@ import { EntityManager, Like, Repository } from "typeorm";
 
 import { compararNombres } from "../../common/text/orden.js";
 import { slugificar } from "../../common/text/slug.js";
+import { FotosService } from "../almacenamiento/fotos.service.js";
 import type { DatosReloj } from "./catalogo.schemas.js";
 import { HistorialPrecio } from "./entities/historial-precio.entity.js";
 import { ImagenReloj } from "./entities/imagen-reloj.entity.js";
@@ -27,6 +28,7 @@ export class CatalogoAdminService {
   constructor(
     @InjectRepository(Reloj) private readonly relojes: Repository<Reloj>,
     @InjectRepository(Marca) private readonly marcas: Repository<Marca>,
+    private readonly fotos: FotosService,
   ) {}
 
   /** Todos los relojes, visibles y ocultos, del más reciente al más antiguo (REQ-ADM-11). */
@@ -58,6 +60,7 @@ export class CatalogoAdminService {
 
   /** Agrega un reloj. Si está visible, se publica de inmediato (CU-13). */
   async crear(datos: DatosReloj) {
+    await this.fotos.exigirQueExisten(datos.fotos);
     const id = await this.relojes.manager.transaction(async (manager) => {
       const marca = await this.resolverMarca(manager, datos);
       const reloj = await manager.save(
@@ -79,7 +82,8 @@ export class CatalogoAdminService {
    * Un cambio de precio queda en el historial con quien lo hizo (SEF-5).
    */
   async actualizar(id: number, datos: DatosReloj, idAdministrador: number) {
-    await this.relojes.manager.transaction(async (manager) => {
+    await this.fotos.exigirQueExisten(datos.fotos);
+    const fotosQuitadas = await this.relojes.manager.transaction(async (manager) => {
       const actual = await manager.findOne(Reloj, {
         where: { id },
         relations: { imagenes: true },
@@ -113,7 +117,12 @@ export class CatalogoAdminService {
         await manager.delete(ImagenReloj, { idReloj: id });
         await this.guardarImagenes(manager, id, datos.fotos);
       }
+      return actual.imagenes
+        .map((imagen) => imagen.archivo)
+        .filter((archivo) => !datos.fotos.includes(archivo));
     });
+    // Ya con el cambio guardado: si falla el borrado del archivo, el reloj queda bien igual.
+    await this.fotos.borrarSinUso(fotosQuitadas);
     return this.obtener(id);
   }
 
@@ -156,7 +165,7 @@ export class CatalogoAdminService {
         { errorCode: "TIENE_PEDIDOS" },
       );
 
-    await this.relojes.manager
+    const fotosDelReloj = await this.relojes.manager
       .transaction(async (manager) => {
         if (!(await manager.existsBy(Reloj, { id }))) {
           throw new NotFoundException("No encontramos ese reloj.");
@@ -168,9 +177,11 @@ export class CatalogoAdminService {
         if (tiene) {
           throw conPedidos();
         }
+        const imagenes = await manager.findBy(ImagenReloj, { idReloj: id });
         // El historial de precios no cuenta como pedido: se va con el reloj.
         await manager.delete(HistorialPrecio, { idReloj: id });
         await manager.delete(Reloj, { id });
+        return imagenes.map((imagen) => imagen.archivo);
       })
       .catch((error: unknown) => {
         // Un pedido que entró entre la comprobación y el borrado lo frena la clave foránea.
@@ -179,6 +190,7 @@ export class CatalogoAdminService {
         }
         throw error;
       });
+    await this.fotos.borrarSinUso(fotosDelReloj);
   }
 
   /** Las columnas del reloj que vienen del formulario, sin la marca ni la URL. */

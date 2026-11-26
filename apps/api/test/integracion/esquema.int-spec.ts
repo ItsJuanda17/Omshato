@@ -372,7 +372,11 @@ describe("entidades", () => {
 describe("reversión de la migración", () => {
   // Va al final: borra el esquema y lo deja listo otra vez.
   it("se puede revertir y volver a aplicar", async () => {
-    // Una migración por vez: primero las sesiones, después el esquema inicial.
+    // Una migración por vez, de la más nueva a la primera.
+    await ds.undoLastMigration();
+    expect(await ds.query("SELECT to_regclass('numero_pedido_seq') AS secuencia")).toEqual([
+      { secuencia: null },
+    ]);
     await ds.undoLastMigration();
     expect(await ds.query("SELECT to_regclass('sesion') AS tabla")).toEqual([{ tabla: null }]);
     await ds.undoLastMigration();

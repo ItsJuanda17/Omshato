@@ -26,6 +26,8 @@ const codigosPorEstado: Record<number, string> = {
   404: "NO_ENCONTRADO",
   405: "METODO_NO_PERMITIDO",
   409: "CONFLICTO",
+  413: "ARCHIVO_MUY_GRANDE",
+  415: "TIPO_NO_PERMITIDO",
   422: "NO_PROCESABLE",
   429: "DEMASIADAS_SOLICITUDES",
 };
@@ -43,6 +45,8 @@ const mensajesPorEstado: Record<number, string> = {
   404: "No encontramos lo que buscas.",
   405: "Este método no está permitido.",
   409: "La solicitud entra en conflicto con el estado actual.",
+  413: "El archivo es demasiado grande. Usa una foto de máximo 5 MB.",
+  415: "Solo se aceptan fotos en formato JPG, PNG, WebP o AVIF.",
   422: "No pudimos procesar la solicitud.",
   429: "Demasiadas solicitudes. Inténtalo más tarde.",
 };
@@ -60,7 +64,9 @@ const GENERICOS_EN = new Set([
 
 function esGenerico(mensaje: string) {
   return (
-    GENERICOS_EN.has(mensaje) || /^Cannot (GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS) /.test(mensaje)
+    GENERICOS_EN.has(mensaje) ||
+    /^Cannot (GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS) /.test(mensaje) ||
+    mensaje.startsWith("ThrottlerException")
   );
 }
 
@@ -146,7 +152,10 @@ export class FiltroExcepciones implements ExceptionFilter {
         : typeof objeto.message === "string"
           ? objeto.message
           : excepcion.message;
-    const mensaje = esGenerico(original) ? (mensajesPorEstado[estado] ?? original) : original;
+    // Los textos de subida de archivos vienen de multer en inglés y no se pueden confundir con uno propio.
+    const esDeSubida = estado === 413 || estado === 415;
+    const mensaje =
+      esDeSubida || esGenerico(original) ? (mensajesPorEstado[estado] ?? original) : original;
     return { estado, codigo, mensaje, ...base };
   }
 }

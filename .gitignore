@@ -10,3 +10,7 @@ next-env.d.ts
 .vercel
 dist
 coverage
+
+# Fotos subidas en desarrollo y archivos temporales de las pruebas del API
+apps/api/storage
+apps/api/.tmp

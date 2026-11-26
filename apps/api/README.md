@@ -76,6 +76,10 @@ Todas cuelgan de `/api`. Las públicas llevan `@Public()`; las de `/admin` exige
 | `PATCH /admin/relojes/:id/modo`, `/admin/relojes/:id/visibilidad`              | Cambios rápidos sin abrir el formulario                            |
 | `GET /admin/marcas`                                                            | Todas las marcas, también las que solo tienen relojes ocultos      |
 | `GET/PUT /admin/contacto`                                                      | Los tres enlaces de contacto                                       |
+| `POST /pedidos`                                                                | Pedido sin registro: 201 nuevo, 200 si es el mismo envío repetido  |
+| `GET /admin/pedidos`, `GET /admin/pedidos/:id`                                 | Lista y detalle, con historial y notas internas                    |
+| `POST /admin/pedidos/:id/estado`, `POST /admin/pedidos/:id/notas`              | Cambiar de estado (Tabla 2 del SRS) y agregar notas                |
+| `POST /admin/fotos` (campo `foto`), `GET /fotos/relojes/:archivo`              | Subir una foto (máx. 5 MB, solo imágenes) y verla                  |
 
 ## Convenciones
 
@@ -87,5 +91,8 @@ Todas cuelgan de `/api`. Las públicas llevan `@Public()`; las de `/admin` exige
 - **Autenticación:** `@nestjs/authentication` con sesión en el servidor (tabla `sesion`) y cookie `__Host-sid` HttpOnly. Su guard es global: toda ruta exige sesión salvo las marcadas con `@Public()`. `@CurrentUser()` entrega el `AdministradorActual`. Bloqueo tras `AUTH_MAX_INTENTOS` fallos por `AUTH_BLOQUEO_MINUTOS`; inactividad y duración en `SESION_*` (valores de referencia, TBD-17). No hay registro ni recuperación por correo: el administrador se crea y se restablece con `pnpm admin:crear`, que lee la clave del entorno y no de argumentos.
 - **Pruebas e2e:** usan `BaseDeDatosFalsaModule`: los repositorios existen pero cualquier consulta falla. Lo que toque la base va en `test/integracion`.
 - **Orden alfabético:** se hace en el servicio con `compararNombres` (colación española) y no con `ORDER BY`: la base manda las tildes al final y "Córdoba" saldría después de "Cundinamarca".
-- **Fotos:** el reloj guarda claves de archivo (`relojes/foto.jpg`). Subirlas es del módulo de almacenamiento; el catálogo solo valida que la clave sea una imagen y no salga de su carpeta.
+- **Fotos:** se suben con `POST /admin/fotos`, que devuelve una clave (`relojes/<uuid>.png`) que luego se envía al crear o editar el reloj. El tipo se decide por el contenido del archivo y el nombre que manda el navegador se ignora. Se guardan en `ALMACENAMIENTO_RUTA` (disco local, sin costo de nube); para pasar a un servicio en la nube se cambia `LocalDisk` por `S3Disk` en `almacenamiento.module.ts`. Al quitar una foto de un reloj o eliminarlo, su archivo se borra si nadie más lo usa.
+- **Pedidos:** nacen en Recibido (reloj Disponible) o Por conseguir con proveedor (Bajo pedido). El comprador nunca recibe las notas internas. La idempotencia se apoya en `clave_idempotencia UNIQUE`: el mismo envío devuelve el pedido ya registrado. El número `OMS-0001` sale de una secuencia de Postgres.
+- **Límite de solicitudes (SEI-8):** `@LimitarSolicitudes(límite, minutos)` en el inicio de sesión (10 por 15 min) y en `POST /pedidos` (10 por 10 min), por IP. No va en todo el API porque el front lo consulta desde su servidor y muchos visitantes compartirían una IP. Detrás de un proxy hay que poner `PROXIES_DE_CONFIANZA`, y el front debe reenviar la IP real del visitante en `X-Forwarded-For`; si no, todos cuentan como uno solo.
+- **Notificaciones:** el módulo está vacío a propósito. El canal de aviso al administrador (TBD-9) no está decidido; cuando se decida, el punto de enganche es `PedidosService.crear`, después de la transacción.
 - **Datos personales:** nada de nombre, teléfono o dirección en URLs ni en registros (SEI-4).

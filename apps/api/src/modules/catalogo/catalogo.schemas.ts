@@ -15,14 +15,12 @@ const textoOpcional = (maximo: number, mensaje: string) =>
     .transform((texto) => texto || null);
 
 /**
- * Clave de una foto en el almacenamiento. Solo letras, números y `_ - . /`, sin `..`,
- * para que nunca apunte fuera de la carpeta de imágenes.
+ * Clave de una foto subida con `POST /admin/fotos`: carpeta `relojes/` y un nombre sin puntos
+ * ni barras, para que nunca apunte fuera de ella. Que el archivo exista lo comprueba el servicio.
  */
 const claveFoto = z
   .string()
-  .max(255)
-  .regex(/^[\w./-]+\.(png|jpe?g|webp|avif)$/i, "La foto no es una imagen válida.")
-  .refine((clave) => !clave.includes(".."), "La foto no es una imagen válida.");
+  .regex(/^relojes\/[\w-]+\.(png|jpe?g|webp|avif)$/i, "La foto no es una imagen válida.");
 
 export const esquemaId = z.coerce.number().int().positive();
 

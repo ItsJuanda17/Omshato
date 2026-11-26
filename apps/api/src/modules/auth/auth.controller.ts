@@ -1,6 +1,7 @@
 import { CurrentUser, Public, SignInService } from "@nestjs/authentication";
 import { Body, Controller, Get, HttpCode, Post } from "@nestjs/common";
 
+import { LimitarSolicitudes } from "../../common/decorators/limitar-solicitudes.decorator.js";
 import type { AdministradorActual } from "./administrador-actual.js";
 import {
   type CambioContrasena,
@@ -24,6 +25,7 @@ export class AuthController {
   /** Crea la sesión y la deja en una cookie `HttpOnly`: el front nunca ve el token. */
   @Public()
   @Post("login")
+  @LimitarSolicitudes(10, 15)
   @HttpCode(200)
   async iniciarSesion(@Body({ schema: esquemaInicioSesion }) datos: InicioSesion) {
     const administrador = await this.auth.verificarCredenciales(datos.correo, datos.contrasena);

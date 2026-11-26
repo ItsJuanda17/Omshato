@@ -4,16 +4,22 @@ import {
   type ContextoIntegracion,
   crearAppConBaseDeDatos,
   sesionDeAdministrador,
+  subirFoto,
 } from "../ayudantes/app-integracion.js";
 
 let contexto: ContextoIntegracion;
 let cookie: string;
 let idAdministrador: number;
 let contador = 0;
+/** Claves de fotos ya subidas, que los relojes de estas pruebas reutilizan. */
+const fotos = { principal: "", segunda: "", nueva: "" };
 
 beforeAll(async () => {
   contexto = await crearAppConBaseDeDatos();
   ({ cookie, idAdministrador } = await sesionDeAdministrador(contexto));
+  fotos.principal = await subirFoto(contexto, cookie);
+  fotos.segunda = await subirFoto(contexto, cookie);
+  fotos.nueva = await subirFoto(contexto, cookie);
 });
 
 afterAll(async () => {
@@ -38,7 +44,7 @@ function datosReloj(cambios: Record<string, unknown> = {}) {
     detalleMecanica: "Calibre: 4R35",
     descripcion: "Esfera azul",
     visible: true,
-    fotos: ["relojes/principal.jpg", "relojes/segunda.jpg"],
+    fotos: [fotos.principal, fotos.segunda],
     ...cambios,
   };
 }
@@ -81,8 +87,8 @@ describe("crear un reloj (CU-13)", () => {
       cantidadPedidos: 0,
     });
     expect(reloj.imagenes).toEqual([
-      expect.objectContaining({ archivo: "relojes/principal.jpg", orden: 1, esPrincipal: true }),
-      expect.objectContaining({ archivo: "relojes/segunda.jpg", orden: 2, esPrincipal: false }),
+      expect.objectContaining({ archivo: fotos.principal, orden: 1, esPrincipal: true }),
+      expect.objectContaining({ archivo: fotos.segunda, orden: 2, esPrincipal: false }),
     ]);
     expect(typeof reloj.fechaPublicacion).toBe("string");
   });
@@ -181,9 +187,9 @@ describe("validación al guardar un reloj", () => {
   });
 
   it("rechaza más de 10 fotos", async () => {
-    const fotos = Array.from({ length: 11 }, (_, i) => `relojes/foto-${i}.jpg`);
+    const muchas = Array.from({ length: 11 }, (_, i) => `relojes/foto-${i}.jpg`);
 
-    expect((await rechazar({ fotos })).detalles[0].campo).toBe("fotos");
+    expect((await rechazar({ fotos: muchas })).detalles[0].campo).toBe("fotos");
   });
 
   it("rechaza una marca que no existe con un código propio", async () => {
@@ -225,7 +231,7 @@ describe("lo que ve el comprador (REQ-CAT-1, REQ-DET-6)", () => {
       modo: "DISPONIBLE",
       urlAmigable: reloj.urlAmigable,
       imagenPrincipal: expect.objectContaining({
-        archivo: "relojes/principal.jpg",
+        archivo: fotos.principal,
         esPrincipal: true,
       }),
     });
@@ -328,11 +334,11 @@ describe("editar un reloj (CU-14)", () => {
     const editado = await http()
       .put(`/api/admin/relojes/${reloj.id}`)
       .set("Cookie", cookie)
-      .send(datosReloj({ nombre: reloj.nombre, fotos: ["relojes/nueva.jpg"] }))
+      .send(datosReloj({ nombre: reloj.nombre, fotos: [fotos.nueva] }))
       .expect(200);
 
     expect(editado.body.imagenes).toEqual([
-      expect.objectContaining({ archivo: "relojes/nueva.jpg", orden: 1, esPrincipal: true }),
+      expect.objectContaining({ archivo: fotos.nueva, orden: 1, esPrincipal: true }),
     ]);
   });
 
@@ -460,6 +466,51 @@ describe("eliminar un reloj (CU-17, RN-8)", () => {
 
   it("responde 404 si no existe", async () => {
     await http().delete("/api/admin/relojes/99999").set("Cookie", cookie).expect(404);
+  });
+});
+
+describe("fotos del reloj", () => {
+  it("rechaza una foto que nunca se subió", async () => {
+    const respuesta = await http()
+      .post("/api/admin/relojes")
+      .set("Cookie", cookie)
+      .send(datosReloj({ fotos: ["relojes/nunca-subida.png"] }))
+      .expect(422);
+
+    expect(respuesta.body.codigo).toBe("FOTO_NO_EXISTE");
+  });
+
+  it("borra del disco la foto que se quita de un reloj, y deja las demás", async () => {
+    const quitada = await subirFoto(contexto, cookie);
+    const reloj = await crear({ fotos: [fotos.principal, quitada] });
+
+    await http()
+      .put(`/api/admin/relojes/${reloj.id}`)
+      .set("Cookie", cookie)
+      .send(datosReloj({ nombre: reloj.nombre as string, fotos: [fotos.principal] }))
+      .expect(200);
+
+    expect(await contexto.disco.exists(quitada)).toBe(false);
+    expect(await contexto.disco.exists(fotos.principal)).toBe(true);
+  });
+
+  it("no borra una foto que otro reloj sigue usando", async () => {
+    const compartida = await subirFoto(contexto, cookie);
+    const a = await crear({ fotos: [compartida] });
+    await crear({ fotos: [compartida] });
+
+    await http().delete(`/api/admin/relojes/${a.id}`).set("Cookie", cookie).expect(204);
+
+    expect(await contexto.disco.exists(compartida)).toBe(true);
+  });
+
+  it("borra las fotos de un reloj que se elimina", async () => {
+    const propia = await subirFoto(contexto, cookie);
+    const reloj = await crear({ fotos: [propia] });
+
+    await http().delete(`/api/admin/relojes/${reloj.id}`).set("Cookie", cookie).expect(204);
+
+    expect(await contexto.disco.exists(propia)).toBe(false);
   });
 });
 
