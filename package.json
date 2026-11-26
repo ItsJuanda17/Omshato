@@ -1,0 +1,33 @@
+{
+  "name": "omshato",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @omshato/web dev",
+    "dev:api": "pnpm --filter @omshato/api dev",
+    "build": "pnpm --filter @omshato/web build",
+    "build:api": "pnpm --filter @omshato/api build",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm -r --if-present test:e2e",
+    "test:integracion": "pnpm --filter @omshato/api test:integracion",
+    "db:up": "docker compose up -d --wait db",
+    "db:down": "docker compose down",
+    "db:migrate": "pnpm --filter @omshato/api migration:run",
+    "db:seed": "pnpm --filter @omshato/api seed",
+    "admin:crear": "pnpm --filter @omshato/api admin:crear",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm lint && pnpm typecheck && pnpm format:check",
+    "demo:cargar": "pnpm --filter @omshato/api demo:cargar",
+    "postinstall": "pnpm --filter @omshato/contratos build"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.7.0"
+  }
+}

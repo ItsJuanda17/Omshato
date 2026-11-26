@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#1a1c1c","on-primary-fixed-variant":"#454747","surface-dim":"#131313","on-error-container":"#ffdad6","outline":"#8e9192","inverse-on-surface":"#313030","on-primary":"#2f3131","primary-container":"#e2e2e2","on-error":"#690005","on-secondary-fixed":"#1a1c1c","on-surface-variant":"#c4c7c8","error":"#ffb4ab","on-background":"#e5e2e1","surface-container-lowest":"#0e0e0e","error-container":"#93000a","on-tertiary-fixed":"#1a1c1c","outline-variant":"#444748","surface-container":"#201f1f","surface-bright":"#3a3939","inverse-primary":"#5d5f5f","inverse-surface":"#e5e2e1","on-secondary-container":"#b8b8b8","primary-fixed-dim":"#c6c6c7","surface-tint":"#c6c6c7","on-tertiary-container":"#636465","tertiary-container":"#e2e2e2","surface-container-high":"#2a2a2a","primary":"#ffffff","on-tertiary":"#2f3131","on-secondary":"#2f3131","surface-container-low":"#1c1b1b","secondary-fixed":"#e3e2e2","tertiary-fixed":"#e2e2e2","secondary":"#c7c6c6","on-tertiary-fixed-variant":"#454747","on-surface":"#e5e2e1","tertiary":"#ffffff","on-secondary-fixed-variant":"#464747","background":"#131313","on-primary-container":"#636565","secondary-container":"#484949","tertiary-fixed-dim":"#c6c6c6","primary-fixed":"#e2e2e2","secondary-fixed-dim":"#c7c6c6","surface-container-highest":"#353534","surface-variant":"#353534","surface":"#131313"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin-tablet":"3rem",gutter:"1.5rem",margin:"1.5rem","space-sm":"0.5rem","space-lg":"2rem","gutter-desktop":"2.5rem","space-md":"1rem","space-xl":"3.5rem","space-xs":"0.25rem","margin-desktop":"5rem"},fontFamily:{"body-md":["Plus Jakarta Sans"],"display-md-mobile":["Syne"],"label-lg":["Plus Jakarta Sans"],"display-md":["Syne"],"headline-md":["Syne"],"display-lg-mobile":["Syne"],"body-lg":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"title-lg":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-sm":["Syne"],"headline-lg":["Syne"],"display-lg":["Syne"],"label-sm":["Plus Jakarta Sans"]},fontSize:{"body-md":["14px",{lineHeight:"24px",letterSpacing:"0.01em",fontWeight:"400"}],"display-md-mobile":["28px",{lineHeight:"36px",letterSpacing:"0.12em",fontWeight:"500"}],"label-lg":["13px",{lineHeight:"18px",letterSpacing:"0.18em",fontWeight:"600"}],"display-md":["40px",{lineHeight:"48px",letterSpacing:"0.16em",fontWeight:"500"}],"headline-md":["22px",{lineHeight:"30px",letterSpacing:"0.12em",fontWeight:"500"}],"display-lg-mobile":["36px",{lineHeight:"44px",letterSpacing:"0.14em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"28px",letterSpacing:"0.015em",fontWeight:"300"}],"label-md":["11px",{lineHeight:"16px",letterSpacing:"0.22em",fontWeight:"500"}],"title-lg":["18px",{lineHeight:"26px",letterSpacing:"0.04em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"20px",letterSpacing:"0.02em",fontWeight:"400"}],"headline-sm":["16px",{lineHeight:"24px",letterSpacing:"0.20em",fontWeight:"600"}],"headline-lg":["30px",{lineHeight:"38px",letterSpacing:"0.15em",fontWeight:"500"}],"display-lg":["56px",{lineHeight:"64px",letterSpacing:"0.18em",fontWeight:"600"}],"label-sm":["10px",{lineHeight:"14px",letterSpacing:"0.25em",fontWeight:"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><input class="peer hidden" id="admin-drawer-toggle" type="checkbox"/><aside class="fixed inset-y-0 left-0 z-50 w-72 bg-surface-container-lowest flex flex-col justify-between transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0"><div class="flex flex-col"><div class="h-20 px-8 flex items-center justify-between"><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-[0.28em] text-primary uppercase">OMSHATO</span><span class="font-label-sm text-label-sm tracking-[0.3em] text-outline uppercase">Haute Horlogerie</span></div><label class="lg:hidden text-on-surface-variant cursor-pointer p-1" for="admin-drawer-toggle"><span class="material-symbols-outlined text-[20px]">close</span></label></div><div class="px-8 py-4"><div class="font-label-sm text-label-sm uppercase text-outline tracking-[0.25em]">Navegación Vault</div></div><nav class="flex flex-col px-4 gap-1" data-active-classes="bg-surface-container text-primary font-medium"><a aria-current="page" class="flex items-center gap-3 px-4 py-3 transition-colors duration-150 bg-surface-container text-primary font-medium" data-path="pedidos" href="#"><span class="material-symbols-outlined text-[18px]">inbox</span><span class="font-label-lg text-label-lg tracking-[0.12em] uppercase">Pedidos</span></a><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors duration-150" data-path="relojes" href="#"><span class="material-symbols-outlined text-[18px]">watch</span><span class="font-label-lg text-label-lg tracking-[0.12em] uppercase">Relojes</span></a><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors duration-150" data-path="enlaces-de-contacto" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-label-lg text-label-lg tracking-[0.12em] uppercase">Enlaces de contacto</span></a></nav></div><div class="p-6 flex flex-col gap-4"><div class="px-4 py-3 bg-surface-container-low flex items-center justify-between"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-outline tracking-[0.2em] uppercase">Certificación</span><span class="font-body-sm text-body-sm text-on-surface font-mono">BOG-882-9014</span></div><span class="material-symbols-outlined text-outline text-[18px]">verified</span></div><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors duration-150" data-path="cerrar-sesion" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span class="font-label-lg text-label-lg tracking-[0.14em] uppercase">Cerrar sesión</span></a></div></aside><label class="fixed inset-0 z-40 bg-surface-container-lowest/80 backdrop-blur-sm transition-opacity peer-checked:block hidden lg:peer-checked:hidden" for="admin-drawer-toggle"></label><div class="lg:pl-72 flex flex-col min-h-screen"><header class="fixed top-0 right-0 left-0 lg:left-72 h-20 bg-surface/85 backdrop-blur-xl z-30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-4"><label class="lg:hidden flex items-center p-2 text-on-surface hover:text-primary cursor-pointer" for="admin-drawer-toggle"><span class="material-symbols-outlined text-[22px]">menu</span></label><div class="flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div><span class="font-label-md text-label-md tracking-[0.24em] text-on-surface uppercase">Panel de Administración</span></div></div><div class="flex items-center gap-4 lg:gap-8"><div class="hidden md:flex flex-col items-end"><span class="font-label-sm text-label-sm tracking-[0.2em] text-outline uppercase">BOGOTÁ HQ (GMT-5)</span><span class="font-body-sm text-body-sm text-on-surface font-mono">04 MAY 2025 · 14:38:12</span></div><div class="hidden sm:flex items-center px-3 py-1 bg-surface-container"><span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-secondary">SESIÓN SEGURA</span></div><div class="flex items-center gap-3 pl-2"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrDnX6S_W1D1LInZqBHmyXQV6OdQ60CuuF9iflvpCXQg4YdF4bX6m9r-97TCSW9MMVebHd5nsXLaznJHeC-cu8AFBgFStWjmOreIzTrDR1ldgUraQXXvC15jY99TyMx2VivaWWAoi_Sy3wB8TCinG0NwtPVzWfuaaz-0HdJsnws9xuDQDzR0x0K4QHjA2vNG92Gi8Wz0PeQxKM-eX9xIWO1tmK7dBsvzA2bq6a3fCTK-FDlEQq6e9In79Jo"/><div class="hidden xl:flex flex-col text-left"><span class="font-label-sm text-label-sm tracking-[0.14em] text-on-surface uppercase">Curador Master</span><span class="font-label-sm text-label-sm tracking-[0.1em] text-outline">Bogotá Vault</span></div></div></div></div></header><main class="relative pt-20 bg-surface flex-1 w-full px-6 lg:px-12"><div class="flex flex-col w-full pb-16">
+<!-- Top Stat Bar & Overview -->
+<section class="w-full pt-4 pb-8 flex flex-col gap-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.28em] text-outline">Boutique &amp; Vault Register</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg uppercase text-primary tracking-[0.14em]">Gestión de Pedidos y Encargos</h1>
+<div class="flex items-center gap-3">
+<span class="font-body-sm text-body-sm text-secondary font-mono tracking-wider">18 ÓRDENES ACTIVAS</span>
+<span class="text-outline text-body-sm">•</span>
+<span class="font-body-sm text-body-sm text-on-surface font-mono tracking-wider bg-surface-container px-2 py-0.5">2 BAJO PEDIDO PRIORITARIO</span>
+</div>
+</div>
+<!-- Quick Metrics Counter (Monochrome architectural plinths) -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+<div class="bg-surface-container-low px-4 py-3 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Custodia Total</span>
+<span class="font-headline-sm text-headline-sm font-mono text-primary">$ 41.820.000 COP</span>
+</div>
+<div class="bg-surface-container-low px-4 py-3 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Tiempo Medio</span>
+<span class="font-headline-sm text-headline-sm font-mono text-primary">3.4 DÍAS</span>
+</div>
+<div class="col-span-2 sm:col-span-1 bg-surface-container-low px-4 py-3 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Verificados</span>
+<span class="font-headline-sm text-headline-sm font-mono text-primary">100% SUIZO/JAPÓN</span>
+</div>
+</div>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-surface-container-lowest p-2">
+<!-- State Filters -->
+<div class="flex items-center gap-1 overflow-x-auto no-scrollbar py-1">
+<button class="filter-btn active-filter px-3 py-2 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all" onclick="filterStatus('all')">Todos (18)</button>
+<button class="filter-btn px-3 py-2 bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all" onclick="filterStatus('recibido')">Recibido (4)</button>
+<button class="filter-btn px-3 py-2 bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all" onclick="filterStatus('proveedor')">Con Proveedor (2)</button>
+<button class="filter-btn px-3 py-2 bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all" onclick="filterStatus('confirmado')">Confirmado (5)</button>
+<button class="filter-btn px-3 py-2 bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all" onclick="filterStatus('enviado')">Enviado (4)</button>
+<button class="filter-btn px-3 py-2 bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all" onclick="filterStatus('entregado')">Entregado (3)</button>
+<button class="filter-btn px-3 py-2 bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md uppercase tracking-[0.18em] transition-all" onclick="filterStatus('cancelado')">Cancelado (2)</button>
+</div>
+<!-- Search Box -->
+<div class="relative min-w-[280px] lg:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface-container-low pl-10 pr-4 py-2 font-body-sm text-body-sm text-primary placeholder:text-outline uppercase tracking-wider focus:outline-none focus:bg-surface-container transition-all" id="orderSearch" placeholder="BUSCAR ORDEN, CLIENTE O REF..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Main Dual Workspace: Master List + Side Inspector -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+<!-- LEFT: Orders Master Table (Responsive list) -->
+<div class="xl:col-span-7 flex flex-col gap-3">
+<div class="flex items-center justify-between px-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.24em] text-outline">Bitácora de Órdenes Recientes</span>
+<span class="font-label-sm text-label-sm uppercase text-outline font-mono">01 — 06 de 18</span>
+</div>
+<!-- Orders Container -->
+<div class="flex flex-col gap-2" id="ordersList">
+<!-- Order Row Item 1 (Selected by default) -->
+<div class="order-row group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all p-4 lg:p-5 flex flex-col gap-3 relative shadow-sm" id="row-OMS-0842" onclick="selectOrder('OMS-0842')" style="box-shadow: inset 0 0 0 1px #ffffff;">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm font-mono tracking-widest text-primary">#OMS-0842</span>
+<span class="font-label-sm text-label-sm uppercase px-2 py-0.5 bg-surface-container-highest text-secondary font-mono tracking-widest">PRIORITARIO</span>
+</div>
+<!-- Status Badge: Por conseguir con proveedor -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-highest text-on-surface font-label-sm text-label-sm uppercase tracking-[0.16em]">
+<span class="material-symbols-outlined text-[14px] animate-spin" style="animation-duration: 6s;">autorenew</span>
+              Por conseguir con proveedor
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+<div class="sm:col-span-7 flex flex-col">
+<span class="font-title-lg text-title-lg text-primary tracking-wide">Tissot PRX Powermatic 80 Acero 316L</span>
+<span class="font-body-sm text-body-sm text-outline tracking-wider font-mono">Calibre 11 1/2''' • Reserva 80h • Dial Azul Sol</span>
+</div>
+<div class="sm:col-span-5 flex flex-col sm:items-end">
+<span class="font-body-md text-body-md text-primary">Santiago Montoya Gaviria</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase font-mono">Medellín, ANT • +57 305 2088279</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 text-outline font-mono text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>24 OCT 2025 · 14:32:05</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">$ 3.450.000 COP</span>
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Order Row Item 2 -->
+<div class="order-row group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all p-4 lg:p-5 flex flex-col gap-3 relative shadow-sm" id="row-OMS-0841" onclick="selectOrder('OMS-0841')">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm font-mono tracking-widest text-primary">#OMS-0841</span>
+</div>
+<!-- Status Badge: Confirmado -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-[0.16em]" style="box-shadow: inset 0 0 0 1px #ffffff;">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+              Confirmado
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+<div class="sm:col-span-7 flex flex-col">
+<span class="font-title-lg text-title-lg text-primary tracking-wide">Seiko Prospex Diver 200M Automatic</span>
+<span class="font-body-sm text-body-sm text-outline tracking-wider font-mono">Calibre 6R35 • Zafiro Antirreflejo • 'Captain Willard'</span>
+</div>
+<div class="sm:col-span-5 flex flex-col sm:items-end">
+<span class="font-body-md text-body-md text-primary">Valeria Echeverry Restrepo</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase font-mono">Bogotá D.C. • +57 312 9940112</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 text-outline font-mono text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>24 OCT 2025 · 11:15:40</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">$ 5.890.000 COP</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Order Row Item 3 -->
+<div class="order-row group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all p-4 lg:p-5 flex flex-col gap-3 relative shadow-sm" id="row-OMS-0839" onclick="selectOrder('OMS-0839')">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm font-mono tracking-widest text-primary">#OMS-0839</span>
+</div>
+<!-- Status Badge: Enviado -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-primary font-label-sm text-label-sm uppercase tracking-[0.16em]">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+              Enviado
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+<div class="sm:col-span-7 flex flex-col">
+<span class="font-title-lg text-title-lg text-primary tracking-wide">Hamilton Khaki Field Titanium Auto 38mm</span>
+<span class="font-body-sm text-body-sm text-outline tracking-wider font-mono">Calibre H-10 • Titano Grado 2 • Correa Cuero Nubuck</span>
+</div>
+<div class="sm:col-span-5 flex flex-col sm:items-end">
+<span class="font-body-md text-body-md text-primary">Dr. Camilo Arboleda Henao</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase font-mono">Cali, Valle • +57 300 4881903</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 text-outline font-mono text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>23 OCT 2025 · 18:04:12</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">$ 4.620.000 COP</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Order Row Item 4 -->
+<div class="order-row group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all p-4 lg:p-5 flex flex-col gap-3 relative shadow-sm" id="row-OMS-0838" onclick="selectOrder('OMS-0838')">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm font-mono tracking-widest text-primary">#OMS-0838</span>
+</div>
+<!-- Status Badge: Entregado -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-[0.16em] font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+              Entregado
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+<div class="sm:col-span-7 flex flex-col">
+<span class="font-title-lg text-title-lg text-primary tracking-wide">Longines HydroConquest Cerámica 41mm</span>
+<span class="font-body-sm text-body-sm text-outline tracking-wider font-mono">Calibre L888 • Espiral de Silicio • Dial Sunray Gris</span>
+</div>
+<div class="sm:col-span-5 flex flex-col sm:items-end">
+<span class="font-body-md text-body-md text-primary">Mauricio Zuluaga Peña</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase font-mono">Barranquilla, ATL • +57 318 7029810</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 text-outline font-mono text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>22 OCT 2025 · 16:45:00</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">$ 7.950.000 COP</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Order Row Item 5 -->
+<div class="order-row group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all p-4 lg:p-5 flex flex-col gap-3 relative shadow-sm" id="row-OMS-0835" onclick="selectOrder('OMS-0835')">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm font-mono tracking-widest text-primary">#OMS-0835</span>
+</div>
+<!-- Status Badge: Recibido -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase tracking-[0.16em]">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+              Recibido
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+<div class="sm:col-span-7 flex flex-col">
+<span class="font-title-lg text-title-lg text-primary tracking-wide">Oris Aquis Date Calibre 400 41.5mm</span>
+<span class="font-body-sm text-body-sm text-outline tracking-wider font-mono">Calibre In-House 400 • Antimagnético • Reserva 120h</span>
+</div>
+<div class="sm:col-span-5 flex flex-col sm:items-end">
+<span class="font-body-md text-body-md text-primary">Felipe Gómez Villegas</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase font-mono">Bucaramanga, SAN • +57 310 5510293</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 text-outline font-mono text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>22 OCT 2025 · 09:12:33</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold">$ 12.100.000 COP</span>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover:text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Order Row Item 6 -->
+<div class="order-row group cursor-pointer bg-surface-container-low hover:bg-surface-container transition-all p-4 lg:p-5 flex flex-col gap-3 relative shadow-sm opacity-60" id="row-OMS-0829" onclick="selectOrder('OMS-0829')">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm font-mono tracking-widest text-outline">#OMS-0829</span>
+</div>
+<!-- Status Badge: Cancelado -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest text-outline font-label-sm text-label-sm uppercase tracking-[0.16em]" style="box-shadow: inset 0 0 0 1px #444748;">
+<span class="material-symbols-outlined text-[14px]">close</span>
+              Cancelado
+            </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+<div class="sm:col-span-7 flex flex-col">
+<span class="font-title-lg text-title-lg text-outline tracking-wide line-through">Mido Ocean Star Tribute Gradient Red</span>
+<span class="font-body-sm text-body-sm text-outline tracking-wider font-mono">Calibre 80 • Cristal Caja Box • Desistido por cliente</span>
+</div>
+<div class="sm:col-span-5 flex flex-col sm:items-end">
+<span class="font-body-md text-body-md text-outline">Andrés Felipe Castro</span>
+<span class="font-label-sm text-label-sm text-outline tracking-widest uppercase font-mono">Pereira, RIS • +57 317 4001928</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 text-outline font-mono text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>20 OCT 2025 · 17:50:11</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-outline font-mono line-through">$ 3.980.000 COP</span>
+<span class="material-symbols-outlined text-[18px] text-outline">block</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT: Inspector / Order Detail Pane -->
+<div class="xl:col-span-5 flex flex-col gap-4">
+<!-- Detalle Card Principal -->
+<div class="bg-surface-container-low p-6 lg:p-7 flex flex-col gap-6 shadow-md relative">
+<!-- Header del Inspector -->
+<div class="flex flex-col gap-3 pb-5" style="box-shadow: inset 0 -1px 0 0 #2a2a2a;">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-primary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.24em] text-outline">Dossier de Encargo</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary font-mono tracking-wider">REG: 24 OCT 2025 · 14:32</span>
+</div>
+<div class="flex flex-wrap items-baseline justify-between gap-2">
+<h2 class="font-headline-lg text-headline-lg font-mono tracking-widest text-primary" id="detailOrderNumber">#OMS-0842</h2>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline font-mono">BOG-VLT-SECURE</span>
+</div>
+</div>
+<!-- Selector Interactivo de Estado (Status Changer) -->
+<div class="flex flex-col gap-2 pt-2">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Modificar Estado de Trámite</label>
+<div class="relative">
+<select class="w-full bg-surface-container px-4 py-3 appearance-none font-label-lg text-label-lg uppercase tracking-[0.14em] text-primary focus:outline-none cursor-pointer pr-10" id="statusSelector" onchange="changeOrderStatus(this.value)" style="box-shadow: inset 0 0 0 1px #444748;">
+<option value="recibido">⚪ Recibido</option>
+<option selected="" value="proveedor">⟳ Por conseguir con proveedor</option>
+<option value="confirmado">✓ Confirmado</option>
+<option value="enviado">↗ Enviado</option>
+<option value="entregado">★ Entregado</option>
+<option value="cancelado">✕ Cancelado</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">unfold_more</span>
+</div>
+</div>
+</div>
+<!-- Ficha Técnica del Reloj Vinculado -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Pieza de Alta Relojería</span>
+<span class="font-label-sm text-label-sm uppercase font-mono tracking-widest px-2 py-0.5 bg-surface-container text-primary">BAJO PEDIDO</span>
+</div>
+<div class="flex gap-4 p-3 bg-surface-container items-center">
+<!-- Thumbnail del reloj -->
+<img class="w-20 h-20 object-cover bg-surface-container-lowest flex-shrink-0" data-alt="Macro studio photograph of a Swiss automatic luxury wristwatch with brushed 316L stainless steel bracelet and dark blue sunray dial under dramatic gallery lighting against pitch black backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDxjkGk1L1bUcwSfrqsOxC7O1RDO0hb_chT_aT6RCj-0zrZwQIDUpL0ZtCUcdZw4KB-4spfZdeBuB7vFH-nJisewRsXHSF8AxQmP4Pb9xCLnJjACCa3HnZQMW-yqSHGlDEdd7HOX8V6N0Uu7GSwnbWe0Ogz1-zIey2f4ipDl5qj7tqY_p3MU8TB1Eq8c_eejCYmDp7K283qozo0CXJgYb6wl_UbVIcW08T_sIRTzE"/>
+<div class="flex flex-col justify-center min-w-0 flex-1">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-[0.2em]">TISSOT SUISSE 1853</span>
+<span class="font-title-lg text-title-lg text-primary tracking-tight truncate">PRX Powermatic 80 Acero 316L</span>
+<div class="flex items-center justify-between mt-1 pt-1" style="box-shadow: inset 0 1px 0 0 #2a2a2a;">
+<span class="font-body-sm text-body-sm text-outline font-mono">Ref. T137.407.11.041.00</span>
+<span class="font-headline-sm text-headline-sm text-primary font-mono font-semibold">$ 3.450.000 COP</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Protocolo Comprador & Datos Custodiados -->
+<div class="flex flex-col gap-3">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Titular del Encargo &amp; Destino</span>
+<div class="bg-surface-container p-4 flex flex-col gap-3">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary">Santiago Montoya Gaviria</span>
+<span class="font-body-sm text-body-sm text-secondary font-mono">santiago.montoya.g@empresa-holding.com</span>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-2" style="box-shadow: inset 0 1px 0 0 #2a2a2a;">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Jurisdicción</span>
+<span class="font-body-md text-body-md text-primary">Medellín, Antioquia</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Código Postal</span>
+<span class="font-body-md text-body-md text-primary font-mono">050021 (El Poblado)</span>
+</div>
+</div>
+<div class="flex flex-col pt-2" style="box-shadow: inset 0 1px 0 0 #2a2a2a;">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Dirección de Entrega Blindada</span>
+<span class="font-body-md text-body-md text-primary font-mono">Carrera 35 # 7-82, Torre Empresarial Pietrasanta, Oficina 904</span>
+</div>
+<div class="flex flex-col bg-surface-container-lowest p-3">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-[0.2em]">Instrucciones Especiales de Seguridad</span>
+<p class="font-body-sm text-body-sm text-secondary mt-1">
+                "Entrega exclusivamente a titular con cédula física en portería blindada de torre 1. Requiere validación de sello de cera intacto antes de firmar recepción."
+              </p>
+</div>
+</div>
+<!-- BOTÓN PROMINENTE DE ACCIÓN DIRECTA WHATSAPP -->
+<a class="w-full py-4 px-6 bg-primary text-on-primary font-label-lg text-label-lg uppercase tracking-[0.22em] flex items-center justify-center gap-3 hover:bg-secondary-fixed transition-colors" href="https://wa.me/573052088279?text=Estimado%20Santiago,%20le%20escribe%20el%20curador%20de%20OMSHATO%20respecto%20a%20su%20encargo%20%23OMS-0842" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span>Contactar por WhatsApp (+57 305 2088279)</span>
+</a>
+</div>
+<!-- Línea de Tiempo de Auditoría / Historial de Estados -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Historial de Custodia (Timeline)</span>
+<span class="font-label-sm text-label-sm font-mono text-outline">HASH AUDIT: SHA-256</span>
+</div>
+<div class="flex flex-col relative pl-6 pb-2" style="box-shadow: inset 2px 0 0 0 #2a2a2a;">
+<!-- Timeline Item 1 -->
+<div class="relative mb-5">
+<div class="absolute -left-[31px] top-0 w-4 h-4 bg-primary flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary">Estado: Por conseguir con proveedor</span>
+<span class="font-label-sm text-label-sm font-mono text-outline">24 OCT · 15:10</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Contacto abierto con distribuidor oficial Le Locle. Confirmado plazo de 48h hábiles para recepción en bóveda Bogotá.
+                </p>
+<span class="font-label-sm text-label-sm text-outline font-mono uppercase mt-1">Autor: Curador Bogotá (ID-04)</span>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative mb-5">
+<div class="absolute -left-[31px] top-0 w-4 h-4 bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-outline"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary">Estado: Recibido en Plataforma</span>
+<span class="font-label-sm text-label-sm font-mono text-outline">24 OCT · 14:32</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">
+                  Solicitud formal de importación y encargo generada por comprador con pago del 30% en garantía fiduciaria.
+                </p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-outline"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary">Pre-orden Iniciada</span>
+<span class="font-label-sm text-label-sm font-mono text-outline">24 OCT · 14:15</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-1">
+                  Cliente seleccionó variante Powermatic 80 Blue Dial de catálogo reservado.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Notas Internas del Taller & Curador -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Notas Confidenciales de Taller</span>
+<span class="material-symbols-outlined text-[16px] text-outline">lock</span>
+</div>
+<!-- Feed de notas -->
+<div class="flex flex-col gap-2" id="notesList">
+<div class="bg-surface-container p-3 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Taller Bogotá · Ajuste de Malla</span>
+<span class="font-label-sm text-label-sm font-mono text-outline">24 OCT 15:45</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Cliente solicitó remover 2 eslabones de pulsera previo al despacho (medida muñeca 17.5 cm). Dejar eslabones en bolsa gamuza original.
+              </p>
+</div>
+</div>
+<!-- Input para agregar nota -->
+<div class="flex flex-col gap-2 pt-1">
+<textarea class="w-full bg-surface-container-lowest p-3 font-body-sm text-body-sm text-primary placeholder:text-outline uppercase tracking-wider focus:outline-none resize-none" id="newNoteInput" placeholder="ESCRIBIR NOTA INTERNA DE AUDITORÍA..." rows="2"></textarea>
+<div class="flex justify-end">
+<button class="px-4 py-2 bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm uppercase tracking-[0.18em] transition-all" onclick="addInternalNote()">
+                + Agregar Nota Confidencial
+              </button>
+</div>
+</div>
+</div>
+<!-- Zona de Peligro: Cancelar Pedido -->
+<div class="pt-4 flex flex-col gap-2" style="box-shadow: inset 0 1px 0 0 #2a2a2a;">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Protocolo de Rescisión</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-mono">IRREVOCABLE</span>
+</div>
+<button class="w-full py-3 px-4 bg-surface-container-lowest hover:bg-surface-container-high text-outline hover:text-primary font-label-md text-label-md uppercase tracking-[0.2em] flex items-center justify-center gap-2 transition-all" onclick="openCancelModal()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+            Cancelar Pedido / Interrumpir Encargo
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL DE CONFIRMACIÓN DE CANCELACIÓN (MONOCROMO HIGH CONTRAST) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-container-lowest/90 backdrop-blur-md hidden" id="cancelModal">
+<div class="w-full max-w-lg bg-surface-container-low p-6 lg:p-8 flex flex-col gap-6 shadow-2xl relative" style="box-shadow: 0 0 0 1px #444748;">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">warning</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.24em] text-outline">Confirmación Requerida</span>
+</div>
+<h3 class="font-headline-md text-headline-md uppercase text-primary tracking-wide">Cancelar Orden <span id="modalOrderNumber">#OMS-0842</span></h3>
+</div>
+<button class="text-outline hover:text-primary p-1" onclick="closeCancelModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Esta acción interrumpirá el encargo, anulará la reserva fiduciaria con el distribuidor y notificará al titular. La operación quedará registrada en el hash de auditoría inmutable.
+      </p>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Motivo de Cancelación</label>
+<select class="w-full bg-surface-container p-3 font-body-sm text-body-sm text-primary uppercase tracking-wider focus:outline-none" id="cancelReason">
+<option value="sin_stock">Proveedor agotó existencias internacionales</option>
+<option value="desistio">Cliente solicitó retracto formal de compra</option>
+<option value="tiempo">Excedió el plazo de entrega estimado (SLA)</option>
+<option value="fuerza_mayor">Discrepancia en verificación de autenticidad / aduana</option>
+<option value="otro">Otro motivo técnico (especificar en nota interna)</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-outline">Detalle Adicional del Veredicto</label>
+<textarea class="w-full bg-surface-container-lowest p-3 font-body-sm text-body-sm text-primary placeholder:text-outline uppercase tracking-wider focus:outline-none resize-none" id="cancelComments" placeholder="REGISTRE DETALLES PARA LA AUDITORÍA DE CANCELACIÓN..." rows="2"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-2">
+<button class="py-3 px-4 bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md uppercase tracking-[0.16em] transition-all" onclick="closeCancelModal()">
+          Volver Atrás
+        </button>
+<button class="py-3 px-4 bg-primary text-on-primary hover:bg-secondary-fixed font-label-md text-label-md uppercase tracking-[0.18em] transition-all font-semibold" onclick="confirmCancellation()">
+          Confirmar Cancelación
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Logic -->
+<script>
+  let currentSelectedOrder = 'OMS-0842';
+
+  const ordersData = {
+    'OMS-0842': {
+      id: '#OMS-0842',
+      status: 'proveedor',
+      statusLabel: 'Por conseguir con proveedor',
+      watch: 'Tissot PRX Powermatic 80 Acero 316L',
+      brand: 'TISSOT SUISSE 1853',
+      ref: 'Ref. T137.407.11.041.00',
+      price: '$ 3.450.000 COP',
+      buyer: 'Santiago Montoya Gaviria',
+      email: 'santiago.montoya.g@empresa-holding.com',
+      phone: '+57 305 2088279',
+      city: 'Medellín, Antioquia',
+      postal: '050021 (El Poblado)',
+      address: 'Carrera 35 # 7-82, Torre Empresarial Pietrasanta, Oficina 904',
+      instructions: '"Entrega exclusivamente a titular con cédula física en portería blindada de torre 1. Requiere validación de sello de cera intacto antes de firmar recepción."',
+      date: '24 OCT 2025 · 14:32'
+    },
+    'OMS-0841': {
+      id: '#OMS-0841',
+      status: 'confirmado',
+      statusLabel: 'Confirmado',
+      watch: 'Seiko Prospex Diver 200M Automatic',
+      brand: 'SEIKO PROSPEX JAPÓN',
+      ref: 'Ref. SPB151J1 Captain Willard',
+      price: '$ 5.890.000 COP',
+      buyer: 'Valeria Echeverry Restrepo',
+      email: 'valeria.echeverry@restrepo-legal.com',
+      phone: '+57 312 9940112',
+      city: 'Bogotá D.C., Cundinamarca',
+      postal: '110221 (Chicó Reservado)',
+      address: 'Calle 94 # 11A-45, Apartamento 602 Penthouse',
+      instructions: '"Llamar 20 minutos antes para autorizar ingreso en conserjería del edificio."',
+      date: '24 OCT 2025 · 11:15'
+    },
+    'OMS-0839': {
+      id: '#OMS-0839',
+      status: 'enviado',
+      statusLabel: 'Enviado',
+      watch: 'Hamilton Khaki Field Titanium Auto 38mm',
+      brand: 'HAMILTON WATCH CO.',
+      ref: 'Ref. H70545550 Calibre H-10',
+      price: '$ 4.620.000 COP',
+      buyer: 'Dr. Camilo Arboleda Henao',
+      email: 'camilo.arboleda@clinica-valle.com',
+      phone: '+57 300 4881903',
+      city: 'Cali, Valle del Cauca',
+      postal: '760045 (Ciudad Jardín)',
+      address: 'Avenida San Joaquín # 14-30, Casa 12 Condominio Los Samanes',
+      instructions: '"Guía de transporte de valores blindada enviada por correo al comprador."',
+      date: '23 OCT 2025 · 18:04'
+    },
+    'OMS-0838': {
+      id: '#OMS-0838',
+      status: 'entregado',
+      statusLabel: 'Entregado',
+      watch: 'Longines HydroConquest Cerámica 41mm',
+      brand: 'LONGINES SUISSE',
+      ref: 'Ref. L3.781.4.76.6 Sunray Grey',
+      price: '$ 7.950.000 COP',
+      buyer: 'Mauricio Zuluaga Peña',
+      email: 'mauricio.zuluaga@puerto-barranquilla.co',
+      phone: '+57 318 7029810',
+      city: 'Barranquilla, Atlántico',
+      postal: '080001 (Altos de Riomar)',
+      address: 'Carrera 58 # 84-122, Edificio Mirador',
+      instructions: '"Firma física de conformidad y certificado de cronómetro entregados."',
+      date: '22 OCT 2025 · 16:45'
+    },
+    'OMS-0835': {
+      id: '#OMS-0835',
+      status: 'recibido',
+      statusLabel: 'Recibido',
+      watch: 'Oris Aquis Date Calibre 400 41.5mm',
+      brand: 'ORIS HÖLSTEIN 1904',
+      ref: 'Ref. 01 400 7769 4154-07 8 22 09PEB',
+      price: '$ 12.100.000 COP',
+      buyer: 'Felipe Gómez Villegas',
+      email: 'fgomez@inversiones-villegas.com',
+      phone: '+57 310 5510293',
+      city: 'Bucaramanga, Santander',
+      postal: '680003 (Cabecera del Llano)',
+      address: 'Calle 48 # 33-19, Piso 14',
+      instructions: '"Pendiente revisión fiduciaria inicial antes de ordenar a Suiza."',
+      date: '22 OCT 2025 · 09:12'
+    },
+    'OMS-0829': {
+      id: '#OMS-0829',
+      status: 'cancelado',
+      statusLabel: 'Cancelado',
+      watch: 'Mido Ocean Star Tribute Gradient Red',
+      brand: 'MIDO WATCHES SUISSE',
+      ref: 'Ref. M026.830.11.051.00',
+      price: '$ 3.980.000 COP',
+      buyer: 'Andrés Felipe Castro',
+      email: 'af.castro@consultores-eje.com',
+      phone: '+57 317 4001928',
+      city: 'Pereira, Risaralda',
+      postal: '660002 (Pinares)',
+      address: 'Carrera 18 # 12-40',
+      instructions: '"Encargo desistido unilateralmente. Reembolso efectuado."',
+      date: '20 OCT 2025 · 17:50'
+    }
+  };
+
+  function selectOrder(orderId) {
+    currentSelectedOrder = orderId;
+    const data = ordersData[orderId];
+    if (!data) return;
+
+    // Reset styles on all rows
+    document.querySelectorAll('.order-row').forEach(row => {
+      row.style.boxShadow = 'none';
+    });
+
+    // Highlight selected row with pure white hairline border
+    const activeRow = document.getElementById(`row-${orderId}`);
+    if (activeRow) {
+      activeRow.style.boxShadow = 'inset 0 0 0 1px #ffffff';
+    }
+
+    // Update details pane
+    document.getElementById('detailOrderNumber').textContent = data.id;
+    document.getElementById('statusSelector').value = data.status;
+  }
+
+  function changeOrderStatus(newStatus) {
+    if (ordersData[currentSelectedOrder]) {
+      ordersData[currentSelectedOrder].status = newStatus;
+      
+      // Add a fast note to timeline
+      const notesList = document.getElementById('notesList');
+      const timeStr = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+      const newEntry = document.createElement('div');
+      newEntry.className = 'bg-surface-container p-3 flex flex-col gap-1';
+      newEntry.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Estado Actualizado a: ${newStatus.toUpperCase()}</span>
+          <span class="font-label-sm text-label-sm font-mono text-outline">HOY · ${timeStr}</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+          Transición ejecutada desde consola maestra OMSHATO.
+        </p>
+      `;
+      notesList.prepend(newEntry);
+    }
+  }
+
+  function addInternalNote() {
+    const input = document.getElementById('newNoteInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    const timeStr = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+    const notesList = document.getElementById('notesList');
+    const noteCard = document.createElement('div');
+    noteCard.className = 'bg-surface-container p-3 flex flex-col gap-1';
+    noteCard.innerHTML = `
+      <div class="flex items-center justify-between">
+        <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Curador Master · Nota Auditoría</span>
+        <span class="font-label-sm text-label-sm font-mono text-outline">HOY · ${timeStr}</span>
+      </div>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">${text}</p>
+    `;
+    notesList.prepend(noteCard);
+    input.value = '';
+  }
+
+  function openCancelModal() {
+    document.getElementById('modalOrderNumber').textContent = currentSelectedOrder;
+    document.getElementById('cancelModal').classList.remove('hidden');
+  }
+
+  function closeCancelModal() {
+    document.getElementById('cancelModal').classList.add('hidden');
+  }
+
+  function confirmCancellation() {
+    changeOrderStatus('cancelado');
+    const row = document.getElementById(`row-${currentSelectedOrder}`);
+    if (row) {
+      row.classList.add('opacity-50');
+    }
+    closeCancelModal();
+  }
+
+  function filterStatus(status) {
+    // Update button states
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('bg-primary', 'text-on-primary');
+      btn.classList.add('bg-surface-container', 'text-on-surface-variant');
+    });
+    event.currentTarget.classList.remove('bg-surface-container', 'text-on-surface-variant');
+    event.currentTarget.classList.add('bg-primary', 'text-on-primary');
+
+    // Filter list
+    const rows = document.querySelectorAll('.order-row');
+    rows.forEach(row => {
+      const orderKey = row.id.replace('row-', '');
+      const order = ordersData[orderKey];
+      if (status === 'all' || (order && order.status === status)) {
+        row.style.display = 'flex';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  // Live filter search
+  document.getElementById('orderSearch').addEventListener('input', function(e) {
+    const val = e.target.value.toLowerCase().trim();
+    document.querySelectorAll('.order-row').forEach(row => {
+      const text = row.innerText.toLowerCase();
+      if (text.includes(val)) {
+        row.style.display = 'flex';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-lowest py-6"><div class="w-full px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-4"><span class="font-label-sm text-label-sm tracking-[0.22em] text-outline uppercase">OMSHATO HAUTE HORLOGERIE © 2025 · BOGOTÁ, COLOMBIA</span><div class="flex items-center gap-6"><span class="font-label-sm text-label-sm tracking-[0.2em] text-outline uppercase">CANAL CIFRADO AES-256</span><span class="font-label-sm text-label-sm tracking-[0.2em] text-outline uppercase">AUDITORÍA V3.4</span></div></div></footer></div></body></html>

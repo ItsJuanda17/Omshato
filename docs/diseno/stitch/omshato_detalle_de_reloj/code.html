@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-secondary-fixed-variant": "#464747",
+          "surface": "#131313",
+          "inverse-on-surface": "#313030",
+          "surface-container-highest": "#353534",
+          "secondary": "#c7c6c6",
+          "on-secondary-container": "#b8b8b8",
+          "surface-bright": "#3a3939",
+          "on-primary-fixed": "#1a1c1c",
+          "primary-container": "#e2e2e2",
+          "surface-container-low": "#1c1b1b",
+          "secondary-container": "#484949",
+          "on-tertiary-fixed-variant": "#454747",
+          "on-primary-container": "#636565",
+          "surface-tint": "#c6c6c7",
+          "outline": "#8e9192",
+          "inverse-surface": "#e5e2e1",
+          "tertiary-container": "#e2e2e2",
+          "tertiary": "#ffffff",
+          "primary-fixed-dim": "#c6c6c7",
+          "surface-container-lowest": "#0e0e0e",
+          "primary": "#ffffff",
+          "secondary-fixed": "#e3e2e2",
+          "outline-variant": "#444748",
+          "on-error": "#690005",
+          "surface-dim": "#131313",
+          "on-tertiary": "#2f3131",
+          "error": "#ffb4ab",
+          "on-primary": "#2f3131",
+          "on-surface-variant": "#c4c7c8",
+          "surface-container": "#201f1f",
+          "background": "#131313",
+          "tertiary-fixed-dim": "#c6c6c6",
+          "tertiary-fixed": "#e2e2e2",
+          "on-tertiary-fixed": "#1a1c1c",
+          "on-error-container": "#ffdad6",
+          "on-surface": "#e5e2e1",
+          "on-secondary": "#2f3131",
+          "primary-fixed": "#e2e2e2",
+          "on-tertiary-container": "#636465",
+          "on-primary-fixed-variant": "#454747",
+          "on-background": "#e5e2e1",
+          "secondary-fixed-dim": "#c7c6c6",
+          "on-secondary-fixed": "#1a1c1c",
+          "surface-container-high": "#2a2a2a",
+          "inverse-primary": "#5d5f5f",
+          "error-container": "#93000a",
+          "surface-variant": "#353534"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "margin-tablet": "3rem",
+          "space-xs": "0.25rem",
+          "space-md": "1rem",
+          "gutter": "1.5rem",
+          "margin": "1.5rem",
+          "space-sm": "0.5rem",
+          "margin-desktop": "5rem",
+          "space-lg": "2rem",
+          "space-xl": "3.5rem",
+          "gutter-desktop": "2.5rem"
+        },
+        "fontFamily": {
+          "label-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "title-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-lg": [
+            "Syne"
+          ],
+          "headline-md": [
+            "Syne"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "label-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "display-lg-mobile": [
+            "Syne"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "display-md-mobile": [
+            "Syne"
+          ],
+          "headline-sm": [
+            "Syne"
+          ],
+          "display-lg": [
+            "Syne"
+          ],
+          "display-md": [
+            "Syne"
+          ],
+          "label-md": [
+            "Plus Jakarta Sans"
+          ]
+        },
+        "fontSize": {
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.25em",
+              "fontWeight": "600"
+            }
+          ],
+          "title-lg": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg": [
+            "30px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "0.15em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-md": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "0.12em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-lg": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.18em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-lg-mobile": [
+            "36px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "0.14em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "0.015em",
+              "fontWeight": "300"
+            }
+          ],
+          "display-md-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "0.12em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-sm": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0.20em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-lg": [
+            "56px",
+            {
+              "lineHeight": "64px",
+              "letterSpacing": "0.18em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-md": [
+            "40px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "0.16em",
+              "fontWeight": "500"
+            }
+          ],
+          "label-md": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.22em",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary selection:text-surface-container-lowest"><header class="fixed top-0 left-0 right-0 z-50 bg-[#0F0F0F] border-b border-[#262626]"><div class="h-20 max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-space-md flex-1"><button aria-label="Menú de navegación" class="lg:hidden text-on-surface-variant hover:text-primary transition-colors focus:outline-none" type="button"><span class="material-symbols-outlined text-[22px]">menu</span></button><button aria-label="Buscar piezas" class="text-on-surface-variant hover:text-primary transition-colors focus:outline-none flex items-center gap-space-xs" type="button"><span class="material-symbols-outlined text-[20px]">search</span><span class="hidden xl:inline font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline">Buscar</span></button></div><div class="flex flex-col items-center justify-center"><a class="font-headline-lg text-headline-sm md:text-headline-md tracking-[0.25em] uppercase text-primary font-medium hover:opacity-90 transition-opacity" data-path="catalogo" href="#">OMSHATO</a><span class="font-label-sm text-label-sm text-outline tracking-[0.3em] uppercase hidden sm:block -mt-1">Alta Relojería</span></div><div class="flex items-center justify-end gap-space-md md:gap-gutter flex-1"><a aria-label="Contacto directo WhatsApp" class="text-on-surface-variant hover:text-primary transition-colors flex items-center" href="https://wa.me/573052088279" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">chat</span></a><button aria-label="Bolsa de adquisiciones" class="text-on-surface-variant hover:text-primary transition-colors relative focus:outline-none flex items-center" type="button"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span class="absolute -top-1 -right-1 w-1.5 h-1.5 bg-primary rounded-full"></span></button><div class="pl-space-xs border-l border-outline-variant/40"><img alt="Profile" class="w-8 h-8 rounded-full object-cover grayscale contrast-125 border border-outline-variant" src="https://lh3.googleusercontent.com/aida/ALJJyrDnX6S_W1D1LInZqBHmyXQV6OdQ60CuuF9iflvpCXQg4YdF4bX6m9r-97TCSW9MMVebHd5nsXLaznJHeC-cu8AFBgFStWjmOreIzTrDR1ldgUraQXXvC15jY99TyMx2VivaWWAoi_Sy3wB8TCinG0NwtPVzWfuaaz-0HdJsnws9xuDQDzR0x0K4QHjA2vNG92Gi8Wz0PeQxKM-eX9xIWO1tmK7dBsvzA2bq6a3fCTK-FDlEQq6e9In79Jo"/></div></div></div><div class="hidden lg:block border-t border-[#262626]/60"><div class="max-w-[1440px] mx-auto px-margin-desktop"><nav class="flex items-center justify-center gap-gutter-desktop h-10" data-active-classes="text-primary font-medium border-b border-primary"><a class="font-label-md text-label-md uppercase tracking-[0.22em] text-on-surface-variant hover:text-primary transition-colors py-2" data-path="catalogo" href="#">Catálogo</a><a class="font-label-md text-label-md uppercase tracking-[0.22em] text-on-surface-variant hover:text-primary transition-colors py-2" data-path="marcas" href="#">Marcas</a><a class="font-label-md text-label-md uppercase tracking-[0.22em] text-on-surface-variant hover:text-primary transition-colors py-2" data-path="bajo-pedido" href="#">Bajo Pedido</a><a class="font-label-md text-label-md uppercase tracking-[0.22em] text-on-surface-variant hover:text-primary transition-colors py-2" data-path="contacto" href="#">Contacto</a></nav></div></div></header><main class="w-full pt-20 lg:pt-[121px] bg-surface relative min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<!-- TOP BREADCRUMB & METADATA BAR -->
+<div class="w-full bg-surface-container-lowest border-b border-surface-container-high py-space-sm px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-space-sm">
+<nav aria-label="Migas de pan" class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase tracking-[0.22em] text-outline">
+<a class="hover:text-primary transition-colors" href="#">Catálogo</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Relojes Suizos</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface">Tissot PRX Powermatic 80</span>
+</nav>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>Curaduría Directa • Colombia</span>
+</div>
+<span class="text-outline-variant hidden sm:inline">|</span>
+<div class="font-label-sm text-label-sm text-outline tracking-[0.2em] hidden sm:inline">
+          REF: T137.407.11.041.00
+        </div>
+</div>
+</div>
+</div>
+<!-- MAIN PRODUCT SECTION: TWO-COLUMN ASYMMETRIC DOSSIER -->
+<section class="w-full max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-lg lg:pt-space-xl pb-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-gutter-desktop items-start">
+<!-- LEFT COLUMN: HOROLOGICAL VISUAL ARCHIVE (7 COLS) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Master Presentation Viewport -->
+<div class="relative w-full aspect-[4/5] bg-surface-container-lowest border border-surface-container-high rounded overflow-hidden group select-none">
+<!-- Ambient Radial Scrim -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none"></div>
+<!-- Master Macro Image -->
+<img alt="Tissot PRX Powermatic 80 Esfera Azul Tapisserie" class="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105" data-alt="Editorial close-up macro studio portrait of a luxury Swiss mechanical Tissot PRX Powermatic 80 with deep blue tapisserie waffle dial and satin-brushed 316L stainless steel integrated bracelet. High contrast dramatic chiaroscuro lighting showcasing precise beveled edges, mechanical hands reflecting razor light, and deep obsidian shadows. Museum-grade horology presentation on a pure matte black pedestal." id="main-watch-display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1bPrnSIfvyvVrlMK10wpUr57t7GLoV97s7PNoNv2Fv8iOgnElfWe_iujIvu_oaOfREmcYR-Gkj1rRhfesY7ZRO3ltDw6fdzAUVgs5DvU7S1DsrRUyUCydl8PBRGcebC8Iu0JE2Vnaz2NKX9eY0q4wzZqnHcjw3-QpMocCluUqBvKHFFOOsLuQvs0bfcvwX97uAlcMNyR6jFsPYKAwvF6A8M4yc8wXfEvuWlULtVA"/>
+<!-- Loupe / Zoom Action Indicator -->
+<div class="absolute top-4 right-4 flex items-center gap-space-xs bg-surface-container-lowest/80 backdrop-blur-md px-3 py-1.5 rounded border border-surface-container-high">
+<span class="material-symbols-outlined text-[16px] text-outline">zoom_in</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.20em] text-outline">Macro 1:1</span>
+</div>
+<!-- Provenance Micro-Seal -->
+<div class="absolute bottom-4 left-4 flex items-center gap-2 bg-surface-container/90 backdrop-blur-md px-3 py-2 border border-surface-container-high rounded">
+<svg class="w-3.5 h-3.5 stroke-primary fill-none" stroke-width="1.5" viewbox="0 0 24 24">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+<span class="font-label-sm text-label-sm tracking-[0.25em] text-on-surface uppercase">Inspección Certificada</span>
+</div>
+</div>
+<!-- Thumbnails Gallery & Angle Selector -->
+<div class="grid grid-cols-4 gap-space-sm sm:gap-space-md">
+<!-- Thumb 1 (Active) -->
+<button aria-label="Ver vista frontal completa" class="gallery-thumb group relative aspect-square bg-surface-container-lowest border border-primary rounded p-1 transition-all focus:outline-none" onclick="updateMainImage(0, this)" type="button">
+<img alt="Vista frontal completa" class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300" data-alt="Frontal master studio photograph of Tissot PRX Powermatic 80 blue tapisserie dial on black velvet reflective surface with crisp metallic reflections on brushed case." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIubywf4h6OyulrCt1cWNDld8MsoPS7MU_FBjZyP4LSumL0gQlL2yI-ANXrb910bnYhK3EntHc2ivPQpwQ8i8BqaFstkG6oaz51rBdT7zlfbCu_pq8dBdpsG3tykjj-MRxP6yP1FJrE7STCAsRQYNRAsMIQLAAGbrOvPe2NLZPcmFNGDJjDyqOYzM2yK-4fhoTPoykndeAmzESg_NtsYWHz30vayGGO5dn9InNUMU"/>
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<span class="absolute bottom-1 right-1 font-label-sm text-[9px] uppercase tracking-wider text-primary bg-surface-container-lowest/80 px-1">01</span>
+</button>
+<!-- Thumb 2 -->
+<button aria-label="Ver dial tapicería en macro extremo" class="gallery-thumb group relative aspect-square bg-surface-container-lowest border border-surface-container-high hover:border-outline rounded p-1 transition-all focus:outline-none" onclick="updateMainImage(1, this)" type="button">
+<img alt="Macro de esfera waffle azul" class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300" data-alt="Extreme macro photograph of the blue embossed tapisserie waffle dial of Tissot PRX showing the luminescent baton indexes and sharp date window at three o clock under sapphire crystal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnXDHVoZ0vmrHLHpoVQLpkaRVRM5dz8IoMxsBh6xf4fsr3aqqeGPx6PFj_tg6uHMwXcz5gDs_j0T00de_cnyeFlBEJkuv3RalGAyDF9vSQhGhoecydj6h6nVpEODFZ8ltAHCOBcbeAMsACOxiSPWpdY2_4LUY1iRmNKLzgZ1EeH7GaC5ltfn0N9dlpSeLyhdVA9adUgH8B8qzHVnqdrz50RxAzF0SrCqXZWg8P0G4"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[9px] uppercase tracking-wider text-outline bg-surface-container-lowest/80 px-1">02</span>
+</button>
+<!-- Thumb 3 -->
+<button aria-label="Ver fondo visto de caja Powermatic 80" class="gallery-thumb group relative aspect-square bg-surface-container-lowest border border-surface-container-high hover:border-outline rounded p-1 transition-all focus:outline-none" onclick="updateMainImage(2, this)" type="button">
+<img alt="Fondo visto y movimiento Powermatic 80" class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300" data-alt="Macro exhibition caseback of automatic watch displaying the engraved Powermatic 80 rotor balance spring Nivachron and polished mechanical bridges through mineral sapphire glass." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvnhkMGoZJ_uR7A_6WWpLy1Sg2vkJE6RU_J6HBPXd3xHXiyKyPmg3AY1V3ppUPtiVShJkEfpymeC0Rg2p75zkBg44N9Sa5Z_YuKPZDSog-gt9Bd8EHeX_AubR-Z0xgzO9q2lbRIS_AoZEV0zN_c2qOl2-USrWVRYHSnMKzgx4JpxpG9XzFViqcGENe06-U7kNpP3PjYouAg4fs5lbdQ0uyCFlcRJv5qrLodt_arQI"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[9px] uppercase tracking-wider text-outline bg-surface-container-lowest/80 px-1">03</span>
+</button>
+<!-- Thumb 4 -->
+<button aria-label="Ver brazalete integrado y cierre mariposa" class="gallery-thumb group relative aspect-square bg-surface-container-lowest border border-surface-container-high hover:border-outline rounded p-1 transition-all focus:outline-none" onclick="updateMainImage(3, this)" type="button">
+<img alt="Brazalete y cierre desplegable" class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-300" data-alt="Sleek architectural shot of the integrated stainless steel 316L tapered bracelet and butterfly clasp with dual push-buttons against dramatic shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu-puOMY_2712h2R4c4tLBJm7vKal4InLjd7FQbJLSSUpRWNe77ah5hXWFHU1csRjsRbfIy0KYh8vj002MRlanWID-OmYJLolev18YtRpQO4Wt5NEhp3xCQbB2-AoTk104c9htEfxvtTqm3l0oGKaFVa6N7TNSEeZIUPGxSULykBxFeFqFXaOK4OBnwSbUwelDuSlMr2rJ9dwLgMs6arHKPYuW1KR7ZphrQFPyaO0"/>
+<span class="absolute bottom-1 right-1 font-label-sm text-[9px] uppercase tracking-wider text-outline bg-surface-container-lowest/80 px-1">04</span>
+</button>
+</div>
+<!-- Technical Accreditations Footnote -->
+<div class="mt-space-sm p-space-md bg-surface-container-low border border-surface-container-high rounded flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-outline">tune</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm tracking-[0.20em] uppercase text-on-surface">Test de Cronocomparador</span>
+<span class="font-body-sm text-body-sm text-outline">Desviación media certificada: +2.4 s/día</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-outline">shield</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm tracking-[0.20em] uppercase text-on-surface">Inspección de Hermeticidad</span>
+<span class="font-body-sm text-body-sm text-outline">Presión hidrostática 10 Bar (100 m) superada</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: CURATORIAL DOSSIER & BESPOKE ACQUISITION (5 COLS) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Header & Classification -->
+<div class="flex flex-col gap-space-xs border-b border-surface-container-high pb-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm tracking-[0.3em] uppercase text-outline">TISSOT SWISS 1853</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm tracking-[0.2em] text-outline-variant uppercase">Le Locle, Suiza</span>
+</div>
+<!-- Status Badge -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-primary border border-outline-variant/60 rounded font-label-sm text-label-sm uppercase tracking-[0.22em]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Bajo Pedido
+            </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-[0.14em] uppercase pt-1">
+            PRX Powermatic 80
+          </h1>
+<div class="flex items-center gap-space-sm">
+<span class="font-body-md text-body-md text-outline tracking-wider">Caja 40.0 mm</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-md text-body-md text-outline tracking-wider">Esfera Azul Gofrada</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-md text-body-md text-outline tracking-wider">Acero 316L</span>
+</div>
+</div>
+<!-- Valuation & Commercial Index -->
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-display-md text-display-md text-primary tracking-[0.08em] font-medium">
+              $3.450.000
+            </span>
+<span class="font-headline-sm text-headline-sm text-outline tracking-widest uppercase">COP</span>
+</div>
+<p class="font-label-sm text-label-sm uppercase tracking-[0.22em] text-outline">
+            Precio final con tributos de importación e impuestos incluidos en Colombia.
+          </p>
+</div>
+<!-- Bajo Pedido Curatorial Protocol Notice -->
+<div class="p-space-md bg-surface-container border border-surface-container-high rounded relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-start gap-space-sm pl-1">
+<span class="material-symbols-outlined text-[20px] text-primary shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.20em] text-primary font-semibold">Protocolo de Importación OMSHATO</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Pieza bajo pedido: este guardatiempo se adquiere e importa exclusivamente tras tu solicitud. El curador verificará disponibilidad y tiempos de entrega garantizados (<strong class="text-on-surface font-medium">aprox. 8 a 12 días hábiles</strong>) con seguimiento personalizado continuo.
+              </p>
+</div>
+</div>
+</div>
+<!-- Purchasing Actions (Exclusive Concierge Model - NO shopping cart) -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<!-- Primary CTA Button -->
+<button class="w-full bg-primary hover:bg-primary-container text-surface-container-lowest font-label-lg text-label-lg uppercase tracking-[0.20em] py-4 px-space-lg rounded transition-colors text-center flex items-center justify-center gap-space-sm cursor-pointer shadow-lg" onclick="openOrderModal()" type="button">
+<span>Pedir este reloj</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Secondary WhatsApp Concierge Button -->
+<a class="w-full bg-transparent hover:bg-surface-container-high border border-outline-variant hover:border-primary text-primary font-label-lg text-label-lg uppercase tracking-[0.18em] py-3.5 px-space-md rounded transition-all text-center flex items-center justify-center gap-space-sm" href="https://wa.me/573052088279?text=Deseo%20iniciar%20la%20solicitud%20bajo%20pedido%20del%20Tissot%20PRX%20Powermatic%2080%20(Ref.%20T137.407.11.041.00)%20con%20el%20curador%20de%20OMSHATO." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Consultar por WhatsApp • 305 2088279</span>
+</a>
+<!-- Response SLA -->
+<div class="flex items-center justify-center gap-space-xs text-center pt-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>
+<span class="font-label-sm text-label-sm text-outline tracking-[0.20em] uppercase">
+              Respuesta directa del especialista en menos de 15 minutos
+            </span>
+</div>
+</div>
+<!-- Curaduría y Confianza Monolith -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded p-space-md sm:p-space-lg flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs pb-space-sm border-b border-surface-container-high">
+<svg class="w-4 h-4 stroke-primary fill-none" stroke-width="1.2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polygon points="12 6 13.5 10.5 18 12 13.5 13.5 12 18 10.5 13.5 6 12 10.5 10.5 12 6"></polygon>
+</svg>
+<span class="font-headline-sm text-headline-sm uppercase tracking-[0.20em] text-primary">Curaduría &amp; Garantía Omshato</span>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Pillar 1 -->
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary shrink-0 mt-0.5">workspace_premium</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md uppercase tracking-[0.18em] text-on-surface font-medium">100% Auténtico Certificado</span>
+<span class="font-body-sm text-body-sm text-outline leading-normal mt-0.5">
+                  Acompañado de su estuche oficial de manufactura suiza, manuales de usuario foliados y tarjeta de garantía internacional sellada.
+                </span>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary shrink-0 mt-0.5">timelapse</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md uppercase tracking-[0.18em] text-on-surface font-medium">Inspección Pre-Despacho</span>
+<span class="font-body-sm text-body-sm text-outline leading-normal mt-0.5">
+                  Calibración y reporte acústico de marcha en cronocomparador en nuestro taller antes de autorizar la entrega final.
+                </span>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary shrink-0 mt-0.5">local_shipping</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md uppercase tracking-[0.18em] text-on-surface font-medium">Envío Blindado y Asegurado</span>
+<span class="font-body-sm text-body-sm text-outline leading-normal mt-0.5">
+                  Cobertura completa nacional sin costo adicional (Bogotá, Medellín, Cali, Barranquilla, Bucaramanga y resto del país).
+                </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- HOROLOGICAL SPECIFICATION MATRIX (SPEC DOSSIER) -->
+<section class="w-full bg-surface-container-lowest border-y border-surface-container-high py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col gap-space-lg">
+<!-- Section Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm pb-space-sm border-b border-surface-container-high">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.3em] text-outline block mb-1">Ficha de Ingeniería</span>
+<h2 class="font-headline-lg text-headline-lg uppercase tracking-[0.18em] text-primary">Especificaciones Técnicas</h2>
+</div>
+<div class="font-label-sm text-label-sm tracking-[0.25em] text-outline uppercase font-mono">
+          CALIBRE: POWERMATIC 80.111
+        </div>
+</div>
+<!-- Specification Matrix Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter-desktop gap-y-0">
+<!-- Left Column Specs -->
+<div class="flex flex-col">
+<!-- Row 1 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Diámetro de caja</span>
+<span class="font-body-md text-body-md text-primary font-mono">40.0 mm</span>
+</div>
+<!-- Row 2 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Grosor de perfil</span>
+<span class="font-body-md text-body-md text-primary font-mono">10.9 mm</span>
+</div>
+<!-- Row 3 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Distancia entre asas (Lug to Lug)</span>
+<span class="font-body-md text-body-md text-primary font-mono">39.5 mm</span>
+</div>
+<!-- Row 4 -->
+<div class="py-3.5 border-b border-surface-container-high flex flex-col gap-1">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Movimiento y Calibre</span>
+<span class="font-body-md text-body-md text-primary">
+              Powermatic 80.111 Automático con espiral Nivachron™ antimagnético
+            </span>
+</div>
+<!-- Row 5 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Reserva de marcha</span>
+<span class="font-body-md text-body-md text-primary font-mono">Hasta 80 horas continuas</span>
+</div>
+</div>
+<!-- Right Column Specs -->
+<div class="flex flex-col">
+<!-- Row 6 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Frecuencia de oscilación</span>
+<span class="font-body-md text-body-md text-primary font-mono">21.600 A/h (3.0 Hz)</span>
+</div>
+<!-- Row 7 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Cristal frontal</span>
+<span class="font-body-md text-body-md text-primary">Zafiro irrayable con tratamiento antirreflejos</span>
+</div>
+<!-- Row 8 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Fondo de caja</span>
+<span class="font-body-md text-body-md text-primary">Visto en cristal mineral (Exhibition caseback)</span>
+</div>
+<!-- Row 9 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Material de caja y armis</span>
+<span class="font-body-md text-body-md text-primary">Acero inoxidable 316L satinado con bisel pulido</span>
+</div>
+<!-- Row 10 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Hermeticidad</span>
+<span class="font-body-md text-body-md text-primary font-mono">10 Bar (100 m / 330 ft)</span>
+</div>
+<!-- Row 11 -->
+<div class="py-3.5 border-b border-surface-container-high flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-[0.22em] text-outline">Sistema de cierre</span>
+<span class="font-body-md text-body-md text-primary">Desplegable de mariposa con pulsadores dobles</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MECHANICAL PHILOSOPHY & CURATORIAL NARRATIVE SECTION -->
+<section class="w-full max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Left Narrative / Philosophy -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 stroke-primary fill-none" stroke-width="1.2" viewbox="0 0 24 24">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.28em] text-outline">Criterio del Curador</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg uppercase tracking-[0.14em] text-primary">
+          El Renacimiento de una Silueta de 1978
+        </h3>
+<div class="flex flex-col gap-space-sm font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+<p>
+            En la curaduría de <strong class="text-on-surface">OMSHATO</strong>, cada pieza debe trascender la moda pasajera para responder a dos principios inquebrantables: solvencia técnica y pureza geométrica. El Tissot PRX Powermatic 80 no es únicamente un tributo a la era dorada de los relojes con brazalete integrado de finales de los setenta; es una hazaña de accesibilidad en alta relojería.
+          </p>
+<p>
+            Su espiral de volante Nivachron™ protege el corazón mecánico contra los campos magnéticos del entorno contemporáneo, mientras sus 80 horas de reserva permiten dejar la pieza descansando todo un fin de semana y retomarla el lunes con sincronía perfecta. La esfera gofrada capta y refracta la luz con una sobriedad arquitectónica digna de las manufacturas de mayor linaje.
+          </p>
+</div>
+<!-- Scriptural Anchor Quote -->
+<div class="mt-space-md p-space-md bg-surface-container-low border-l-2 border-primary rounded-r">
+<blockquote class="font-body-md text-body-md italic text-on-surface">
+            «En el día del bien goza del bien; y en el día de la adversidad considera.»
+          </blockquote>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.25em] text-outline block mt-2">
+            Eclesiastés 7:14 • Filosofía del Tiempo Omshato
+          </span>
+</div>
+</div>
+<!-- Right Visual Feature / Caseback Perspective -->
+<div class="lg:col-span-5">
+<div class="relative w-full aspect-square bg-surface-container-lowest border border-surface-container-high rounded overflow-hidden">
+<img alt="Mecanismo mecánico Tissot Powermatic 80" class="w-full h-full object-cover grayscale contrast-125 hover:scale-105 transition-transform duration-700" data-alt="Monochrome architectural black-and-white macro photograph of a watch movement balance wheel and gear train, showcasing intricate circular graining and watchmaker craftsmanship under soft side lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2npJ0jUaRsjoqEGzJwXkHlhO8dP2uzxd39mV7Ue9m56dX30MsIcRI-3mgvOZJ_NtNcrQBcwDLoON2Ul2MYvz0czRra9TokTtvAqY_Fb7FKaL9LARuq9m21mKyfMRdaAiv88lTuDXGNIEDpSQsLKHl3x877ome6kM7xwCStZ-HLnOBGtSyJ0f5DwHCfy30SKRgo1fsv1AlEnozZdfLklrtcnzVGhTrH_QLjgsF5OM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm tracking-[0.25em] uppercase text-outline">Manufactura Suiza</span>
+<span class="font-label-sm text-label-sm tracking-[0.20em] uppercase font-mono text-primary">80h Reserva</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP-BY-STEP ACQUISITION PROTOCOL -->
+<section class="w-full bg-surface-container-lowest border-t border-surface-container-high py-space-xl">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col gap-space-lg">
+<div class="text-center max-w-xl mx-auto flex flex-col gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.3em] text-outline">Transparencia y Rigor</span>
+<h3 class="font-headline-lg text-headline-lg uppercase tracking-[0.16em] text-primary">Proceso de Adquisición Bajo Pedido</h3>
+<p class="font-body-md text-body-md text-outline">
+          Diseñado para brindarte certeza absoluta desde la solicitud hasta la puesta en muñeca.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Step 1 -->
+<div class="p-space-lg bg-surface-container border border-surface-container-high rounded flex flex-col gap-space-sm relative">
+<span class="font-headline-lg text-headline-lg font-mono text-outline-variant">01</span>
+<h4 class="font-headline-sm text-headline-sm uppercase tracking-[0.18em] text-primary">Solicitud y Reserva</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Completas el formulario de orden o contactas a nuestro curador. Se confirma la asignación del número de serie y se pacta el anticipo de reserva formal.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="p-space-lg bg-surface-container border border-surface-container-high rounded flex flex-col gap-space-sm relative">
+<span class="font-headline-lg text-headline-lg font-mono text-outline-variant">02</span>
+<h4 class="font-headline-sm text-headline-sm uppercase tracking-[0.18em] text-primary">Inspección y Tránsito</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            La pieza es importada directamente con despacho prioritario. A su llegada a Colombia, se somete a test de hermeticidad y precisión acústica.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="p-space-lg bg-surface-container border border-surface-container-high rounded flex flex-col gap-space-sm relative">
+<span class="font-headline-lg text-headline-lg font-mono text-outline-variant">03</span>
+<h4 class="font-headline-sm text-headline-sm uppercase tracking-[0.18em] text-primary">Entrega de Seguridad</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Despacho en vehículo blindado o transportadora de valores a tu residencia u oficina con seguro al 100% de la valoración comercial.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- BESPOKE ORDER MODAL DIALOG (CLIENT-SIDE VANILLA INTERACTION) -->
+<div class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4" id="order-modal">
+<div class="bg-surface-container border border-surface-container-high w-full max-w-lg rounded shadow-2xl overflow-hidden flex flex-col">
+<!-- Modal Header -->
+<div class="p-space-md border-b border-surface-container-high flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs">
+<svg class="w-4 h-4 stroke-primary fill-none" stroke-width="1.2" viewbox="0 0 24 24">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+<span class="font-headline-sm text-headline-sm uppercase tracking-[0.20em] text-primary">Solicitud de Pieza</span>
+</div>
+<button aria-label="Cerrar ventana" class="text-outline hover:text-primary transition-colors focus:outline-none" onclick="closeOrderModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Body Form -->
+<form class="p-space-lg flex flex-col gap-space-md" id="bespoke-order-form" onsubmit="submitOrder(event)">
+<div class="p-space-sm bg-surface-container-lowest border border-surface-container-high rounded flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Pieza Seleccionada</span>
+<span class="font-headline-sm text-headline-sm uppercase text-primary">Tissot PRX Powermatic 80 (40mm)</span>
+</div>
+<span class="font-label-md text-label-md font-mono text-primary">$3.450.000 COP</span>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.20em] text-outline" for="client-name">Nombre Completo *</label>
+<input class="w-full bg-surface-container-lowest border border-surface-container-high text-on-surface font-body-md text-body-md px-4 py-3 rounded focus:outline-none focus:border-primary transition-colors placeholder:text-outline-variant" id="client-name" placeholder="Ej. Carlos Mendoza" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.20em] text-outline" for="client-phone">WhatsApp / Teléfono *</label>
+<input class="w-full bg-surface-container-lowest border border-surface-container-high text-on-surface font-body-md text-body-md px-4 py-3 rounded focus:outline-none focus:border-primary transition-colors placeholder:text-outline-variant font-mono" id="client-phone" placeholder="+57 300 000 0000" required="" type="tel"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.20em] text-outline" for="client-city">Ciudad de Destino *</label>
+<input class="w-full bg-surface-container-lowest border border-surface-container-high text-on-surface font-body-md text-body-md px-4 py-3 rounded focus:outline-none focus:border-primary transition-colors placeholder:text-outline-variant" id="client-city" placeholder="Medellín / Bogotá / Cali" required="" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm uppercase tracking-[0.20em] text-outline" for="client-notes">Instrucciones o Preguntas (Opcional)</label>
+<textarea class="w-full bg-surface-container-lowest border border-surface-container-high text-on-surface font-body-md text-body-md px-4 py-3 rounded focus:outline-none focus:border-primary transition-colors placeholder:text-outline-variant resize-none" id="client-notes" placeholder="Ej. Deseo ajuste de brazalete a 17.5 cm antes del despacho." rows="2"></textarea>
+</div>
+<!-- Privacy & Terms note -->
+<p class="font-body-sm text-body-sm text-outline-variant text-[11px] leading-relaxed">
+          Al enviar esta solicitud, tu requerimiento pasa de inmediato a la mesa curatorial de OMSHATO. Un especialista te contactará formalmente para validar disponibilidad y expedir el acta de reserva.
+        </p>
+<!-- Submit Button -->
+<button class="w-full bg-primary hover:bg-primary-container text-surface-container-lowest font-label-lg text-label-lg uppercase tracking-[0.20em] py-3.5 px-space-md rounded transition-colors text-center cursor-pointer font-medium" type="submit">
+          Confirmar Solicitud de Curaduría
+        </button>
+</form>
+</div>
+</div>
+<!-- FIXED BOTTOM MOBILE BAR FOR CONVENIENT DIRECT ACTION -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md border-t border-surface-container-high px-margin py-3 flex items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary tracking-wide font-medium">$3.450.000 COP</span>
+<span class="font-label-sm text-[9px] uppercase tracking-wider text-outline">Bajo Pedido • 8-12 días</span>
+</div>
+<div class="flex items-center gap-2">
+<a aria-label="Contactar por WhatsApp" class="bg-surface-container hover:bg-surface-container-high border border-surface-container-high text-primary p-2.5 rounded flex items-center justify-center" href="https://wa.me/573052088279?text=Hola%20OMSHATO,%20deseo%20pedir%20el%20Tissot%20PRX%20Powermatic%2080.">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</a>
+<button class="bg-primary text-surface-container-lowest font-label-md text-label-md uppercase tracking-[0.18em] px-4 py-3 rounded font-medium shadow-md" onclick="openOrderModal()" type="button">
+        Pedir este reloj
+      </button>
+</div>
+</div>
+<!-- INLINE LIGHTWEIGHT INTERACTION CONTROLLER -->
+<script>
+    // Gallery view switcher
+    function updateMainImage(index, btnElement) {
+      const mainImg = document.getElementById('main-watch-display');
+      if (!mainImg) return;
+      
+      const thumbButtons = document.querySelectorAll('.gallery-thumb');
+      thumbButtons.forEach(btn => {
+        btn.classList.remove('border-primary');
+        btn.classList.add('border-surface-container-high');
+      });
+
+      btnElement.classList.remove('border-surface-container-high');
+      btnElement.classList.add('border-primary');
+
+      // Visual flash feedback
+      mainImg.style.opacity = '0.3';
+      setTimeout(() => {
+        mainImg.style.opacity = '1';
+      }, 150);
+    }
+
+    // Modal state controllers
+    function openOrderModal() {
+      const modal = document.getElementById('order-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeOrderModal() {
+      const modal = document.getElementById('order-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function submitOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('client-name').value;
+      const phone = document.getElementById('client-phone').value;
+      const city = document.getElementById('client-city').value;
+      
+      // WhatsApp redirection with curated payload
+      const encodedMsg = encodeURIComponent(
+        `Solicitud Bajo Pedido OMSHATO:\nReloj: Tissot PRX Powermatic 80 (Ref. T137.407.11.041.00)\nCliente: ${name}\nTeléfono: ${phone}\nCiudad: ${city}\nPor favor confirmar disponibilidad y plazos de entrega.`
+      );
+      
+      closeOrderModal();
+      window.open(`https://wa.me/573052088279?text=${encodedMsg}`, '_blank');
+    }
+  </script>
+</div></main><footer class="w-full bg-[#0F0F0F] border-t border-[#262626] relative overflow-hidden"><div class="absolute -right-16 -bottom-16 w-96 h-96 pointer-events-none opacity-5 select-none"><svg class="w-full h-full stroke-primary fill-none" stroke-width="0.5" viewbox="0 0 200 200"><circle cx="100" cy="100" r="90" stroke-dasharray="2 4"></circle><circle cx="100" cy="100" r="70"></circle><circle cx="100" cy="100" r="40"></circle><path d="M100 10 L100 190 M10 100 L190 100"></path><path d="M36 36 L164 164 M36 164 L164 36"></path><circle cx="100" cy="100" r="12"></circle></svg></div><div class="max-w-[1440px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl relative z-10"><div class="flex flex-col items-center text-center pb-space-lg border-b border-[#262626]"><div class="text-primary mb-space-sm"><svg class="w-6 h-6 mx-auto stroke-current fill-none" stroke-width="1" viewbox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div><p class="font-headline-sm text-headline-sm uppercase tracking-[0.20em] text-primary mb-space-xs">Tu tiempo, tu esencia</p><p class="font-label-sm text-label-sm text-outline tracking-[0.25em] uppercase">OMSHATO • MEDELLÍN &amp; BOGOTÁ</p></div><div class="py-space-lg grid grid-cols-1 md:grid-cols-3 gap-space-lg items-center border-b border-[#262626]"><div class="flex flex-wrap items-center justify-center md:justify-start gap-gutter"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary tracking-[0.20em] uppercase transition-colors" data-path="politica-de-datos" href="#">Política de datos personales</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary tracking-[0.20em] uppercase transition-colors" data-path="garantia-y-envios" href="#">Garantía y Envíos</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary tracking-[0.20em] uppercase transition-colors" data-path="ayuda" href="#">Ayuda</a></div><div class="flex items-center justify-center gap-space-lg"><a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-xs font-label-sm text-label-sm tracking-[0.18em]" href="https://wa.me/573052088279" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">call</span><span class="hidden xl:inline">305 2088279</span></a><a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-xs font-label-sm text-label-sm tracking-[0.18em]" href="https://instagram.com/omsha_to" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">photo_camera</span><span class="hidden xl:inline">@omsha_to</span></a><a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-space-xs font-label-sm text-label-sm tracking-[0.18em]" href="https://tiktok.com/@omsha_to" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">play_circle</span><span class="hidden xl:inline">@omsha_to</span></a></div><div class="text-center md:text-right"><span class="font-label-sm text-label-sm tracking-[0.25em] text-outline uppercase block">Eclesiastés 7:14</span><span class="font-body-sm text-body-sm text-outline-variant tracking-normal italic mt-1 block">"En el día del bien goza del bien; y en el día de la adversidad considera."</span></div></div><div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-label-sm text-label-sm text-outline tracking-[0.20em] uppercase">© 2025 OMSHATO. ALTA RELOJERÍA. COLOMBIA.</p><div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline tracking-[0.20em] uppercase"><span class="w-1.5 h-1.5 bg-outline rounded-full inline-block"></span><span>Curaduría Privada Certificada</span></div></div></div></footer></body></html>

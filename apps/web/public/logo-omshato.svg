@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90" fill="#ffffff" role="img" aria-label="Omshato">
+  <!-- Logo provisional. Reemplazar este archivo por el oficial; el componente Logo lo carga desde aquí. -->
+  <path d="M64 30Q67.52 48.48 86 52Q67.52 55.52 64 74Q60.48 55.52 42 52Q60.48 48.48 64 30Z" />
+  <path d="M30 19Q32.4 31.6 45 34Q32.4 36.4 30 49Q27.6 36.4 15 34Q27.6 31.6 30 19Z" />
+  <circle cx="54" cy="20" r="1.8" />
+  <circle cx="88" cy="36" r="1.6" />
+  <circle cx="50" cy="42" r="1.5" />
+  <circle cx="40" cy="70" r="1.5" />
+  <circle cx="82" cy="76" r="1.4" />
+</svg>
