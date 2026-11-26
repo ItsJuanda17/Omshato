@@ -67,7 +67,7 @@ const perfil = (dominio: RegExp, ejemplo: string) =>
       `Escribe la dirección completa del perfil, por ejemplo ${ejemplo}.`,
     );
 
-const enlace = (valor: z.ZodType<string>) => z.object({ valor, activo: z.boolean() });
+const enlace = (valor: z.ZodType<string, string>) => z.object({ valor, activo: z.boolean() });
 
 export const esquemaEnlaces = z
   .object({

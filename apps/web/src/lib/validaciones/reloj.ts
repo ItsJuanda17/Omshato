@@ -1,13 +1,17 @@
+import { MAXIMO_FOTOS } from "@omshato/contratos";
 import { z } from "zod";
 
-/** Valores del género. El cliente aún no los define (TBD-5), así que son una propuesta. */
-export const generosReloj = ["Hombre", "Mujer", "Unisex"] as const;
+/**
+ * Lo que el administrador escribe en el formulario del reloj. Los campos numéricos y los
+ * selectores entregan texto; el formulario los convierte en lo que recibe el API, que es quien
+ * valida de verdad (`esquemaDatosReloj`, en el paquete de contratos). Aquí solo se adelantan
+ * los mensajes junto a cada campo.
+ */
+
+export { generosReloj } from "@omshato/contratos";
 
 /** Valor del selector de marca que abre el campo para escribir una marca nueva. */
 export const MARCA_NUEVA = "nueva";
-
-/** Foto máxima por reloj, para no llenar la ficha. */
-const MAXIMO_FOTOS = 10;
 
 // REQ-ADM-3: solo un entero positivo. Se rechazan cero, negativos, decimales y texto.
 const precio = z
@@ -36,9 +40,7 @@ const textoLargo = z
   .trim()
   .max(2000, "El texto es demasiado largo. Usa máximo 2000 caracteres.");
 const plazo = z.string().trim().max(60, "El plazo es demasiado largo. Usa máximo 60 caracteres.");
-const rutaFoto = z.string().regex(/^\/relojes\/[\w-]+\.(png|jpe?g|webp)$/);
 
-/** Lo que escribe el administrador. Los campos numéricos y los selectores entregan texto. */
 export const esquemaFormularioReloj = z
   .object({
     nombre,
@@ -53,6 +55,7 @@ export const esquemaFormularioReloj = z
     detalleMecanica: textoLargo,
     descripcion: textoLargo,
     visible: z.boolean(),
+    /** Claves de las fotos ya subidas, en orden. La primera es la principal. */
     fotos: z
       .array(z.string())
       .min(1, "Agrega al menos una foto.")
@@ -77,22 +80,3 @@ export const esquemaFormularioReloj = z
   });
 
 export type DatosFormularioReloj = z.infer<typeof esquemaFormularioReloj>;
-
-/** Lo que recibe el servicio de relojes. */
-export const esquemaDatosReloj = z.object({
-  nombre,
-  idMarca: z.number().int().positive().nullable(),
-  marcaNueva: z.string().trim().max(80).nullable(),
-  genero,
-  precioCop: z.number().int().positive(),
-  modo: z.enum(["DISPONIBLE", "BAJO_PEDIDO"]),
-  cantidad: z.number().int().min(0).nullable(),
-  plazoEstimado: plazo.nullable(),
-  garantia,
-  detalleMecanica: textoLargo.nullable(),
-  descripcion: textoLargo.nullable(),
-  visible: z.boolean(),
-  fotos: z.array(rutaFoto).min(1).max(MAXIMO_FOTOS),
-});
-
-export type DatosReloj = z.infer<typeof esquemaDatosReloj>;

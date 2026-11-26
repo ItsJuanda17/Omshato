@@ -1,41 +1,40 @@
+import "server-only";
+
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { cache } from "react";
 
-import { obtenerAlmacen } from "@/lib/api/mock/almacen";
+import { COOKIE_DEL_API, COOKIE_SESION, llamarApi } from "@/lib/api/cliente";
 import type { Sesion } from "@/lib/api/tipos";
 
 /*
- * PUNTO DE INTEGRACIÓN: AUTENTICACIÓN DEL ADMINISTRADOR
- *
- * Hoy la sesión es simulada: una cookie con un identificador que el almacén en
- * memoria reconoce, y un único administrador de ejemplo. Todo el panel depende
- * de dos funciones de este archivo, `obtenerSesion` y `requerirSesion`, y de
- * `iniciarSesion` y `cerrarSesion` en `lib/api/auth.ts`.
- *
- * Al conectar el backend (NestJS), solo hay que reemplazar el cuerpo de estas
- * funciones para que validen la cookie o el token que emita la API. Ninguna
- * pantalla ni servicio del panel debe leer la cookie por su cuenta.
+ * La sesión del administrador la lleva el API (tabla `sesion`, con cierre por inactividad y
+ * bloqueo por intentos). El navegador solo guarda aquí, en una cookie `HttpOnly` del sitio,
+ * el token que el API entregó al iniciar sesión; el servidor de Next lo reenvía en cada
+ * llamada. Ninguna pantalla ni servicio del panel debe leer la cookie por su cuenta: todo
+ * pasa por `obtenerSesion` y `requerirSesion`, y por `iniciarSesion` y `cerrarSesion` en
+ * `lib/api/auth.ts`.
  */
 
-export const NOMBRE_COOKIE_SESION = "omshato_sesion";
-/** Duración de la sesión. El tiempo real de inactividad está por definir (TBD-17). */
-const DURACION_SESION_SEGUNDOS = 60 * 60 * 2;
+/** Respaldo si el API no manda `Max-Age`. */
+const DURACION_POR_DEFECTO_SEGUNDOS = 60 * 60 * 12;
 
-/** Administrador de ejemplo: el único que existe mientras no haya API (S-5 del SRS). */
-export const ADMINISTRADOR_SIMULADO: Sesion = {
-  idAdministrador: 1,
-  nombre: "Administrador",
-  correo: process.env.ADMIN_DEMO_CORREO ?? "admin@omshato.com",
-};
+/**
+ * La sesión actual, o nulo si no hay una válida. Se consulta una vez por solicitud aunque
+ * varios componentes la pidan.
+ */
+export const obtenerSesion = cache(async (): Promise<Sesion | null> => {
+  const hayCookie = (await cookies()).has(COOKIE_SESION);
+  if (!hayCookie) return null;
 
-export const CONTRASENA_SIMULADA = process.env.ADMIN_DEMO_CONTRASENA ?? "omshato-demo";
+  const respuesta = await llamarApi<{
+    administrador: { id: number; nombre: string; correo: string };
+  }>("/auth/yo", { conSesion: true });
+  if (!respuesta.ok) return null;
 
-/** La sesión actual, o nulo si no hay una válida. */
-export async function obtenerSesion(): Promise<Sesion | null> {
-  const identificador = (await cookies()).get(NOMBRE_COOKIE_SESION)?.value;
-  if (!identificador || !obtenerAlmacen().sesiones.has(identificador)) return null;
-  return ADMINISTRADOR_SIMULADO;
-}
+  const { id, nombre, correo } = respuesta.dato.administrador;
+  return { idAdministrador: id, nombre, correo };
+});
 
 /** Exige sesión. Sin ella, lleva al inicio de sesión (REQ-AUT-1). */
 export async function requerirSesion(): Promise<Sesion> {
@@ -44,21 +43,33 @@ export async function requerirSesion(): Promise<Sesion> {
   return sesion;
 }
 
-export async function abrirSesion() {
-  const identificador = crypto.randomUUID();
-  obtenerAlmacen().sesiones.add(identificador);
-  (await cookies()).set(NOMBRE_COOKIE_SESION, identificador, {
+/**
+ * Guarda el token que el API entregó al iniciar sesión. Recibe las cabeceras `Set-Cookie` de su
+ * respuesta; si no trae la cookie de sesión, no hace nada y devuelve `false`.
+ */
+export async function abrirSesion(cookiesDelApi: string[]) {
+  const cookieDeSesion = cookiesDelApi.find((cookie) => cookie.startsWith(`${COOKIE_DEL_API}=`));
+  if (!cookieDeSesion) return false;
+
+  const [par, ...atributos] = cookieDeSesion.split(";").map((parte) => parte.trim());
+  const token = par.slice(COOKIE_DEL_API.length + 1);
+  const maxAge = atributos
+    .find((atributo) => atributo.toLowerCase().startsWith("max-age="))
+    ?.split("=")[1];
+
+  (await cookies()).set(COOKIE_SESION, token, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: DURACION_SESION_SEGUNDOS,
+    maxAge: Number(maxAge) || DURACION_POR_DEFECTO_SEGUNDOS,
   });
+  return true;
 }
 
+/** Cierra la sesión en el API y borra la cookie del sitio. */
 export async function cerrarSesionActual() {
-  const almacenCookies = await cookies();
-  const identificador = almacenCookies.get(NOMBRE_COOKIE_SESION)?.value;
-  if (identificador) obtenerAlmacen().sesiones.delete(identificador);
-  almacenCookies.delete(NOMBRE_COOKIE_SESION);
+  // Si el API no responde, la cookie se borra igual: la persona quiere salir.
+  await llamarApi("/auth/logout", { metodo: "POST", conSesion: true });
+  (await cookies()).delete(COOKIE_SESION);
 }

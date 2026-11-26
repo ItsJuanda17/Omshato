@@ -25,11 +25,11 @@ export const direccionEntrega = z
   .min(1, "Escribe la dirección de entrega.")
   .max(250, "La dirección es demasiado larga. Usa máximo 250 caracteres.");
 
+export const MENSAJE_ACEPTAR_POLITICA =
+  "Debes aceptar la política de tratamiento de datos personales para continuar.";
+
 // REQ-PED-6: sin aceptar la política no hay pedido. El servidor pone la fecha, no el cliente.
-export const aceptaPolitica = z.literal(
-  true,
-  "Debes aceptar la política de tratamiento de datos personales para continuar.",
-);
+export const aceptaPolitica = z.literal(true, MENSAJE_ACEPTAR_POLITICA);
 
 /** REQ-GPE-6: cancelar exige un motivo breve. */
 export const motivoCancelacion = z

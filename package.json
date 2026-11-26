@@ -22,7 +22,9 @@
     "typecheck": "pnpm -r typecheck",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "pnpm lint && pnpm typecheck && pnpm format:check"
+    "check": "pnpm lint && pnpm typecheck && pnpm format:check",
+    "demo:cargar": "pnpm --filter @omshato/api demo:cargar",
+    "postinstall": "pnpm --filter @omshato/contratos build"
   },
   "devDependencies": {
     "prettier": "^3.6.2",

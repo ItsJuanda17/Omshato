@@ -2,59 +2,46 @@
 
 import { redirect } from "next/navigation";
 
-import { obtenerAlmacen, simularLatencia } from "@/lib/api/mock/almacen";
-import {
-  ADMINISTRADOR_SIMULADO,
-  CONTRASENA_SIMULADA,
-  abrirSesion,
-  cerrarSesionActual,
-} from "@/lib/auth/sesion";
+import { llamarApi } from "@/lib/api/cliente";
+import { abrirSesion, cerrarSesionActual } from "@/lib/auth/sesion";
 import { esquemaInicioSesion } from "@/lib/validaciones/auth";
-
-// Valores de referencia que dependen del cliente (TBD-17).
-const INTENTOS_MAXIMOS = 5;
-const BLOQUEO_MILISEGUNDOS = 15 * 60 * 1000;
 
 type ResultadoInicioSesion = { ok: true } | { ok: false; mensaje: string };
 
+const MENSAJE_GENERICO = "Correo o contraseña incorrectos";
+
 /**
- * Inicia la sesión del administrador (REQ-AUT-2). Ante credenciales inválidas
- * responde siempre lo mismo, sin indicar cuál dato falló (REQ-AUT-3).
+ * Inicia la sesión del administrador. Ante credenciales inválidas responde siempre lo mismo,
+ * sin indicar cuál dato falló (REQ-AUT-3). El bloqueo tras varios intentos fallidos
+ * (REQ-AUT-4) y el límite de solicitudes por IP los aplica el API.
  */
 export async function iniciarSesion(datos: {
   correo: string;
   contrasena: string;
 }): Promise<ResultadoInicioSesion> {
-  await simularLatencia(300);
-  const mensajeGenerico = { ok: false, mensaje: "Correo o contraseña incorrectos" } as const;
-
   const validacion = esquemaInicioSesion.safeParse(datos);
-  if (!validacion.success) return mensajeGenerico;
-  const { correo, contrasena } = validacion.data;
+  if (!validacion.success) return { ok: false, mensaje: MENSAJE_GENERICO };
 
-  const intentos = obtenerAlmacen().intentosSesion;
-  const clave = correo.toLowerCase();
-  const estado = intentos.get(clave) ?? { intentos: 0, bloqueadoHasta: null };
+  const respuesta = await llamarApi("/auth/login", {
+    metodo: "POST",
+    cuerpo: validacion.data,
+    reenviarIp: true,
+  });
 
-  // REQ-AUT-4: bloqueo temporal tras varios intentos fallidos seguidos.
-  if (estado.bloqueadoHasta && estado.bloqueadoHasta > Date.now()) {
-    return { ok: false, mensaje: "Demasiados intentos. Inténtalo de nuevo en unos minutos." };
+  if (!respuesta.ok) {
+    // El bloqueo y el límite de solicitudes traen un texto que explica cuánto esperar.
+    if (respuesta.estado === 429) return { ok: false, mensaje: respuesta.error.mensaje };
+    if (respuesta.estado === 401) return { ok: false, mensaje: MENSAJE_GENERICO };
+    return {
+      ok: false,
+      mensaje: "No pudimos iniciar sesión en este momento. Inténtalo de nuevo en unos minutos.",
+    };
   }
 
-  const correcta =
-    clave === ADMINISTRADOR_SIMULADO.correo.toLowerCase() && contrasena === CONTRASENA_SIMULADA;
-
-  if (!correcta) {
-    const fallidos = estado.intentos + 1;
-    intentos.set(clave, {
-      intentos: fallidos,
-      bloqueadoHasta: fallidos >= INTENTOS_MAXIMOS ? Date.now() + BLOQUEO_MILISEGUNDOS : null,
-    });
-    return mensajeGenerico;
+  const abierta = await abrirSesion(respuesta.cabeceras.getSetCookie());
+  if (!abierta) {
+    return { ok: false, mensaje: "No pudimos iniciar sesión en este momento. Inténtalo de nuevo." };
   }
-
-  intentos.delete(clave);
-  await abrirSesion();
   return { ok: true };
 }
 

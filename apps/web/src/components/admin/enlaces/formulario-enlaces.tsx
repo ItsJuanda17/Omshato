@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { actualizarEnlacesContacto, listarEnlacesContacto } from "@/lib/api/enlaces";
 import type { EnlaceContacto } from "@/lib/api/tipos";
-import { esquemaEnlaces, type DatosEnlaces } from "@/lib/validaciones/enlaces";
+import { esquemaEnlaces, type DatosEnlaces } from "@omshato/contratos";
 
 function aFormulario(enlaces: EnlaceContacto[]): DatosEnlaces {
   const de = (tipo: EnlaceContacto["tipo"]) => {

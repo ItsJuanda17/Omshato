@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import { urlFoto } from "@/lib/relojes/fotos";
 import type { ImagenReloj } from "@/lib/api/tipos";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +17,7 @@ export function GaleriaReloj({ imagenes, nombre }: { imagenes: ImagenReloj[]; no
       <div className="relative aspect-[4/5] overflow-hidden border border-linea bg-carbon-2">
         <Image
           key={actual.id}
-          src={actual.archivo}
+          src={urlFoto(actual.archivo)}
           alt={`${nombre}, foto ${indice + 1} de ${imagenes.length}`}
           fill
           priority
@@ -40,7 +41,7 @@ export function GaleriaReloj({ imagenes, nombre }: { imagenes: ImagenReloj[]; no
                 )}
               >
                 <Image
-                  src={imagen.archivo}
+                  src={urlFoto(imagen.archivo)}
                   alt=""
                   fill
                   sizes="(min-width: 1024px) 10vw, 22vw"

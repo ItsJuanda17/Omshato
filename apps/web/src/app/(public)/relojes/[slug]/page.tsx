@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import { MessageCircleIcon } from "lucide-react";
 
+import { urlFoto } from "@/lib/relojes/fotos";
 import { Engranaje } from "@/components/brand/engranajes";
 import { SeparadorBisel } from "@/components/brand/separador-bisel";
 import { GaleriaReloj } from "@/components/relojes/galeria-reloj";
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "Omshato",
       locale: "es_CO",
       type: "website",
-      images: [{ url: principal.archivo, width: 800, height: 1000, alt: titulo }],
+      images: [{ url: urlFoto(principal.archivo), width: 800, height: 1000, alt: titulo }],
     },
     twitter: { card: "summary_large_image", title: titulo, description: descripcion },
   };

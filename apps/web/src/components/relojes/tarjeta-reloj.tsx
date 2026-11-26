@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { urlFoto } from "@/lib/relojes/fotos";
 import { InsigniaModo } from "@/components/relojes/insignia-modo";
 import { Precio } from "@/components/relojes/precio";
 import type { RelojResumen } from "@/lib/api/tipos";
@@ -20,7 +21,7 @@ export function TarjetaReloj({
     >
       <div className="relative aspect-[4/5] overflow-hidden border-b border-linea bg-carbon-2">
         <Image
-          src={reloj.imagenPrincipal.archivo}
+          src={urlFoto(reloj.imagenPrincipal.archivo)}
           alt={`${reloj.marca.nombre} ${reloj.nombre}`}
           fill
           priority={prioridad}

@@ -5,8 +5,10 @@ Tienda web de relojes con un solo vendedor (Colombia). Monorepo con pnpm workspa
 ```
 omshato/
 ├── apps/
-│   ├── web/                  Frontend en Next.js. Hoy usa datos simulados en memoria
+│   ├── web/                  Frontend en Next.js. Habla con el API desde su servidor
 │   └── api/                  Backend en NestJS + TypeORM + PostgreSQL (ver apps/api/README.md)
+├── packages/
+│   └── contratos/            Lo que comparten front y API: tipos, esquemas Zod y reglas del negocio
 ├── docs/
 │   ├── srs/                  Especificación de requisitos
 │   ├── architecture/         Diagramas: casos de uso, C4, base de datos, secuencia y estados
@@ -36,49 +38,67 @@ src/
 │   └── admin/                Panel, una carpeta por sección:
 │       ├── layout/  comun/  sesion/  pedidos/  relojes/  enlaces/
 ├── lib/
-│   ├── api/                  Servicios y tipos de dominio. Es lo que se reemplaza por la API real
-│   │   └── mock/             Almacén y datos de ejemplo en memoria. Se borra al conectar el backend
-│   ├── auth/                 Sesión del administrador (punto de integración)
-│   ├── validaciones/         Esquemas Zod compartidos entre formularios y servicios
+│   ├── api/                  Servicios que llaman al API (cliente.ts es el cliente HTTP) y los tipos
+│   ├── auth/                 Sesión del administrador: guarda el token que entrega el API
+│   ├── validaciones/         Esquemas de los formularios (las reglas de fondo son de contratos)
 │   ├── catalogo/  contacto/  pedidos/  relojes/   Reglas y utilidades por dominio
 │   ├── svg/                  Geometría de los engranajes
 │   └── formato.ts  utils.ts  Utilidades comunes
-└── config/                   Valores iniciales de contacto
 ```
 
-**Convenciones:** los componentes se agrupan por dominio y no por tipo; la lógica sin interfaz va en `lib/<dominio>`; nada fuera de `lib/api` y `lib/auth` sabe de dónde vienen los datos.
+**Convenciones:** los componentes se agrupan por dominio y no por tipo; la lógica sin interfaz va en `lib/<dominio>`; nada fuera de `lib/api` y `lib/auth` sabe de dónde vienen los datos, y las reglas que el API también aplica (validaciones, estados del pedido, contacto) viven en `packages/contratos`, no aquí.
+
+## Puesta en marcha
+
+Requieren Node 20 o superior, pnpm 10 y Docker Desktop. Todo se ejecuta desde la raíz.
+
+```bash
+pnpm install                  # también compila packages/contratos
+pnpm db:up                    # PostgreSQL en Docker
+cp apps/api/.env.example apps/api/.env
+pnpm db:migrate               # crea las tablas
+pnpm db:seed                  # estados del pedido, departamentos, ciudades y enlaces de contacto
+
+# El primer administrador (no hay registro público). La clave va por entorno, no por argumentos.
+ADMIN_CORREO=tu@correo.com ADMIN_CONTRASENA=una-clave-larga pnpm admin:crear
+
+pnpm demo:cargar              # opcional: 8 relojes de ejemplo con fotos y los enlaces de contacto
+
+pnpm dev:api                  # API en http://localhost:3001/api/salud
+pnpm dev                      # sitio en http://localhost:3000 y panel en /admin
+```
+
+El front solo necesita `API_URL` si el API no está en `http://localhost:3001` (ver `apps/web/.env.example`).
 
 ## Comandos
 
-Requieren Node 20 o superior y pnpm 10. Se ejecutan desde la raíz.
-
 ```bash
-pnpm install
-pnpm dev          # front en http://localhost:3000
-pnpm dev:api      # API en http://localhost:3001/api/salud (antes: pnpm db:up)
-pnpm db:up        # PostgreSQL en Docker
-pnpm db:down      # apaga la base de datos
-pnpm test         # pruebas de todos los paquetes
-pnpm build        # compilación de producción
-pnpm lint         # ESLint
-pnpm typecheck    # TypeScript estricto
-pnpm format       # Prettier
-pnpm check        # lint, typecheck y formato
+pnpm test              # pruebas unitarias de todos los paquetes
+pnpm test:e2e          # e2e del API, sin base de datos
+pnpm test:integracion  # API contra PostgreSQL real (base omshato_test)
+pnpm build             # compilación de producción del front
+pnpm build:api         # compilación del API
+pnpm lint              # ESLint y oxlint
+pnpm typecheck         # TypeScript estricto
+pnpm format            # Prettier
+pnpm check             # lint, typecheck y formato
+pnpm db:down           # apaga la base de datos
 ```
 
-Variables de entorno: copia `apps/web/.env.example` a `apps/web/.env.local`.
+`@omshato/contratos` se compila a `dist` y el front y el API lo importan de ahí. Los scripts que lo necesitan (`dev`, `build`, `test`, `typecheck`, `lint`…) lo recompilan antes, así que no hay que hacerlo a mano.
 
-## Panel del administrador (simulado)
+## Cómo se conectan el front y el API
 
-El panel vive en `/admin`. Mientras no exista el backend, la sesión es simulada y los datos están en memoria del servidor, así que se reinician al reiniciarlo.
+El navegador nunca habla con el API: habla con Next, y el servidor de Next habla con el API (`apps/web/src/lib/api/cliente.ts`).
 
-- Correo: `admin@omshato.com`
-- Contraseña: `omshato-demo`
+- **Sesión del administrador:** el API la guarda en su tabla `sesion` y entrega un token. Next lo deja en una cookie `HttpOnly` del sitio (`omshato_sesion`) y lo reenvía en cada llamada. Un 401 del API lleva al inicio de sesión.
+- **Fotos:** el API guarda la clave (`relojes/<id>.png`) y Next las sirve bajo `/fotos/…` con un `rewrite` al API. Así no hay CORS y el optimizador de imágenes las ve como locales.
+- **Errores:** los rechazos de negocio (reloj con pedidos, transición no permitida, datos inválidos) llegan al formulario como dato y conservan lo escrito. Una caída del API muestra `app/error.tsx`.
+- **Contratos compartidos:** los tipos, los esquemas Zod y las reglas que ambos aplican (estados del pedido, resolución del contacto) viven en `packages/contratos`. Hay una sola copia.
 
-Se pueden cambiar con `ADMIN_DEMO_CORREO` y `ADMIN_DEMO_CONTRASENA` en `apps/web/.env.local`.
+### Para producción
 
-## Dónde conectar el backend
-
-- **Servicios:** todo `apps/web/src/lib/api` devuelve datos de ejemplo. Al conectar la API real se cambia el cuerpo de cada función por una llamada HTTP y se quita `"use server"`. Las firmas y los tipos no cambian.
-- **Sesión:** `apps/web/src/lib/auth/sesion.ts` es el único punto que sabe cómo se valida la sesión.
-- **Contacto:** los valores iniciales de WhatsApp, Instagram y TikTok están en `apps/web/src/config/contacto.ts`. Desde el panel se editan en «Enlaces de contacto».
+- **IP del visitante:** el límite de solicitudes (login y pedido) cuenta por IP. Next reenvía la IP en `X-Forwarded-For` y el API debe tener `PROXIES_DE_CONFIANZA=1` (el número de proxies delante de él). Si el sitio está detrás de otro proxy (Nginx, Cloudflare), ese proxy debe ser quien agrega la IP real al encabezado y el API debe ser alcanzable solo desde Next.
+- **Cookie de sesión:** en producción la cookie del sitio es `Secure`, así que el sitio debe servirse por HTTPS.
+- **Fotos:** hoy van a una carpeta del servidor del API (`ALMACENAMIENTO_RUTA`). Esa carpeta debe respaldarse o vivir en un volumen persistente.
+- **Notificaciones:** el aviso de pedido nuevo al administrador sigue pendiente (TBD-9). Hoy el administrador ve los pedidos al abrir el panel.

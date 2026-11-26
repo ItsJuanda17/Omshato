@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { CircleAlertIcon, PlusIcon, SearchIcon } from "lucide-react";
 
+import { urlFoto } from "@/lib/relojes/fotos";
 import { CargandoPanel, ErrorPanel } from "@/components/admin/comun/cargando-panel";
 import { Dialogo } from "@/components/admin/comun/dialogo";
 import { EstadoVacio } from "@/components/feedback/estados";
@@ -243,7 +244,7 @@ export function ListaRelojes() {
               >
                 <div className="relative hidden aspect-[4/5] w-[4.5rem] overflow-hidden border border-linea bg-carbon-2 md:block">
                   <Image
-                    src={principal.archivo}
+                    src={urlFoto(principal.archivo)}
                     alt={`${reloj.marca.nombre} ${reloj.nombre}`}
                     fill
                     sizes="72px"

@@ -16,13 +16,12 @@ import { Input } from "@/components/ui/input";
 import { SelectNativo } from "@/components/ui/select-nativo";
 import { Textarea } from "@/components/ui/textarea";
 import { actualizarReloj, crearReloj } from "@/lib/api/relojes-admin";
-import type { Marca, RelojAdmin } from "@/lib/api/tipos";
+import type { DatosRelojEntrada, Marca, RelojAdmin } from "@/lib/api/tipos";
 import {
   MARCA_NUEVA,
   esquemaFormularioReloj,
   generosReloj,
   type DatosFormularioReloj,
-  type DatosReloj,
 } from "@/lib/validaciones/reloj";
 
 function valoresIniciales(reloj?: RelojAdmin): DatosFormularioReloj {
@@ -60,7 +59,7 @@ function valoresIniciales(reloj?: RelojAdmin): DatosFormularioReloj {
   };
 }
 
-function aDatosReloj(datos: DatosFormularioReloj): DatosReloj {
+function aDatosReloj(datos: DatosFormularioReloj): DatosRelojEntrada {
   const marcaNueva = datos.marca === MARCA_NUEVA;
   return {
     nombre: datos.nombre,
@@ -108,7 +107,7 @@ export function FormularioReloj({ marcas, reloj }: Props) {
   const marcaElegida = useWatch({ control, name: "marca" });
 
   const guardar = useMutation({
-    mutationFn: (datos: DatosReloj) =>
+    mutationFn: (datos: DatosRelojEntrada) =>
       reloj ? actualizarReloj(reloj.id, datos) : crearReloj(datos),
     onSuccess: async (resultado) => {
       if (!resultado.ok) {

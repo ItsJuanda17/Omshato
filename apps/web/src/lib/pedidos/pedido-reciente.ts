@@ -2,7 +2,7 @@
 
 import { useMemo, useSyncExternalStore } from "react";
 
-import type { Pedido } from "@/lib/api/tipos";
+import type { PedidoPublico } from "@/lib/api/tipos";
 
 /**
  * El último pedido se guarda en la sesión del navegador y la confirmación lo lee
@@ -11,7 +11,7 @@ import type { Pedido } from "@/lib/api/tipos";
  */
 const CLAVE = "omshato:pedido-reciente";
 
-export function guardarPedidoReciente(pedido: Pedido) {
+export function guardarPedidoReciente(pedido: PedidoPublico) {
   window.sessionStorage.setItem(CLAVE, JSON.stringify(pedido));
 }
 
@@ -21,7 +21,7 @@ const sinSuscripcion = () => () => {};
  * - `undefined`: todavía se está leyendo (primer render en el servidor).
  * - `null`: no hay pedido reciente en esta sesión.
  */
-export function usePedidoReciente(): Pedido | null | undefined {
+export function usePedidoReciente(): PedidoPublico | null | undefined {
   const texto = useSyncExternalStore(
     sinSuscripcion,
     () => window.sessionStorage.getItem(CLAVE),
@@ -29,6 +29,6 @@ export function usePedidoReciente(): Pedido | null | undefined {
   );
   return useMemo(() => {
     if (texto === undefined) return undefined;
-    return texto ? (JSON.parse(texto) as Pedido) : null;
+    return texto ? (JSON.parse(texto) as PedidoPublico) : null;
   }, [texto]);
 }

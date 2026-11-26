@@ -30,7 +30,9 @@
     "premigration:run": "pnpm --filter @omshato/contratos build",
     "premigration:revert": "pnpm --filter @omshato/contratos build",
     "preseed": "pnpm --filter @omshato/contratos build",
-    "preadmin:crear": "pnpm --filter @omshato/contratos build"
+    "preadmin:crear": "pnpm --filter @omshato/contratos build",
+    "demo:cargar": "node --env-file-if-exists=.env dist/database/demo/cargar-demo.js",
+    "predemo:cargar": "nest build"
   },
   "dependencies": {
     "@nestjs/authentication": "^0.1.7",

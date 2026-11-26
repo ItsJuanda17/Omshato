@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { urlFoto } from "@/lib/relojes/fotos";
 import { InsigniaModo } from "@/components/relojes/insignia-modo";
 import { Precio } from "@/components/relojes/precio";
 import type { Reloj } from "@/lib/api/tipos";
@@ -19,7 +20,7 @@ export function ResumenReloj({ reloj }: { reloj: Reloj }) {
         </div>
         <div className="relative aspect-[4/5] overflow-hidden border border-linea bg-carbon-2">
           <Image
-            src={principal.archivo}
+            src={urlFoto(principal.archivo)}
             alt={`${reloj.marca.nombre} ${reloj.nombre}`}
             fill
             sizes="(min-width: 1024px) 28vw, 100vw"
