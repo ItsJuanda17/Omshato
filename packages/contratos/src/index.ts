@@ -1,3 +1,4 @@
+export * from "./auth.js";
 export * from "./contacto.js";
 export * from "./estados.js";
 export * from "./pedidos.js";

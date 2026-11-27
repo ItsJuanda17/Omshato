@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
-import { LinkIcon, LogOutIcon, MenuIcon, PackageIcon, WatchIcon, XIcon } from "lucide-react";
+import {
+  KeyRoundIcon,
+  LinkIcon,
+  LogOutIcon,
+  MenuIcon,
+  PackageIcon,
+  WatchIcon,
+  XIcon,
+} from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { cerrarSesion } from "@/lib/api/auth";
@@ -13,6 +21,7 @@ const secciones = [
   { href: "/admin/pedidos", etiqueta: "Pedidos", Icono: PackageIcon },
   { href: "/admin/relojes", etiqueta: "Relojes", Icono: WatchIcon },
   { href: "/admin/enlaces", etiqueta: "Enlaces de contacto", Icono: LinkIcon },
+  { href: "/admin/cuenta", etiqueta: "Mi cuenta", Icono: KeyRoundIcon },
 ];
 
 function Navegacion({ alNavegar }: { alNavegar?: () => void }) {
