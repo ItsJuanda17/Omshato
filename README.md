@@ -9,6 +9,7 @@ omshato/
 │   └── api/                  Backend en NestJS + TypeORM + PostgreSQL (ver apps/api/README.md)
 ├── packages/
 │   └── contratos/            Lo que comparten front y API: tipos, esquemas Zod y reglas del negocio
+├── e2e/                      Prueba de navegador de punta a punta (Chrome headless)
 ├── docs/
 │   ├── srs/                  Especificación de requisitos
 │   ├── architecture/         Diagramas: casos de uso, C4, base de datos, secuencia y estados
@@ -26,7 +27,7 @@ omshato/
 src/
 ├── app/                      Rutas (App Router)
 │   ├── (public)/             Sitio público: inicio, ficha, pedido, confirmación, ayuda, política
-│   └── admin/                Panel: login y (panel)/ con pedidos, relojes y enlaces
+│   └── admin/                Panel: login y (panel)/ con pedidos, relojes, enlaces y cuenta
 ├── components/
 │   ├── ui/                   Primitivas de interfaz (botón, campo, chip…)
 │   ├── brand/                Logo, engranajes y motivos mecánicos
@@ -76,6 +77,7 @@ El front solo necesita `API_URL` si el API no está en `http://localhost:3001` (
 pnpm test              # pruebas unitarias de todos los paquetes
 pnpm test:e2e          # e2e del API, sin base de datos
 pnpm test:integracion  # API contra PostgreSQL real (base omshato_test)
+pnpm test:navegador    # sitio + API + Chrome headless (base omshato_e2e, ver abajo)
 pnpm build             # compilación de producción del front
 pnpm build:api         # compilación del API
 pnpm lint              # ESLint y oxlint
@@ -86,6 +88,12 @@ pnpm db:down           # apaga la base de datos
 ```
 
 `@omshato/contratos` se compila a `dist` y el front y el API lo importan de ahí. Los scripts que lo necesitan (`dev`, `build`, `test`, `typecheck`, `lint`…) lo recompilan antes, así que no hay que hacerlo a mano.
+
+## Prueba de navegador
+
+`pnpm test:navegador` recorre el sitio y el panel como lo haría una persona: catálogo, pedido, inicio de sesión, bloqueo por intentos, pedidos, relojes con foto real, enlaces y cambio de contraseña. Necesita PostgreSQL arriba (`pnpm db:up`) y Chrome (o Edge; si está en otra ruta, define `CHROME_PATH`), con Node 22 o superior.
+
+Crea su propia base `omshato_e2e` en cada corrida, así que no toca la de desarrollo, y levanta el API y el sitio en modo producción en los puertos 3101 y 3100 (deben estar libres; compila el sitio en `apps/web/.next`, así que detén `pnpm dev` antes). Con `E2E_CAPTURAS=<carpeta>` guarda capturas de pantalla. Tarda unos dos minutos, casi todo en compilar.
 
 ## Cómo se conectan el front y el API
 

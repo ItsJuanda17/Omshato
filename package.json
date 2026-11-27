@@ -13,6 +13,7 @@
     "test": "pnpm -r test",
     "test:e2e": "pnpm -r --if-present test:e2e",
     "test:integracion": "pnpm --filter @omshato/api test:integracion",
+    "test:navegador": "node e2e/correr.mjs",
     "db:up": "docker compose up -d --wait db",
     "db:down": "docker compose down",
     "db:migrate": "pnpm --filter @omshato/api migration:run",

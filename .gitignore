@@ -14,3 +14,6 @@ coverage
 # Fotos subidas en desarrollo y archivos temporales de las pruebas del API
 apps/api/storage
 apps/api/.tmp
+
+# Capturas de la prueba de navegador (E2E_CAPTURAS)
+e2e/capturas
